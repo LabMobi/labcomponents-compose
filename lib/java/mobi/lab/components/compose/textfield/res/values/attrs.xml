@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LabTextFieldErrorState">
+        <attr name="state_error" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="LabTextField">
+        <attr name="textPaddingTop" format="dimension"/>
+        <attr name="textPaddingBottom" format="dimension"/>
+        <attr name="textPaddingHorizontal" format="dimension"/>
+        <attr name="autoClearErrorMode" format="enum">
+            <!-- Do not clear the error state automatically -->
+            <enum name="disabled" value="0"/>
+            <!-- Automatically clear the error state when TextField's text is changed -->
+            <enum name="onTextChanged" value="1"/>
+            <!-- Automatically clear the error state when the TextField is tapped -->
+            <enum name="onTouch" value="2" />
+        </attr>
+
+        <!-- Box attrs -->
+        <attr name="boxCornerRadiusTopStart" format="dimension"/>
+        <attr name="boxCornerRadiusTopEnd" format="dimension"/>
+        <attr name="boxCornerRadiusBottomStart" format="dimension"/>
+        <attr name="boxCornerRadiusBottomEnd" format="dimension"/>
+        <attr name="boxStrokeColor" format="color"/>
+        <attr name="boxBackgroundColor" format="color"/>
+        <attr name="boxStrokeWidth" format="dimension"/>
+        <attr name="boxStrokeWidthFocused" format="dimension"/>
+        <attr name="shapeAppearance"/>
+        <attr name="shapeAppearanceOverlay"/>
+    </declare-styleable>
+</resources>

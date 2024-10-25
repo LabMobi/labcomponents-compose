@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.Lab.TextField" parent="Widget.LabComponents.TextField">
+        <item name="boxCornerRadiusTopStart">?attr/labShapeCornerSizeTopLeft</item>
+        <item name="boxCornerRadiusTopEnd">?attr/labShapeCornerSizeTopRight</item>
+        <item name="boxCornerRadiusBottomStart">?attr/labShapeCornerSizeBottomLeft</item>
+        <item name="boxCornerRadiusBottomEnd">?attr/labShapeCornerSizeBottomRight</item>
+
+        <item name="boxStrokeColor">@color/lab_internal_textfield_stroke</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="boxStrokeWidth">@dimen/lab_internal_textfield_box_stroke_width</item>
+        <item name="boxStrokeWidthFocused">@dimen/lab_internal_textfield_box_stroke_width_focused</item>
+
+        <item name="shapeAppearance">?attr/labShapeAppearance</item>
+        <item name="shapeAppearanceOverlay">?attr/labShapeAppearanceOverlay</item>
+
+        <item name="endIconMinSize">@dimen/lab_internal_textfield_box_min_size</item>
+        <item name="startIconMinSize">@dimen/lab_internal_textfield_box_min_size</item>
+        <item name="endIconTint">?attr/labColorOnSurfaceVariantSelector</item>
+        <item name="startIconTint">?attr/labColorOnSurfaceVariantSelector</item>
+
+        <item name="counterTextAppearance">?attr/labTextAppearanceLabelMedium</item>
+        <item name="counterOverflowTextAppearance">?attr/labTextAppearanceLabelMedium</item>
+        <item name="errorTextAppearance">?attr/labTextAppearanceLabelMedium</item>
+        <item name="helperTextTextAppearance">?attr/labTextAppearanceLabelMedium</item>
+        <item name="hintTextAppearance">?attr/labTextAppearanceLabelMedium</item>
+        <item name="placeholderTextAppearance">?attr/labTextAppearanceBodyLarge</item>
+        <item name="prefixTextAppearance">?attr/labTextAppearanceBodyLarge</item>
+        <item name="suffixTextAppearance">?attr/labTextAppearanceBodyLarge</item>
+        <item name="android:textAppearance">?attr/labTextAppearanceBodyLarge</item>
+
+        <item name="counterTextColor">?attr/labColorOnSurfaceVariantSelector</item>
+        <item name="counterOverflowTextColor">?attr/labColorError</item>
+        <item name="errorTextColor">?attr/labColorError</item>
+        <item name="helperTextTextColor">?attr/labColorOnSurfaceVariantSelector</item>
+        <item name="hintTextColor">?attr/labColorPrimary</item>
+
+        <item name="android:textColorHint">?attr/labColorOnSurfaceVariantSelector</item>
+        <item name="placeholderTextColor">?attr/labColorOnSurfaceVariantSelector</item>
+        <item name="prefixTextColor">?attr/labColorOnSurfaceVariantSelector</item>
+        <item name="suffixTextColor">?attr/labColorOnSurfaceVariantSelector</item>
+        <item name="android:textColor">?attr/labColorOnBackgroundSelector</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Lab.TextField</item>
+    </style>
+
+    <style name="ThemeOverlay.Lab.TextField" parent="ThemeOverlay.LabComponents.TextField">
+        <item name="editTextStyle">@style/Widget.Lab.TextFieldEditText</item>
+    </style>
+
+    <style name="Widget.Lab.TextFieldEditText" parent="Widget.LabComponents.TextFieldEditText">
+        <item name="android:gravity">top</item>
+    </style>
+
+    <!-- TextField start -->
+    <style name="Widget.LabComponents.TextField" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <!-- Space between the box background's top edge and text input's top edge -->
+        <!-- Label and input text positions can be controlled by modifying this padding and boxCollapsedPaddingTop values. -->
+        <item name="textPaddingTop">24dp</item>
+        <!-- EditText bottom padding. Space between entered text and box background's edge -->
+        <item name="textPaddingBottom">8dp</item>
+        <!-- Additional padding before and after the input text -->
+        <item name="textPaddingHorizontal">2dp</item>
+
+        <!-- ThemeOverlay to modify the inner EditText's style and color overrides just for TextField -->
+        <item name="materialThemeOverlay">@style/ThemeOverlay.LabComponents.TextField</item>
+
+        <!-- Box attributes -->
+        <item name="boxBackgroundMode">filled</item>
+        <!-- Controls the padding between top edge and the animated label -->
+        <item name="boxCollapsedPaddingTop">10dp</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <!-- Bridge color to add error state to our TextField -->
+        <item name="boxStrokeColor">@color/lab_internal_mat_bridge_textfield_stroke</item>
+        <!-- TODO: material 1.12.0: Check if this feature is still relevant -->
+        <!-- Define this so that we can use it in our internal cursor color override logic -->
+        <item name="cursorColor">?attr/colorControlActivated</item>
+
+        <item name="shapeAppearance">?attr/shapeAppearance</item>
+        <item name="shapeAppearanceOverlay">?attr/shapeAppearanceOverlay</item>
+
+        <item name="autoClearErrorMode">onTouch</item>
+    </style>
+
+    <style name="ThemeOverlay.LabComponents.TextField" parent="">
+        <!-- Inner EditText style. Added automatically to the EditText that's added to TextInputLayout -->
+        <item name="editTextStyle">@style/Widget.LabComponents.TextFieldEditText</item>
+        <!-- This overrides error icon color in disabled state -->
+        <item name="colorOnError">?attr/colorError</item>
+        <item name="colorOutline">@color/lab_internal_mat_bridge_textfield_outline</item>
+    </style>
+
+    <style name="Widget.LabComponents.TextFieldEditText" parent="Widget.MaterialComponents.TextInputEditText.FilledBox">
+        <!-- A temporary default background. This signals TextInputLayout to avoid setting their own background. -->
+        <!-- After inflation we will override this temporary background with a properly styled box background. -->
+        <item name="android:background">@drawable/lab_internal_textfield_temp_background</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:minHeight">@dimen/lab_internal_textfield_box_min_size</item>
+    </style>
+
+</resources>
