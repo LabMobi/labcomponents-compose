@@ -5,41 +5,17 @@ plugins {
     id 'signing'
     alias libs.plugins.android.library
     alias libs.plugins.kotlin.android
+    alias(libs.plugins.compose.compiler)
 }
-
-def srcDirs = [
-        'mobi/lab/components/compose/button',
-        'mobi/lab/components/compose/color',
-        'mobi/lab/components/compose/shape',
-        'mobi/lab/components/compose/shared',
-        'mobi/lab/components/compose/textfield',
-        'mobi/lab/components/compose/theme',
-        'mobi/lab/components/compose/toolbar',
-        'mobi/lab/components/compose/typography',
-]
 
 project.archivesBaseName = "labcomponents-compose"
 
 android {
     namespace "mobi.lab.components.compose"
 
-    // A trick taken from material-components-android to keep everything in a single R namespace
-    // and still keep the sources separate for maintainability.
-    sourceSets {
-        main.java.srcDir 'java'
-        main.resources.srcDir 'java/resources'
-        main.java.excludes = [
-                '**/build/**',
-        ]
-        srcDirs.forEach {
-            main.res.srcDirs += 'java/' + it + '/res'
-            main.res.srcDirs += 'java/' + it + '/res-public'
-        }
-    }
-
     buildFeatures {
-        viewBinding = true
         buildConfig = true
+        compose = true
     }
 
     kotlinOptions {
@@ -68,7 +44,7 @@ android {
         setVersion "${rootProject.ext.libraryVersion}"
     }
 
-    buildTypes.all {
+    buildTypes.configureEach {
         consumerProguardFiles 'proguard-rules.pro'
     }
 
@@ -82,7 +58,7 @@ android {
         }
     }
 
-    libraryVariants.all { variant ->
+    libraryVariants.configureEach { variant ->
         variant.outputs.all { output ->
             if (variant.buildType.getName().contains("release")) {
                 // Don't add the variant name to release artefacts
@@ -105,8 +81,15 @@ android {
 }
 
 dependencies {
-    implementation libs.kotlin
-    implementation libs.material
+    // Compose
+    implementation platform(libs.compose.bom)
+    debugImplementation libs.compose.tooling
+    implementation libs.compose.material3
+    implementation libs.compose.tooling.preview
+    implementation libs.compose.activity
+    implementation libs.compose.viewbinding
+    // TODO do we need this for swipe refresh or not?
+    implementation libs.compose.accompanist.swiperefresh
 }
 
 

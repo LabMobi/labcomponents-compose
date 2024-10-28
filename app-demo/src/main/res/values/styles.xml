@@ -1,106 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.Lab.DayNight.Develop">
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:statusBarColor">@color/black</item>
-        <!-- Use the fonts from platform design. These are not part of the actual components lib but a part of the demo app -->
-        <item name="labFontFamilyDisplayLarge">@font/font_regular</item>
-        <item name="labFontFamilyDisplayMedium">@font/font_regular</item>
-        <item name="labFontFamilyDisplaySmall">@font/font_regular</item>
-        <item name="labFontFamilyHeadlineLarge">@font/font_regular</item>
-        <item name="labFontFamilyHeadlineMedium">@font/font_regular</item>
-        <item name="labFontFamilyHeadlineSmall">@font/font_regular</item>
-        <item name="labFontFamilyTitleLarge">@font/font_regular</item>
-        <item name="labFontFamilyTitleMedium">@font/font_medium</item>
-        <item name="labFontFamilyTitleSmall">@font/font_medium</item>
-        <item name="labFontFamilyBodyLarge">@font/font_medium</item>
-        <item name="labFontFamilyBodyLargeEmphasis">@font/font_bold</item>
-        <item name="labFontFamilyBodyMedium">@font/font_regular</item>
-        <item name="labFontFamilyBodyMediumEmphasis">@font/font_semibold</item>
-        <item name="labFontFamilyBodySmall">@font/font_regular</item>
-        <item name="labFontFamilyBodySmallEmphasis">@font/font_semibold</item>
-        <item name="labFontFamilyLabelLarge">@font/font_medium</item>
-        <item name="labFontFamilyLabelMedium">@font/font_medium</item>
-        <item name="labFontFamilyLabelSmall">@font/font_medium</item>
-    </style>
-
-    <!-- Theme to test our components as direct descendats of Material themes -->
-    <!-- See LabComponentsActivity -->
-    <style name="AppTheme.Material" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:statusBarColor">#000000</item>
         <item name="colorPrimary">#8800FF</item>
         <item name="colorSecondary">#00FFCC</item>
-    </style>
-
-    <style name="Divider" parent="">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:background">@android:color/darker_gray</item>
-    </style>
-
-    <style name="Text.ListItem" parent="TextAppearance.Lab.BodyLarge">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">56dp</item>
-        <item name="android:paddingStart">@dimen/margin_default</item>
-        <item name="android:paddingEnd">@dimen/margin_default</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:background">?attr/selectableItemBackground</item>
-        <item name="android:gravity">center_vertical</item>
-    </style>
-
-    <style name="Text.HeadlineLarge" parent="TextAppearance.Lab.HeadlineLarge">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/margin_default</item>
-        <item name="android:layout_marginEnd">@dimen/margin_default</item>
-        <item name="android:layout_marginTop">24dp</item>
-        <item name="android:layout_marginBottom">24dp</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="Text.HeadlineMedium" parent="TextAppearance.Lab.HeadlineMedium">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">24dp</item>
-        <item name="android:layout_marginBottom">24dp</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
-
-    <style name="Text.HeadlineSmall" parent="TextAppearance.Lab.HeadlineSmall">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">12dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
-
-    <style name="Text.TextStyle" parent="">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/margin_default</item>
-        <item name="android:layout_marginEnd">@dimen/margin_default</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginBottom">12dp</item>
-    </style>
-
-    <style name="Toolbar" parent="Widget.MaterialComponents.Toolbar">
-        <item name="android:background">@color/black</item>
-        <item name="android:elevation">1dp</item>
-        <item name="titleTextColor">@color/white</item>
-        <item name="titleMarginStart">64dp</item>
-        <item name="theme">@style/ThemeOverlay.Toolbar</item>
-    </style>
-
-    <style name="Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="ThemeOverlay.Toolbar" parent="">
-        <item name="android:textColorSecondary">@color/white</item>
-        <item name="actionMenuTextColor">@color/white</item>
     </style>
 </resources>
