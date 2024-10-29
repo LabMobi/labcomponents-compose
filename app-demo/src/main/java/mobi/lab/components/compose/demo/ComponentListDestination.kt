@@ -26,7 +26,7 @@ fun ComponentListDestination(
     onColorsClicked: () -> Unit,
     onTypographyClicked: () -> Unit,
 ) {
-    LabTheme {
+    AppTheme {
         LabScaffold(
             topBar = {
                 LabTopAppBar(stringResource(R.string.app_name))

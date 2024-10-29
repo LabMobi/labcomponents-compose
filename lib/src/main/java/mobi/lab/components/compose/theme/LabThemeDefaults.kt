@@ -19,11 +19,6 @@ import mobi.lab.components.compose.util.withFontFamily
 public object LabThemeDefaults {
 
     @Composable
-    public fun colors(): LabColors {
-        TODO()
-    }
-
-    @Composable
     public fun constants(): LabConstants {
         return LabConstants(
             disabledAlpha = 0.4f,

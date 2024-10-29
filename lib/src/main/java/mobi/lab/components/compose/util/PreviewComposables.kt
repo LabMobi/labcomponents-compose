@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.flowOf
-import mobi.lab.components.compose.theme.LabTheme
+import mobi.lab.components.compose.theme.AppTheme
 
 @Composable
 public fun PreviewContainer(
@@ -25,7 +25,7 @@ public fun PreviewContainer(
     color: Color = if (isDark) Color.Companion.Black else Color.Companion.White,
     content: @Composable BoxScope.() -> Unit
 ) {
-    LabTheme(isDark = isDark) {
+    AppTheme(isDark = isDark) {
         Box(
             modifier = modifier
                 .defaultMinSize(minHeight = 96.dp)

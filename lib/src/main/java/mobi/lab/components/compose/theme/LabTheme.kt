@@ -25,7 +25,7 @@ import androidx.compose.ui.graphics.Color
  * }
  */
 @Composable
-public fun LabTheme(
+public fun AppTheme(
     isDark: Boolean = isSystemInDarkTheme(),
     colors: LabColors = if (isDark) LabThemeDefaults.darkColors() else LabThemeDefaults.lightColors(),
     typography: LabTypography = LabThemeDefaults.typography(),
