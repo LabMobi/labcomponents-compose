@@ -1,0 +1,125 @@
+# Has a separate flows for develop branch (automatic builds),
+# Merge Request (automatic builds) and main branch Release builds (manual builds).
+definitions:
+  artifacts: &androidArtifacts # Section def
+    - emulator.log
+    - app-demo/build/reports
+    - app-demo/build/outputs/androidTest-results
+    - app-demo/build/outputs/logs
+    - app-demo/build/outputs/**/*.apk
+    - app-demo/build/outputs/**/*.aab
+    - app-demo/build/outputs/**/mapping.txt
+    - lib/build/reports
+    - lib/build/outputs/androidTest-results
+    - lib/build/outputs/logs
+    - lib/build/outputs/**/*.aar
+    - lib/build/outputs/**/mapping.txt
+  debug-emails: &debugEmails
+    - lauris.kruusamae@lab.mobi
+    - harri.kirik@lab.mobi
+  release-emails: &releaseEmails
+    - lauris.kruusamae@lab.mobi
+    - harri.kirik@lab.mobi
+  scripts:
+    # Local setup
+    - &stepLocalSetup
+      name: Set up local properties and permissions
+      script: |
+        chmod +x gradlew
+        echo "sdk.dir=$ANDROID_SDK_ROOT" > "$FCI_BUILD_DIR/local.properties"
+    # Run checkCode
+    - &stepCheckCode
+      name: Check code style and formatting
+      script: ./gradlew checkCode
+    # Build DEBUG
+    - &stepBuildDebug
+      name: Build Android
+      script: ./gradlew clean buildAllDebug
+    # Build RELEASE
+    - &stepBuildRelease
+      name: Build Library
+      script: ./gradlew clean buildAllRelease
+    # Build PUBLISH
+    - &stepBuildPublish
+      name: Publish to Maven Central
+      script: |
+        echo $PUBLISH_PROPS | base64 --decode > publish.properties
+        ./gradlew buildAndPublishRelease
+
+# Flows
+workflows:
+  release-builds:
+    name: Release builds for verification (main branch only)
+    instance_type: linux_x2
+    environment:
+      java: 17
+    scripts:
+      - name: Check 'main' branch
+        script: if [ "$FCI_BRANCH" != "main" ]; then exit 1; fi
+      - *stepLocalSetup
+      - *stepCheckCode
+      - *stepBuildRelease
+    publishing:
+      email:
+        recipients: *releaseEmails
+    artifacts: *androidArtifacts
+  publish-builds:
+    name: Publish to Maven builds (main branch only)
+    instance_type: linux_x2
+    environment:
+      java: 17
+      groups:
+        - publishing_props
+    scripts:
+      - name: Check 'main' branch
+        script: if [ "$FCI_BRANCH" != "main" ]; then exit 1; fi
+      - *stepLocalSetup
+      - *stepCheckCode
+      - *stepBuildPublish
+    publishing:
+      email:
+        recipients: *releaseEmails
+    artifacts: *androidArtifacts
+  develop-builds:
+    name: Development builds
+    instance_type: linux_x2
+    environment:
+      java: 17
+    triggering:
+      events:
+        - push
+        - pull_request
+      branch_patterns:
+        - pattern: 'develop'
+          include: true
+          source: true
+    scripts:
+      - *stepLocalSetup
+      - *stepCheckCode
+      - *stepBuildDebug
+    artifacts: *androidArtifacts
+    publishing:
+      email:
+        recipients: *debugEmails
+  merge-requests:
+    name: Merge requests
+    instance_type: linux_x2
+    environment:
+      java: 17
+    triggering:
+      events:
+        - pull_request
+      branch_patterns:
+        - pattern: 'develop'
+          include: true
+          source: false
+      cancel_previous_builds: true
+    scripts:
+      - *stepLocalSetup
+      - *stepCheckCode
+      - *stepBuildDebug
+    publishing:
+      email:
+        recipients: *debugEmails
+        notify:
+          success: false
