@@ -7,6 +7,9 @@ object NavDestination {
     object ComponentList
 
     @Serializable
+    object Button
+
+    @Serializable
     object Colors
 
     @Serializable

@@ -23,6 +23,7 @@ import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 
 @Composable
 fun ComponentListDestination(
+    onButtonsClicked: () -> Unit,
     onColorsClicked: () -> Unit,
     onTypographyClicked: () -> Unit,
 ) {
@@ -37,6 +38,9 @@ fun ComponentListDestination(
                     .fillMaxSize()
                     .padding(contentPadding)
             ) {
+                item {
+                    ListItem("Buttons", onButtonsClicked)
+                }
                 item {
                     ListItem("Colors", onColorsClicked)
                 }
