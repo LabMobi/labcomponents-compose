@@ -1,4 +1,4 @@
-package mobi.lab.components.compose.widgets.scaffold
+package mobi.lab.components.compose.widget.scaffold
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets

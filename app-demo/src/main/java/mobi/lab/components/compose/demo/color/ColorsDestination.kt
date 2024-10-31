@@ -5,8 +5,6 @@ package mobi.lab.components.compose.demo.color
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsFocusedAsState
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,10 +29,11 @@ import androidx.compose.ui.unit.dp
 import com.google.android.material.color.MaterialColors
 import mobi.lab.components.compose.theme.AppTheme
 import mobi.lab.components.compose.theme.LabTheme
-import mobi.lab.components.compose.widgets.scaffold.LabScaffold
-import mobi.lab.components.compose.widgets.switch.LabSwitch
-import mobi.lab.components.compose.widgets.topappbar.LabTopAppBar
-import mobi.lab.components.compose.widgets.topappbar.upNavConfig
+import mobi.lab.components.compose.util.interactiveValue
+import mobi.lab.components.compose.widget.scaffold.LabScaffold
+import mobi.lab.components.compose.widget.switch.LabSwitch
+import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
+import mobi.lab.components.compose.widget.topappbar.upNavConfig
 
 @Composable
 fun ColorsDestination(onNavigateUp: () -> Unit) {
@@ -115,41 +114,37 @@ private fun ColorItem(item: ColorItem, enabled: Boolean) {
     }
 
     val interactionSource = remember { MutableInteractionSource() }
-    val isPressed = interactionSource.collectIsPressedAsState()
-    val isFocused = interactionSource.collectIsFocusedAsState()
-
-    val backgroundColor: Color
-    val foregroundColor: Color?
-    if (enabled) {
-        if (isPressed.value) {
-            backgroundColor = background.pressed
-            foregroundColor = foreground?.pressed
-        } else if (isFocused.value) {
-            backgroundColor = background.focused
-            foregroundColor = foreground?.focused
-        } else {
-            backgroundColor = background.color
-            foregroundColor = foreground?.color
-        }
-    } else {
-        backgroundColor = background.disabled
-        foregroundColor = foreground?.disabled
-    }
+    val backgroundColor = interactiveValue(
+        enabled = enabled,
+        interactionSource = interactionSource,
+        disabled = background.disabled,
+        pressed = background.pressed,
+        focused = background.focused,
+        default = background.default
+    )
+    val foregroundColor = interactiveValue(
+        enabled = enabled,
+        interactionSource = interactionSource,
+        disabled = foreground?.disabled,
+        pressed = foreground?.pressed,
+        focused = foreground?.focused,
+        default = foreground?.default
+    )
 
     Column(
         Modifier
             .clickable(interactionSource = interactionSource, indication = null) {}
             .size(width = 160.dp, height = 96.dp)
-            .background(backgroundColor)
+            .background(backgroundColor.value)
             .padding(4.dp)
     ) {
-        val textColor = if (MaterialColors.isColorLight(backgroundColor.toArgb())) {
+        val textColor = if (MaterialColors.isColorLight(backgroundColor.value.toArgb())) {
             Color.Black
         } else {
             Color.White
         }
         Text(item.name, style = LabTheme.typography.labelLarge, color = textColor)
-        Box(Modifier.fillMaxSize().background(foregroundColor ?: Color.Transparent))
+        Box(Modifier.fillMaxSize().background(foregroundColor.value ?: Color.Transparent))
     }
 }
 
@@ -254,7 +249,7 @@ private fun getColorSections(): List<ColorSection> {
 @Composable
 fun primary(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.primary,
+        default = LabTheme.colors.primary,
         focused = LabTheme.colors.primaryFocused,
         pressed = LabTheme.colors.primaryPressed,
         disabled = LabTheme.colors.primaryDisabled
@@ -264,7 +259,7 @@ fun primary(): StatefulColor {
 @Composable
 fun onPrimary(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onPrimary,
+        default = LabTheme.colors.onPrimary,
         disabled = LabTheme.colors.onPrimaryDisabled
     )
 }
@@ -272,7 +267,7 @@ fun onPrimary(): StatefulColor {
 @Composable
 fun primarySurface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.primarySurface,
+        default = LabTheme.colors.primarySurface,
         focused = LabTheme.colors.primarySurfaceFocused,
         pressed = LabTheme.colors.primarySurfacePressed,
         disabled = LabTheme.colors.primarySurfaceDisabled
@@ -282,7 +277,7 @@ fun primarySurface(): StatefulColor {
 @Composable
 fun onPrimarySurface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onPrimarySurface,
+        default = LabTheme.colors.onPrimarySurface,
         disabled = LabTheme.colors.onPrimarySurfaceDisabled
     )
 }
@@ -291,7 +286,7 @@ fun onPrimarySurface(): StatefulColor {
 @Composable
 fun secondary(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.secondary,
+        default = LabTheme.colors.secondary,
         focused = LabTheme.colors.secondaryFocused,
         pressed = LabTheme.colors.secondaryPressed,
         disabled = LabTheme.colors.secondaryDisabled
@@ -301,7 +296,7 @@ fun secondary(): StatefulColor {
 @Composable
 fun onSecondary(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onSecondary,
+        default = LabTheme.colors.onSecondary,
         disabled = LabTheme.colors.onSecondaryDisabled
     )
 }
@@ -309,7 +304,7 @@ fun onSecondary(): StatefulColor {
 @Composable
 fun secondarySurface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.secondarySurface,
+        default = LabTheme.colors.secondarySurface,
         focused = LabTheme.colors.secondarySurfaceFocused,
         pressed = LabTheme.colors.secondarySurfacePressed,
         disabled = LabTheme.colors.secondarySurfaceDisabled
@@ -319,7 +314,7 @@ fun secondarySurface(): StatefulColor {
 @Composable
 fun onSecondarySurface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onSecondarySurface,
+        default = LabTheme.colors.onSecondarySurface,
         disabled = LabTheme.colors.onSecondarySurfaceDisabled
     )
 }
@@ -328,7 +323,7 @@ fun onSecondarySurface(): StatefulColor {
 @Composable
 fun error(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.error,
+        default = LabTheme.colors.error,
         focused = LabTheme.colors.errorFocused,
         pressed = LabTheme.colors.errorPressed,
         disabled = LabTheme.colors.errorDisabled
@@ -338,7 +333,7 @@ fun error(): StatefulColor {
 @Composable
 fun onError(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onError,
+        default = LabTheme.colors.onError,
         disabled = LabTheme.colors.onErrorDisabled
     )
 }
@@ -346,7 +341,7 @@ fun onError(): StatefulColor {
 @Composable
 fun errorSurface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.errorSurface,
+        default = LabTheme.colors.errorSurface,
         focused = LabTheme.colors.errorSurfaceFocused,
         pressed = LabTheme.colors.errorSurfacePressed,
         disabled = LabTheme.colors.errorSurfaceDisabled
@@ -356,7 +351,7 @@ fun errorSurface(): StatefulColor {
 @Composable
 fun onErrorSurface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onErrorSurface,
+        default = LabTheme.colors.onErrorSurface,
         disabled = LabTheme.colors.onErrorSurfaceDisabled
     )
 }
@@ -365,7 +360,7 @@ fun onErrorSurface(): StatefulColor {
 @Composable
 fun caution(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.caution,
+        default = LabTheme.colors.caution,
         focused = LabTheme.colors.cautionFocused,
         pressed = LabTheme.colors.cautionPressed,
         disabled = LabTheme.colors.cautionDisabled
@@ -375,7 +370,7 @@ fun caution(): StatefulColor {
 @Composable
 fun onCaution(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onCaution,
+        default = LabTheme.colors.onCaution,
         disabled = LabTheme.colors.onCautionDisabled
     )
 }
@@ -383,7 +378,7 @@ fun onCaution(): StatefulColor {
 @Composable
 fun cautionSurface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.cautionSurface,
+        default = LabTheme.colors.cautionSurface,
         focused = LabTheme.colors.cautionSurfaceFocused,
         pressed = LabTheme.colors.cautionSurfacePressed,
         disabled = LabTheme.colors.cautionSurfaceDisabled
@@ -393,7 +388,7 @@ fun cautionSurface(): StatefulColor {
 @Composable
 fun onCautionSurface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onCautionSurface,
+        default = LabTheme.colors.onCautionSurface,
         disabled = LabTheme.colors.onCautionSurfaceDisabled
     )
 }
@@ -402,7 +397,7 @@ fun onCautionSurface(): StatefulColor {
 @Composable
 fun success(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.success,
+        default = LabTheme.colors.success,
         focused = LabTheme.colors.successFocused,
         pressed = LabTheme.colors.successPressed,
         disabled = LabTheme.colors.successDisabled
@@ -412,7 +407,7 @@ fun success(): StatefulColor {
 @Composable
 fun onSuccess(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onSuccess,
+        default = LabTheme.colors.onSuccess,
         disabled = LabTheme.colors.onSuccessDisabled
     )
 }
@@ -420,7 +415,7 @@ fun onSuccess(): StatefulColor {
 @Composable
 fun successSurface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.successSurface,
+        default = LabTheme.colors.successSurface,
         focused = LabTheme.colors.successSurfaceFocused,
         pressed = LabTheme.colors.successSurfacePressed,
         disabled = LabTheme.colors.successSurfaceDisabled
@@ -430,7 +425,7 @@ fun successSurface(): StatefulColor {
 @Composable
 fun onSuccessSurface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onSuccessSurface,
+        default = LabTheme.colors.onSuccessSurface,
         disabled = LabTheme.colors.onSuccessSurfaceDisabled
     )
 }
@@ -438,13 +433,13 @@ fun onSuccessSurface(): StatefulColor {
 // Neutral
 @Composable
 fun background(): StatefulColor {
-    return StatefulColor(color = LabTheme.colors.background)
+    return StatefulColor(default = LabTheme.colors.background)
 }
 
 @Composable
 fun onBackground(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onBackground,
+        default = LabTheme.colors.onBackground,
         disabled = LabTheme.colors.onBackgroundDisabled
     )
 }
@@ -452,7 +447,7 @@ fun onBackground(): StatefulColor {
 @Composable
 fun surface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.surface,
+        default = LabTheme.colors.surface,
         focused = LabTheme.colors.surfaceFocused,
         pressed = LabTheme.colors.surfacePressed,
         disabled = LabTheme.colors.surfaceDisabled
@@ -462,7 +457,7 @@ fun surface(): StatefulColor {
 @Composable
 fun onSurface(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onSurface,
+        default = LabTheme.colors.onSurface,
         disabled = LabTheme.colors.onSurfaceDisabled
     )
 }
@@ -470,7 +465,7 @@ fun onSurface(): StatefulColor {
 @Composable
 fun outline(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.outline,
+        default = LabTheme.colors.outline,
         disabled = LabTheme.colors.outlineDisabled
     )
 }
@@ -478,7 +473,7 @@ fun outline(): StatefulColor {
 @Composable
 fun divider(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.divider,
+        default = LabTheme.colors.divider,
         disabled = LabTheme.colors.dividerDisabled
     )
 }
@@ -487,7 +482,7 @@ fun divider(): StatefulColor {
 @Composable
 fun surfaceVariant(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.surfaceVariant,
+        default = LabTheme.colors.surfaceVariant,
         focused = LabTheme.colors.surfaceVariantFocused,
         pressed = LabTheme.colors.surfaceVariantPressed,
         disabled = LabTheme.colors.surfaceVariantDisabled
@@ -497,7 +492,7 @@ fun surfaceVariant(): StatefulColor {
 @Composable
 fun onSurfaceVariant(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.onSurfaceVariant,
+        default = LabTheme.colors.onSurfaceVariant,
         disabled = LabTheme.colors.onSurfaceVariantDisabled
     )
 }
@@ -505,7 +500,7 @@ fun onSurfaceVariant(): StatefulColor {
 @Composable
 fun outlineVariant(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.outlineVariant,
+        default = LabTheme.colors.outlineVariant,
         disabled = LabTheme.colors.outlineVariantDisabled
     )
 }
@@ -513,7 +508,7 @@ fun outlineVariant(): StatefulColor {
 @Composable
 fun dividerVariant(): StatefulColor {
     return StatefulColor(
-        color = LabTheme.colors.dividerVariant,
+        default = LabTheme.colors.dividerVariant,
         disabled = LabTheme.colors.dividerVariantDisabled
     )
 }

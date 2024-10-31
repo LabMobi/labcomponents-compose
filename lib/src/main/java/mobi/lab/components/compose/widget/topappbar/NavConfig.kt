@@ -1,9 +1,9 @@
-package mobi.lab.components.compose.widgets.topappbar
+package mobi.lab.components.compose.widget.topappbar
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import mobi.lab.components.compose.widgets.image.ImageSource
+import mobi.lab.components.compose.widget.image.ImageSource
 
 public data class NavConfig(
     val icon: ImageSource,

@@ -18,8 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.theme.LabTheme
-import mobi.lab.components.compose.widgets.scaffold.LabScaffold
-import mobi.lab.components.compose.widgets.topappbar.LabTopAppBar
+import mobi.lab.components.compose.widget.scaffold.LabScaffold
+import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 
 @Composable
 fun ComponentListDestination(

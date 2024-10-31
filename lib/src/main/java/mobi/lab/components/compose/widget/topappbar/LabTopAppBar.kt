@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package mobi.lab.components.compose.widgets.topappbar
+package mobi.lab.components.compose.widget.topappbar
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.R
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
-import mobi.lab.components.compose.widgets.image.IconFromSource
+import mobi.lab.components.compose.widget.image.IconFromSource
 
 @Composable
 public fun LabTopAppBar(

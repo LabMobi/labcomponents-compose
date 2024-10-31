@@ -1,5 +1,6 @@
 package mobi.lab.components.compose.theme
 
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -30,6 +31,7 @@ public object LabThemeDefaults {
     public fun shapes(cornerSize: Dp = 4.dp): LabShapes {
         return LabShapes(
             button = RoundedCornerShape(cornerSize),
+            roundButton = CircleShape,
             textField = RoundedCornerShape(cornerSize)
         )
     }

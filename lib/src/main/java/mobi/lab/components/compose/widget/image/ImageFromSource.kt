@@ -1,6 +1,6 @@
 @file:Suppress("UnusedPrivateMember", "LongParameterList")
 
-package mobi.lab.components.compose.widgets.image
+package mobi.lab.components.compose.widget.image
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
