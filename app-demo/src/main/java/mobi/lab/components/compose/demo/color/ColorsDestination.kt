@@ -3,8 +3,14 @@
 package mobi.lab.components.compose.demo.color
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
+import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,6 +21,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
@@ -23,6 +32,7 @@ import com.google.android.material.color.MaterialColors
 import mobi.lab.components.compose.theme.AppTheme
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.widgets.scaffold.LabScaffold
+import mobi.lab.components.compose.widgets.switch.LabSwitch
 import mobi.lab.components.compose.widgets.topappbar.LabTopAppBar
 import mobi.lab.components.compose.widgets.topappbar.upNavConfig
 
@@ -45,12 +55,25 @@ fun ColorsDestination(onNavigateUp: () -> Unit) {
 
 @Composable
 private fun Content(sections: List<ColorSection>, modifier: Modifier = Modifier) {
+    val enabled = remember { mutableStateOf(true) }
+
     LazyColumn(
         modifier = modifier.padding(horizontal = 16.dp)
     ) {
         item {
             Text("Colors", style = LabTheme.typography.headlineLarge)
-            // TODO add enabled/disabled switch
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text("Enabled state")
+                Spacer(Modifier.size(16.dp))
+                LabSwitch(
+                    checked = enabled.value,
+                    onCheckedChange = { enabled.value = !enabled.value },
+                )
+            }
         }
         item {
             Spacer(Modifier.size(24.dp))
@@ -65,7 +88,7 @@ private fun Content(sections: List<ColorSection>, modifier: Modifier = Modifier)
                 for (row in section.rows) {
                     LazyRow {
                         items(row.items) { item ->
-                            ColorItem(item)
+                            ColorItem(item, enabled = enabled.value)
                         }
                     }
                 }
@@ -75,7 +98,7 @@ private fun Content(sections: List<ColorSection>, modifier: Modifier = Modifier)
 }
 
 @Composable
-private fun ColorItem(item: ColorItem) {
+private fun ColorItem(item: ColorItem, enabled: Boolean) {
     val color = item.color
     val surface = item.surface
 
@@ -90,19 +113,43 @@ private fun ColorItem(item: ColorItem) {
         background = surface
         foreground = color
     }
+
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed = interactionSource.collectIsPressedAsState()
+    val isFocused = interactionSource.collectIsFocusedAsState()
+
+    val backgroundColor: Color
+    val foregroundColor: Color?
+    if (enabled) {
+        if (isPressed.value) {
+            backgroundColor = background.pressed
+            foregroundColor = foreground?.pressed
+        } else if (isFocused.value) {
+            backgroundColor = background.focused
+            foregroundColor = foreground?.focused
+        } else {
+            backgroundColor = background.color
+            foregroundColor = foreground?.color
+        }
+    } else {
+        backgroundColor = background.disabled
+        foregroundColor = foreground?.disabled
+    }
+
     Column(
         Modifier
+            .clickable(interactionSource = interactionSource, indication = null) {}
             .size(width = 160.dp, height = 96.dp)
-            .background(background.color)
+            .background(backgroundColor)
             .padding(4.dp)
     ) {
-        val textColor = if (MaterialColors.isColorLight(background.color.toArgb())) {
+        val textColor = if (MaterialColors.isColorLight(backgroundColor.toArgb())) {
             Color.Black
         } else {
             Color.White
         }
         Text(item.name, style = LabTheme.typography.labelLarge, color = textColor)
-        Box(Modifier.fillMaxSize().background(foreground?.color ?: Color.Transparent))
+        Box(Modifier.fillMaxSize().background(foregroundColor ?: Color.Transparent))
     }
 }
 
