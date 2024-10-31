@@ -23,6 +23,5 @@ private fun defaultFontFamily(): FontFamily {
         Font(R.font.font_regular, FontWeight.W400),
         Font(R.font.font_medium, FontWeight.W500),
         Font(R.font.font_semibold, FontWeight.W600),
-        Font(R.font.font_bold, FontWeight.W700),
     )
 }

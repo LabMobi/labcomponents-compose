@@ -1,9 +1,7 @@
-package mobi.lab.components.demo.presentation.color
-
-import androidx.annotation.AttrRes
+package mobi.lab.components.compose.demo.color
 
 data class ColorItem(
     val name: String,
-    @AttrRes val colorId: Int,
-    @AttrRes val surfaceId: Int? = null,
+    val color: StatefulColor,
+    val surface: StatefulColor? = null,
 )

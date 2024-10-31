@@ -1,4 +1,4 @@
-package mobi.lab.components.demo.presentation.color
+package mobi.lab.components.compose.demo.color
 
 data class ColorSection(
     val label: String,
