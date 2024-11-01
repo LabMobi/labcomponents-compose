@@ -3,7 +3,7 @@
 
     <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:statusBarColor">#000000</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="colorPrimary">#8800FF</item>
         <item name="colorSecondary">#00FFCC</item>
     </style>
