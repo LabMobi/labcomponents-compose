@@ -35,7 +35,7 @@ public fun LabIconButton(
     LabButton(
         onClick = onClick,
         modifier = modifier,
-        icon = icon,
+        iconStart = icon,
         enabled = enabled,
         shape = shape,
         colors = colors,

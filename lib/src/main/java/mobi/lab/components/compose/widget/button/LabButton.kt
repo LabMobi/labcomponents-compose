@@ -51,7 +51,9 @@ public fun LabButton(
     modifier: Modifier = Modifier,
     text: String? = null,
     onClick: () -> Unit,
-    icon: ImageSource? = null,
+    iconStart: ImageSource? = null,
+    iconEnd: ImageSource? = null,
+    iconSize: Dp = LabButtonDefaults.iconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
@@ -80,9 +82,9 @@ public fun LabButton(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                if (icon != null) {
+                if (iconStart != null) {
                     IconFromSource(
-                        source = icon,
+                        source = iconStart,
                         color = LocalContentColor.current,
                         contentDescription = ""
                     )
@@ -98,6 +100,100 @@ public fun LabButton(
                         color = LocalContentColor.current,
                         textAlign = TextAlign.Center,
                         overflow = TextOverflow.Ellipsis
+                    )
+                }
+                if (iconEnd != null) {
+                    if (!text.isNullOrEmpty()) {
+                        Spacer(modifier = Modifier.width(iconSpacing))
+                    }
+                    IconFromSource(
+                        source = iconEnd,
+                        color = LocalContentColor.current,
+                        contentDescription = ""
+                    )
+                }
+            }
+            if (showProgress) {
+                val height = remember(contentPadding) {
+                    LabButtonDefaults.minHeight - contentPadding.calculateBottomPadding() - contentPadding.calculateTopPadding()
+                }
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(height),
+                    color = LocalContentColor.current,
+                    strokeWidth = LabButtonDefaults.progressStrokeWidth,
+                    trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+                )
+            }
+        }
+    }
+}
+
+@Composable
+public fun LabSmallButton(
+    modifier: Modifier = Modifier,
+    text: String? = null,
+    onClick: () -> Unit,
+    iconStart: ImageSource? = null,
+    iconEnd: ImageSource? = null,
+    iconSize: Dp = LabButtonDefaults.smallIconSize,
+    iconSpacing: Dp = LabButtonDefaults.iconSpacing,
+    showProgress: Boolean = false,
+    enabled: Boolean = true,
+    shape: Shape = LabButtonDefaults.shape,
+    colors: LabButtonColors = LabButtonDefaults.buttonColors(),
+    elevation: Dp = LabButtonDefaults.elevation,
+    border: LabButtonBorder = LabButtonDefaults.buttonBorder(),
+    contentPadding: PaddingValues = LabButtonDefaults.smallContentPadding,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+) {
+    LabButton(
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        shape = shape,
+        colors = colors,
+        elevation = elevation,
+        border = border,
+        contentPadding = contentPadding,
+        interactionSource = interactionSource
+    ) {
+        Box {
+            val contentAlpha = remember(showProgress) { if (showProgress) 0.0f else 1.0f }
+            Row(
+                modifier = Modifier.alpha(contentAlpha),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                if (iconStart != null) {
+                    IconFromSource(
+                        source = iconStart,
+                        color = LocalContentColor.current,
+                        contentDescription = ""
+                    )
+                    if (!text.isNullOrEmpty()) {
+                        Spacer(modifier = Modifier.width(iconSpacing))
+                    }
+                }
+                // Need to set the color here as TextStyle color overrides Button colors
+                if (text != null) {
+                    Text(
+                        text = text,
+                        style = LocalTextStyle.current,
+                        color = LocalContentColor.current,
+                        textAlign = TextAlign.Center,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                if (iconEnd != null) {
+                    if (!text.isNullOrEmpty()) {
+                        Spacer(modifier = Modifier.width(iconSpacing))
+                    }
+                    IconFromSource(
+                        source = iconEnd,
+                        color = LocalContentColor.current,
+                        contentDescription = ""
                     )
                 }
             }

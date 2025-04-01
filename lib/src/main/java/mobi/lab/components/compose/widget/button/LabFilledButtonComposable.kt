@@ -22,7 +22,9 @@ public fun LabFilledButton(
     modifier: Modifier = Modifier,
     text: String? = null,
     onClick: () -> Unit,
-    icon: ImageSource? = null,
+    iconStart: ImageSource? = null,
+    iconEnd: ImageSource? = null,
+    iconSize: Dp = LabButtonDefaults.iconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
@@ -37,7 +39,45 @@ public fun LabFilledButton(
         text = text,
         onClick = onClick,
         modifier = modifier,
-        icon = icon,
+        iconStart = iconStart,
+        iconEnd = iconEnd,
+        iconSpacing = iconSpacing,
+        showProgress = showProgress,
+        enabled = enabled,
+        shape = shape,
+        colors = colors,
+        elevation = elevation,
+        border = border,
+        contentPadding = contentPadding,
+        interactionSource = interactionSource,
+    )
+}
+
+@Composable
+public fun LabFilledSmallButton(
+    modifier: Modifier = Modifier,
+    text: String? = null,
+    onClick: () -> Unit,
+    iconStart: ImageSource? = null,
+    iconEnd: ImageSource? = null,
+    iconSize: Dp = LabButtonDefaults.smallIconSize,
+    iconSpacing: Dp = LabButtonDefaults.iconSpacing,
+    showProgress: Boolean = false,
+    enabled: Boolean = true,
+    shape: Shape = LabButtonDefaults.shape,
+    colors: LabButtonColors = LabButtonDefaults.filledButtonColors(),
+    elevation: Dp = LabButtonDefaults.elevation,
+    border: LabButtonBorder = LabButtonDefaults.filledButtonBorder(),
+    contentPadding: PaddingValues = LabButtonDefaults.smallContentPadding,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+) {
+    LabButton(
+        text = text,
+        onClick = onClick,
+        modifier = modifier,
+        iconStart = iconStart,
+        iconEnd = iconEnd,
+        iconSize = iconSize,
         iconSpacing = iconSpacing,
         showProgress = showProgress,
         enabled = enabled,
@@ -122,6 +162,31 @@ private fun PreviewLightDisabledLoading() {
             onClick = {},
             enabled = false,
             showProgress = true
+        )
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightEnabledLoading() {
+    PreviewContainer {
+        LabFilledSmallButton(
+            text = "Enabled",
+            onClick = {},
+            enabled = true,
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDisabledLoading() {
+    PreviewContainer {
+        LabFilledSmallButton(
+            text = "Disabled",
+            onClick = {},
+            enabled = false,
         )
     }
 }

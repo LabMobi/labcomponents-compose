@@ -14,14 +14,23 @@ import mobi.lab.components.compose.theme.LabTheme
 @Immutable
 public object LabButtonDefaults {
 
+    public val iconSize: Dp = 24.dp
+
+    public val smallIconSize: Dp = 16.dp
+
     public val contentPadding: PaddingValues = PaddingValues(
-        start = 24.dp,
-        top = 12.dp,
-        end = 24.dp,
-        bottom = 12.dp
+        horizontal = 24.dp,
+        vertical = 12.dp,
     )
 
-    public val iconButtonContentPadding: PaddingValues = PaddingValues(12.dp)
+    public val smallContentPadding: PaddingValues = PaddingValues(
+        horizontal = 16.dp,
+        vertical = 8.dp,
+    )
+
+    public val iconButtonContentPadding: PaddingValues = PaddingValues(8.dp)
+
+    public val smallIconButtonContentPadding: PaddingValues = PaddingValues(8.dp)
 
     public val textButtonContentPadding: PaddingValues = PaddingValues(
         start = 12.dp,

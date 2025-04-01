@@ -5,10 +5,8 @@ package mobi.lab.components.compose.demo.color
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -21,17 +19,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import com.google.android.material.color.MaterialColors
+import mobi.lab.components.compose.demo.common.LabelSwitch
 import mobi.lab.components.compose.theme.AppTheme
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.interactiveValue
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
-import mobi.lab.components.compose.widget.switch.LabSwitch
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 import mobi.lab.components.compose.widget.topappbar.upNavConfig
 
@@ -61,18 +58,12 @@ private fun Content(sections: List<ColorSection>, modifier: Modifier = Modifier)
     ) {
         item {
             Text("Colors", style = LabTheme.typography.headlineLarge)
-            Row(
+            LabelSwitch(
                 modifier = Modifier.fillMaxSize(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text("Enabled state")
-                Spacer(Modifier.size(16.dp))
-                LabSwitch(
-                    checked = enabled.value,
-                    onCheckedChange = { enabled.value = !enabled.value },
-                )
-            }
+                label = "Enabled state",
+                checked = enabled.value,
+                onCheckedChange = { enabled.value = !enabled.value },
+            )
         }
         item {
             Spacer(Modifier.size(24.dp))
