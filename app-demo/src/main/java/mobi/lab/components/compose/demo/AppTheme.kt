@@ -4,14 +4,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import mobi.lab.components.compose.theme.AppTheme
+import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.theme.LabThemeDefaults
 
 @Composable
 fun AppTheme(
     content: @Composable () -> Unit,
 ) {
-    AppTheme(
+    LabTheme(
         typography = LabThemeDefaults.typography(fontFamily = defaultFontFamily()),
         content = content
     )

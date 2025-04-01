@@ -25,7 +25,6 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import com.google.android.material.color.MaterialColors
 import mobi.lab.components.compose.demo.common.LabelSwitch
-import mobi.lab.components.compose.theme.AppTheme
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.interactiveValue
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
@@ -34,7 +33,7 @@ import mobi.lab.components.compose.widget.topappbar.upNavConfig
 
 @Composable
 fun ColorsDestination(onNavigateUp: () -> Unit) {
-    AppTheme {
+    LabTheme {
         LabScaffold(
             topBar = {
                 LabTopAppBar("Colors", navConfig = upNavConfig(onNavigateUp))
