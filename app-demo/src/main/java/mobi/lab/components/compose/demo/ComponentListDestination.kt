@@ -4,10 +4,12 @@ package mobi.lab.components.compose.demo
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -15,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.theme.LabTheme
@@ -36,7 +39,12 @@ fun ComponentListDestination(
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(contentPadding)
+                    .padding(
+                        top = contentPadding.calculateTopPadding(),
+                        start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current),
+                        end = contentPadding.calculateRightPadding(LocalLayoutDirection.current),
+                        bottom = 0.dp
+                    )
             ) {
                 item {
                     ListItem("Buttons", onButtonsClicked)
@@ -46,6 +54,10 @@ fun ComponentListDestination(
                 }
                 item {
                     ListItem("Typography", onTypographyClicked)
+                }
+                // Final content padding here so we get the scroll-out-of-the-screen affect
+                item {
+                    Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
                 }
             }
         }

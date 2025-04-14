@@ -24,7 +24,6 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 # NB! it can be usefult to use a newer version of ktlint to get ruleset updates, etc.
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.2.0" }
 gradleVersions = { id = "com.github.ben-manes.versions", version = "0.52.0" }
-detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.8" }
 
 [libraries]
 # Language

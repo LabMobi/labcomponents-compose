@@ -2,14 +2,17 @@
 
 package mobi.lab.components.compose.demo.typography
 
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.demo.AppTheme
@@ -29,7 +32,12 @@ fun TypographyDestination(onNavigateUp: () -> Unit) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(contentPadding)
+                    .padding(
+                        top = contentPadding.calculateTopPadding(),
+                        start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current),
+                        end = contentPadding.calculateRightPadding(LocalLayoutDirection.current),
+                        bottom = 0.dp
+                    )
             ) {
                 item {
                     ListItem("Text styles", LabTheme.typography.headlineLarge)
@@ -92,6 +100,10 @@ fun TypographyDestination(onNavigateUp: () -> Unit) {
                 }
                 item {
                     ListItem("Label small", LabTheme.typography.labelSmall)
+                }
+                // Final content padding here so we get the scroll-out-of-the-screen affect
+                item {
+                    Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
                 }
             }
         }

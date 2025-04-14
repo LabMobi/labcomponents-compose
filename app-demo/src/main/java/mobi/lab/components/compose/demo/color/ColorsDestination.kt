@@ -22,6 +22,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.google.android.material.color.MaterialColors
 import mobi.lab.components.compose.demo.common.LabelSwitch
@@ -39,9 +41,17 @@ fun ColorsDestination(onNavigateUp: () -> Unit) {
                 LabTopAppBar("Colors", navConfig = upNavConfig(onNavigateUp))
             }
         ) { contentPadding ->
-            Box(modifier = Modifier.padding(contentPadding)) {
+            Box(
+                modifier = Modifier.padding(
+                    top = contentPadding.calculateTopPadding(),
+                    start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current),
+                    end = contentPadding.calculateRightPadding(LocalLayoutDirection.current),
+                    bottom = 0.dp
+                )
+            ) {
                 Content(
                     sections = getColorSections(),
+                    lastPadding = contentPadding.calculateBottomPadding()
                 )
             }
         }
@@ -49,7 +59,7 @@ fun ColorsDestination(onNavigateUp: () -> Unit) {
 }
 
 @Composable
-private fun Content(sections: List<ColorSection>, modifier: Modifier = Modifier) {
+private fun Content(sections: List<ColorSection>, modifier: Modifier = Modifier, lastPadding: Dp) {
     val enabled = remember { mutableStateOf(true) }
 
     LazyColumn(
@@ -82,6 +92,10 @@ private fun Content(sections: List<ColorSection>, modifier: Modifier = Modifier)
                     }
                 }
             }
+        }
+        // Final content padding here so we get the scroll-out-of-the-screen affect
+        item {
+            Spacer(Modifier.size(lastPadding + 16.dp))
         }
     }
 }
@@ -134,7 +148,11 @@ private fun ColorItem(item: ColorItem, enabled: Boolean) {
             Color.White
         }
         Text(item.name, style = LabTheme.typography.labelLarge, color = textColor)
-        Box(Modifier.fillMaxSize().background(foregroundColor.value ?: Color.Transparent))
+        Box(
+            Modifier
+                .fillMaxSize()
+                .background(foregroundColor.value ?: Color.Transparent)
+        )
     }
 }
 

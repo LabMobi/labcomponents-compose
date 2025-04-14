@@ -5,7 +5,6 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.ktlint)
     alias(libs.plugins.gradleVersions)
-    alias(libs.plugins.detekt)
     alias(libs.plugins.compose.compiler) apply false
 }
 
@@ -22,31 +21,11 @@ subprojects {
         outputToConsole = true
     }
 
-    // Detekt (Kotlin static analyser)
-    apply(plugin: libs.plugins.detekt.get().pluginId)
-    detekt {
-        allRules = true // Include all rules
-        buildUponDefaultConfig = true // preconfigure defaults (see the rule set file below for explanations)
-        // point to your custom config defining rules to run, overwriting default behavior
-        config.setFrom("${project.rootDir}/config/detekt/detekt-config.yaml")
-    }
-    tasks.named("detekt").configure {
-        jvmTarget = libs.versions.jvmTarget.get()
-        reports {
-            html.required.set(true)
-            xml.required.set(false)
-            txt.required.set(false)
-        }
-    }
-    afterEvaluate {
-        // Make sure detekt is executed with all the other linters for all modules
-        check.dependsOn "detekt"
-    }
-
+    // No detekt here as most of the important rules would need to be disabled for Compose and this library only has compose.
     tasks.register('checkCode') {
         group = "Verification"
-        description = "Run detekt and ktlint."
-        dependsOn "detekt", "ktlintCheck"
+        description = "Run ktlint."
+        dependsOn "ktlintCheck"
     }
 }
 
