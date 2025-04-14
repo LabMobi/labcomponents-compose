@@ -20,7 +20,6 @@ import mobi.lab.components.compose.demo.R
 import mobi.lab.components.compose.demo.common.LabelSwitch
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.widget.button.LabFilledButton
-import mobi.lab.components.compose.widget.image.ImageFromSource
 import mobi.lab.components.compose.widget.image.ImageSource
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
@@ -108,7 +107,6 @@ fun SectionTitle(text: String) {
     Text(
         modifier = Modifier.padding(bottom = 8.dp),
         text = text,
-        style = LabTheme.typography.headlineSmall)
+        style = LabTheme.typography.headlineSmall
+    )
 }
-
-

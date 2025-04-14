@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.ktlint)
     alias(libs.plugins.gradleVersions)
+    alias(libs.plugins.detekt)
     alias(libs.plugins.compose.compiler) apply false
 }
 
@@ -17,17 +18,42 @@ subprojects {
     // KTLint (Kotlin code style enforcer)
     apply(plugin: libs.plugins.ktlint.get().pluginId)
     ktlint {
+        version = "0.48.2"
         outputToConsole = true
     }
 
-    def GROUP_VERIFICATION_TASKS = "Verification"
-    task checkCode(dependsOn: ["ktlintCheck"])
-    checkCode.group = GROUP_VERIFICATION_TASKS
-    checkCode.description = "Run ktlint"
+    // Detekt (Kotlin static analyser)
+    apply(plugin: libs.plugins.detekt.get().pluginId)
+    detekt {
+        allRules = true // Include all rules
+        buildUponDefaultConfig = true // preconfigure defaults (see the rule set file below for explanations)
+        // point to your custom config defining rules to run, overwriting default behavior
+        config.setFrom("${project.rootDir}/config/detekt/detekt-config.yaml")
+    }
+    tasks.named("detekt").configure {
+        jvmTarget = libs.versions.jvmTarget.get()
+        reports {
+            html.required.set(true)
+            xml.required.set(false)
+            txt.required.set(false)
+        }
+    }
+    afterEvaluate {
+        // Make sure detekt is executed with all the other linters for all modules
+        check.dependsOn "detekt"
+    }
+
+    tasks.register('checkCode') {
+        group = "Verification"
+        description = "Run detekt and ktlint."
+        dependsOn "detekt", "ktlintCheck"
+    }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register('clean', Delete) {
+    group = "Build"
+    description = "Delete the build directory. Useful if you need to make a clean build."
+    delete rootProject.layout.buildDirectory
 }
 
 // Don't show non stable updates for current stable versions

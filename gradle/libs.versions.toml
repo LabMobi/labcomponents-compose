@@ -1,14 +1,15 @@
 [versions]
 android-sdk-min = "23"
-android-sdk-target = "35"
-android-sdk-compile = "android-35"
+android-sdk-target = "36"
+android-sdk-compile = "36"
 
-android-gradle-plugin = "8.7.1"
-kotlin = "2.0.21"
+android-gradle-plugin = "8.9.1"
+kotlin = "2.1.20"
 
-# TODO remove
-navigation = "2.7.7"
-lifecycle-runtime-ktx = "2.8.6"
+lifecycle-runtime-ktx = "2.8.7"
+
+jvmTarget = "17"
+javaCompatibility = "VERSION_17"
 
 [plugins]
 # Gradle plugin
@@ -21,8 +22,9 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 # NB! Make sure to update the kltint version set in the root build.gradle file. subprojects / ktlint / version
 # NB! ktlint-gradle doesn"t always depend on the latest ktlint version, but since it is a thin wrapper around ktlint
 # NB! it can be usefult to use a newer version of ktlint to get ruleset updates, etc.
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.1.1" }
-gradleVersions = { id = "com.github.ben-manes.versions", version = "0.51.0" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.2.0" }
+gradleVersions = { id = "com.github.ben-manes.versions", version = "0.52.0" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.8" }
 
 [libraries]
 # Language
@@ -31,11 +33,11 @@ kotlinx-serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3"
 
 # Android + UI
 material = "com.google.android.material:material:1.12.0"
-androidx-navigation-compose = "androidx.navigation:navigation-compose:2.8.3"
-androidx-viewmodel-compose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6"
+androidx-navigation-compose = "androidx.navigation:navigation-compose:2.8.9"
+androidx-viewmodel-compose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7"
 
 # Compose
-compose-bom = "androidx.compose:compose-bom:2024.10.00"
+compose-bom = "androidx.compose:compose-bom:2025.04.00"
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-tooling = { module = "androidx.compose.ui:ui-tooling" }
