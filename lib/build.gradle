@@ -8,10 +8,10 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-project.archivesBaseName = "labcomponents-compose"
+project.base.archivesName.set("labcomponents-compose")
 
 android {
-    namespace "mobi.lab.components.compose"
+    namespace = "mobi.lab.components.compose"
 
     buildFeatures {
         buildConfig = true
