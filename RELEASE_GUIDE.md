@@ -1,4 +1,4 @@
-# Mobi Lab Components Library Release Guide
+# Mobi Lab Components for Compose Library Release Guide
 
 Disclaimer: This release guide assumes you are an employee of Mobi Lab and have access to the company's account in Codemagic CI.
 
@@ -30,7 +30,7 @@ Note: Every time you notice something in this guide is out-of-date or incorrect 
    ./gradlew buildAllRelease
    ```
 
-5. Make sure the "Compatible versions" list in the README.md is up-to-date
+5. Make sure the "Compatible versions" list in the `README.md` is up-to-date
 
 ## Release process
 
@@ -93,7 +93,7 @@ git push
 - NOTE: Depending in the time of day this can take some time (wait up to 1h and then complain under the original JIRA issue)
 
 8. Create a new release and a Git tag in GitHub as follows:
-   - Open up the GitHub release page at https://github.com/LabMobi/labcomponents-android/releases, create a new release `vX.Y.Z`. Don't write an additional changelog there, just link to the changelog document.
+   - Open up the GitHub release page at https://github.com/LabMobi/labcomponents-compose/releases, create a new release `vX.Y.Z`. Don't write an additional changelog there, just link to the changelog document.
    - Let it automatically create a tag for the release, in the form of "release-X.Y.Z".
 
 9) OPTIONAL: Update the library in at least one of the projects using it to make sure everything is in order.
@@ -146,7 +146,7 @@ The artifacts should be available under your user folder at `~/.m2/repository/mo
 ./gradlew buildAndPublishRelease
 ```
 
-After that follow the steps from OSSRH nexus described above.
+After that follow the steps from OSSRH Nexus described above.
 
 NOTE: To make the PGP private key to a single-line for props you can use the following command:
 

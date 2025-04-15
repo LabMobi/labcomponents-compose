@@ -2,9 +2,14 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project does not use semantic versioning.
 
-## 0.0.1 - [UNRELEASED]
+## 0.0.2 - [UNRELEASED]
 
 ### Changed
 
 - ...
-s
+
+## 0.0.1 - 2025.04.14
+
+### Changed
+
+- < Test release, do not use! >

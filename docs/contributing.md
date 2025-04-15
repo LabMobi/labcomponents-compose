@@ -19,7 +19,7 @@ Details on how to contribute to the project.
 5. Document the changes in the changed components documentation page in `docs` dir.
    1. Add a new page to `docs/components` if a new component was added.
    2. Add a link to the component doc in [README.md](../README.md).
-6. Make sure the build succeeds in `Codemagic`. The project name is `labcomponents-android`.
+6. Make sure the build succeeds in `Codemagic`. The project name is `labcomponents-compose`.
    1. Note: If you do not have access to Codemagic then build locally and/or discuss with `Lauris Kruusamäe` and `Harri Kirik` about getting access.
 
 7. Create a merge request targeting the `develop` branch.

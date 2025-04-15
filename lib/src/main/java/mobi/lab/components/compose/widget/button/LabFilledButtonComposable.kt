@@ -166,7 +166,6 @@ private fun PreviewLightDisabledLoading() {
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 private fun PreviewSmallLightEnabledLoading() {

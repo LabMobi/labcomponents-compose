@@ -6,23 +6,23 @@ plugins {
 }
 
 android {
-    namespace "mobi.lab.components.compose.demo"
+    namespace = "mobi.lab.components.compose.demo"
 
     buildFeatures {
-        compose true
+        compose = true
     }
 
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = libs.versions.jvmTarget.get()
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.valueOf(libs.versions.javaCompatibility.get())
+        targetCompatibility = JavaVersion.valueOf(libs.versions.javaCompatibility.get())
     }
 
     defaultConfig {
-        compileSdkVersion libs.versions.android.sdk.compile.get()
+        compileSdk = libs.versions.android.sdk.compile.get().toInteger()
         targetSdkVersion libs.versions.android.sdk.target.get()
         minSdkVersion libs.versions.android.sdk.min.get()
         applicationId "mobi.lab.components.compose.demo"
@@ -32,7 +32,8 @@ android {
 
         // Note: flavor and variant info is added later and after that you will get stuff like
         // name-0.0.1-flavor-debug.apk, name-0.0.1-flavor-release.aab, ..
-        setProperty("archivesBaseName", "labcomponents-compose-demo-$versionName")
+        project.base.archivesName.set("labcomponents-compose-demo-$versionName")
+
 
         println "CONF: versionName is set to: " + versionName
         println "CONF: versionCode is set to: " + versionCode
@@ -59,11 +60,11 @@ android {
             // (Think about the logging lib before turning this off)
             minifyEnabled true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.releaseSigning
+            signingConfig = signingConfigs.releaseSigning
         }
 
         debug {
-            signingConfig signingConfigs.debugSigning
+            signingConfig = signingConfigs.debugSigning
         }
     }
 
@@ -72,9 +73,9 @@ android {
         warning "ParcelCreator"
 
         // In general we want to check for problems. Any time, all the time.
-        checkReleaseBuilds true
+        checkReleaseBuilds = true
         // And fail the build if we have errors
-        abortOnError true
+        abortOnError = true
 
         // Level depends on the type of the job
         /// Fail the build if buildNevercodeRelease target is called and we have missing translations!
@@ -125,10 +126,14 @@ dependencies {
 
 def GROUP_CI_BUILD_TASKS = "Build"
 
-task buildAllDebug(dependsOn: ["build", ":lib:buildLibDebug"])
-buildAllDebug.group = GROUP_CI_BUILD_TASKS
-buildAllDebug.description = "Build the debug version"
+tasks.register('buildAllDebug') {
+    group = GROUP_CI_BUILD_TASKS
+    description = "Build the debug version"
+    dependsOn "build", ":lib:buildLibDebug"
+}
 
-task buildAllRelease(dependsOn: ["build", ":lib:buildLibRelease"])
-buildAllRelease.group = GROUP_CI_BUILD_TASKS
-buildAllRelease.description = "Build the release version"
+tasks.register('buildAllRelease') {
+    group = GROUP_CI_BUILD_TASKS
+    description = "Build the release version"
+    dependsOn "build", ":lib:buildLibRelease"
+}

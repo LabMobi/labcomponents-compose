@@ -20,14 +20,18 @@ subprojects {
         outputToConsole = true
     }
 
-    def GROUP_VERIFICATION_TASKS = "Verification"
-    task checkCode(dependsOn: ["ktlintCheck"])
-    checkCode.group = GROUP_VERIFICATION_TASKS
-    checkCode.description = "Run ktlint"
+    // No detekt here as most of the important rules would need to be disabled for Compose and this library only has compose.
+    tasks.register('checkCode') {
+        group = "Verification"
+        description = "Run ktlint."
+        dependsOn "ktlintCheck"
+    }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register('clean', Delete) {
+    group = "Build"
+    description = "Delete the build directory. Useful if you need to make a clean build."
+    delete rootProject.layout.buildDirectory
 }
 
 // Don't show non stable updates for current stable versions

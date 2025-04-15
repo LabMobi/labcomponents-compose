@@ -57,8 +57,6 @@ public object LabButtonDefaults {
     public val iconButtonShape: Shape @Composable get() = LabTheme.shapes.roundButton
     public val textStyle: TextStyle @Composable get() = LabTheme.typography.bodyLargeEmphasis.copy(color = Color.Unspecified)
 
-    private val iconPaddingAdjustmentDp = 4.dp
-
     @Composable
     public fun buttonBorder(): LabButtonBorder {
         return LabButtonBorder.Disabled

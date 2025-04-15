@@ -2,6 +2,7 @@ package mobi.lab.components.compose.demo
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
@@ -14,6 +15,7 @@ import mobi.lab.components.compose.demo.typography.TypographyDestination
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
