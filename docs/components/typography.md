@@ -1,3 +1,5 @@
+**TODO: Update to match the Compose version of the library**
+
 # Typography
 
 * [TextAppearance styles](https://git.lab.mobi/tools/android-tools/labcomponents-android/-/blob/develop/lib/java/mobi/lab/components/typography/res/values/styles.xml)
