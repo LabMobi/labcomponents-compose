@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 
 package mobi.lab.components.compose.widget.topappbar
 
@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -22,7 +24,10 @@ import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.R
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
+import mobi.lab.components.compose.widget.button.LabButtonDefaults
+import mobi.lab.components.compose.widget.button.LabIconButton
 import mobi.lab.components.compose.widget.image.IconFromSource
+import mobi.lab.components.compose.widget.image.ImageSource
 
 @Composable
 public fun LabTopAppBar(
@@ -99,6 +104,28 @@ private fun MyTopBarWithButtonComposableWithNoNavConfigPreview() {
         LabTopAppBar(
             navConfig = null,
             title = "Title"
+        )
+    }
+}
+
+/**
+ * For now, actions need to be specified via a Composable.
+ */
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun MyTopBarWithButtonComposableWithRightButtonPreview() {
+    PreviewContainer(Modifier.height(200.dp)) {
+        LabTopAppBar(
+            navConfig = null,
+            title = "Title",
+            actions = {
+                LabIconButton(
+                    icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+                    onClick = {},
+                    enabled = true,
+                    colors = LabButtonDefaults.iconButtonColors().copy(containerColor = LabTheme.colors.background)
+                )
+            },
         )
     }
 }

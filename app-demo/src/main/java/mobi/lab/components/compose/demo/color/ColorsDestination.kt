@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.google.android.material.color.MaterialColors
 import mobi.lab.components.compose.demo.common.LabelSwitch
+import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.interactiveValue
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
@@ -34,11 +35,11 @@ import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 import mobi.lab.components.compose.widget.topappbar.upNavConfig
 
 @Composable
-fun ColorsDestination(onNavigateUp: () -> Unit) {
+fun ColorsDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: () -> Unit) {
     LabTheme {
         LabScaffold(
             topBar = {
-                LabTopAppBar("Colors", navConfig = upNavConfig(onNavigateUp))
+                LabTopAppBar("Colors", navConfig = upNavConfig(onNavigateUp), actions = { LightDarkModeMenu(onToggleLightDarkModeClicked) })
             }
         ) { contentPadding ->
             Box(

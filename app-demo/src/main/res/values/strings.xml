@@ -3,4 +3,5 @@
     <string name="app_name">LabComponents Compose</string>
     <string name="notification_channel_name">Notifications</string>
     <string name="button">Button</string>
+    <string name="Label_toggle_light_dark_theme">Toggle Light/Dark theme</string>
 </resources>

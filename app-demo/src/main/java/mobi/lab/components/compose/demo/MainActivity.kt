@@ -1,9 +1,11 @@
 package mobi.lab.components.compose.demo
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -26,13 +28,43 @@ class MainActivity : AppCompatActivity() {
                         onButtonsClicked = { navController.navigate(NavDestination.Button) },
                         onColorsClicked = { navController.navigate(NavDestination.Colors) },
                         onTypographyClicked = { navController.navigate(NavDestination.Typography) },
+                        onToggleLightDarkModeClicked = ::toggleLightDarkMode
                     )
                 }
 
-                composable<NavDestination.Button> { ButtonDestination(navUp) }
-                composable<NavDestination.Colors> { ColorsDestination(navUp) }
-                composable<NavDestination.Typography> { TypographyDestination(navUp) }
+                composable<NavDestination.Button> {
+                    ButtonDestination(
+                        onNavigateUp = navUp,
+                        onToggleLightDarkModeClicked = ::toggleLightDarkMode,
+                    )
+                }
+                composable<NavDestination.Colors> {
+                    ColorsDestination(
+                        navUp,
+                        onToggleLightDarkModeClicked = ::toggleLightDarkMode,
+                    )
+                }
+                composable<NavDestination.Typography> {
+                    TypographyDestination(
+                        navUp,
+                        onToggleLightDarkModeClicked = ::toggleLightDarkMode,
+                    )
+                }
             }
         }
+    }
+
+    private fun toggleLightDarkMode() {
+        val nightMode = if (isNightModeEnabled()) {
+            AppCompatDelegate.MODE_NIGHT_NO
+        } else {
+            AppCompatDelegate.MODE_NIGHT_YES
+        }
+        AppCompatDelegate.setDefaultNightMode(nightMode)
+    }
+
+    private fun isNightModeEnabled(): Boolean {
+        val uiMode: Int = resources?.configuration?.uiMode ?: return false
+        return uiMode.and(Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
     }
 }

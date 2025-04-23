@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.demo.AppTheme
 import mobi.lab.components.compose.demo.R
 import mobi.lab.components.compose.demo.common.LabelSwitch
+import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.widget.button.LabFilledButton
 import mobi.lab.components.compose.widget.image.ImageSource
@@ -28,11 +29,11 @@ import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 import mobi.lab.components.compose.widget.topappbar.upNavConfig
 
 @Composable
-fun ButtonDestination(onNavigateUp: () -> Unit) {
+fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: () -> Unit) {
     AppTheme {
         LabScaffold(
             topBar = {
-                LabTopAppBar("Button", navConfig = upNavConfig(onNavigateUp))
+                LabTopAppBar("Button", navConfig = upNavConfig(onNavigateUp), actions = { LightDarkModeMenu(onToggleLightDarkModeClicked) })
             }
         ) { contentPadding ->
             Column(
