@@ -16,6 +16,9 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
@@ -347,12 +350,117 @@ private fun PreviewLightPressed() {
 
 @Preview(showBackground = true)
 @Composable
+private fun PreviewSmallLightPressed() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Pressed",
+            onClick = {},
+            enabled = true,
+            interactionSource = previewInteractionSourceOf(PressInteraction.Press(Offset.Zero))
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 private fun PreviewLightDisabled() {
     PreviewContainer {
         LabButton(
             text = "M Disabled",
             onClick = {},
             enabled = false
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDisabled() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "M Disabled",
+            onClick = {},
+            enabled = false
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightStartIconDisabled() {
+    PreviewContainer {
+        LabButton(
+            text = "M Icon Start",
+            onClick = {},
+            enabled = false,
+            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightStartIconDisabled() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Icon Start",
+            onClick = {},
+            enabled = false,
+            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightEndIconDisabled() {
+    PreviewContainer {
+        LabButton(
+            text = "M Icon Start",
+            onClick = {},
+            enabled = false,
+            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightEndIconDisabled() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Icon Start",
+            onClick = {},
+            enabled = false,
+            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightBothIconDisabled() {
+    PreviewContainer {
+        LabButton(
+            text = "M Icon Both",
+            onClick = {},
+            enabled = false,
+            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightBothIconDisabled() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Icon Both",
+            onClick = {},
+            enabled = false,
+            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
         )
     }
 }

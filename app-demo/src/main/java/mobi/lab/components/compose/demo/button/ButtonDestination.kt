@@ -2,6 +2,7 @@
 
 package mobi.lab.components.compose.demo.button
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -53,7 +54,6 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                     ),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                val placeholderIcon = ImageSource.fromRes(R.drawable.ic_placeholder16)
                 val enabled = remember { mutableStateOf(true) }
                 Text("Buttons", style = LabTheme.typography.headlineLarge)
                 LabelSwitch(
@@ -73,20 +73,20 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                     text = stringResource(R.string.label_filled),
                     onClick = {},
                     enabled = enabled.value,
-                    iconStart = placeholderIcon,
+                    iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
                 )
                 LabFilledButton(
                     text = stringResource(R.string.label_filled),
                     onClick = {},
                     enabled = enabled.value,
-                    iconEnd = placeholderIcon,
+                    iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
                 )
                 LabFilledButton(
                     text = stringResource(R.string.label_filled),
                     onClick = {},
                     enabled = enabled.value,
-                    iconStart = placeholderIcon,
-                    iconEnd = placeholderIcon,
+                    iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
                 )
                 LabFilledButton(
                     onClick = {},
@@ -103,20 +103,20 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                     text = stringResource(R.string.label_filled_small),
                     onClick = {},
                     enabled = enabled.value,
-                    iconStart = placeholderIcon,
+                    iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
                 )
                 LabFilledSmallButton(
                     text = stringResource(R.string.label_filled_small),
                     onClick = {},
                     enabled = enabled.value,
-                    iconEnd = placeholderIcon,
+                    iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
                 )
                 LabFilledSmallButton(
                     text = stringResource(R.string.label_filled_small),
                     onClick = {},
                     enabled = enabled.value,
-                    iconStart = placeholderIcon,
-                    iconEnd = placeholderIcon,
+                    iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
                 )
                 LabFilledSmallButton(
                     onClick = {},
