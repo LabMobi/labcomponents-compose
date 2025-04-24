@@ -7,14 +7,12 @@ import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.flowOf
 import mobi.lab.components.compose.theme.LabTheme
 
@@ -28,7 +26,6 @@ public fun PreviewContainer(
     LabTheme(isDark = isDark) {
         Box(
             modifier = modifier
-                .defaultMinSize(minHeight = 96.dp)
                 .background(color),
             content = content
         )

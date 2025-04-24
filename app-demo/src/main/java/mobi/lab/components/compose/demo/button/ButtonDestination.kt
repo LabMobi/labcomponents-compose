@@ -31,6 +31,8 @@ import mobi.lab.components.compose.widget.button.LabFilledButton
 import mobi.lab.components.compose.widget.button.LabFilledSmallButton
 import mobi.lab.components.compose.widget.button.LabOutlinedButton
 import mobi.lab.components.compose.widget.button.LabOutlinedSmallButton
+import mobi.lab.components.compose.widget.button.LabTextButton
+import mobi.lab.components.compose.widget.button.LabTextSmallButton
 import mobi.lab.components.compose.widget.button.LabTonedButton
 import mobi.lab.components.compose.widget.button.LabTonedSmallButton
 import mobi.lab.components.compose.widget.image.ImageSource
@@ -72,6 +74,7 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                 FilledButtons(enabled)
                 TonedButtons(enabled)
                 OutlinedButtons(enabled)
+                TextButtons(enabled)
                 Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
             }
         }
@@ -80,7 +83,6 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
 
 @Composable
 private fun FilledButtons(enabled: MutableState<Boolean>) {
-    // Filled
     SectionTitle(stringResource(R.string.text_filled_button_medium_default))
     LabFilledButton(
         text = stringResource(R.string.label_filled),
@@ -146,7 +148,6 @@ private fun FilledButtons(enabled: MutableState<Boolean>) {
 
 @Composable
 private fun TonedButtons(enabled: MutableState<Boolean>) {
-    // Toned
     SectionTitle(stringResource(R.string.text_toned_button_medium_default))
     LabTonedButton(
         text = stringResource(R.string.label_toned),
@@ -212,7 +213,6 @@ private fun TonedButtons(enabled: MutableState<Boolean>) {
 
 @Composable
 private fun OutlinedButtons(enabled: MutableState<Boolean>) {
-    // Toned
     SectionTitle(stringResource(R.string.text_outlined_button_medium_default))
     LabOutlinedButton(
         text = stringResource(R.string.label_outlined),
@@ -270,6 +270,72 @@ private fun OutlinedButtons(enabled: MutableState<Boolean>) {
         iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
     )
     LabOutlinedSmallButton(
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+    )
+}
+
+@Composable
+private fun TextButtons(enabled: MutableState<Boolean>) {
+    SectionTitle(stringResource(R.string.text_text_button_medium_default))
+    LabTextButton(
+        text = stringResource(R.string.label_text),
+        onClick = {},
+        enabled = enabled.value
+    )
+    LabTextButton(
+        text = stringResource(R.string.label_text),
+        onClick = {},
+        enabled = enabled.value,
+        iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+    )
+    LabTextButton(
+        text = stringResource(R.string.label_text),
+        onClick = {},
+        enabled = enabled.value,
+        iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+    )
+    LabTextButton(
+        text = stringResource(R.string.label_text),
+        onClick = {},
+        enabled = enabled.value,
+        iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+    )
+    LabTextButton(
+        text = "",
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+    )
+    SectionTitle(stringResource(R.string.text_text_button_small))
+    LabTextSmallButton(
+        text = stringResource(R.string.label_text_small),
+        onClick = {},
+        enabled = enabled.value
+    )
+    LabTextSmallButton(
+        text = stringResource(R.string.label_text_small),
+        onClick = {},
+        enabled = enabled.value,
+        iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+    )
+    LabTextSmallButton(
+        text = stringResource(R.string.label_text_small),
+        onClick = {},
+        enabled = enabled.value,
+        iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+    )
+    LabTextSmallButton(
+        text = stringResource(R.string.label_text_small),
+        onClick = {},
+        enabled = enabled.value,
+        iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+    )
+    LabTextSmallButton(
+        text = "",
         onClick = {},
         enabled = enabled.value,
         showProgress = true,

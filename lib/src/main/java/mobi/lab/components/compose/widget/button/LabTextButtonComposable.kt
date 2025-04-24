@@ -24,6 +24,7 @@ public fun LabTextButton(
     modifier: Modifier = Modifier,
     iconStart: ImageSource? = null,
     iconEnd: ImageSource? = null,
+    iconSize: Dp = LabButtonDefaults.iconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
@@ -31,7 +32,10 @@ public fun LabTextButton(
     colors: LabButtonColors = LabButtonDefaults.textButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
     border: LabButtonBorder = LabButtonDefaults.textButtonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.textButtonContentPadding,
+    contentPadding: PaddingValues = LabButtonDefaults.textButtonContentPaddings(
+        hasIconStart = iconStart != null,
+        hasIconEnd = iconEnd != null,
+    ),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabButton(
@@ -40,6 +44,7 @@ public fun LabTextButton(
         modifier = modifier,
         iconStart = iconStart,
         iconEnd = iconEnd,
+        iconSize = iconSize,
         iconSpacing = iconSpacing,
         showProgress = showProgress,
         enabled = enabled,
@@ -53,12 +58,13 @@ public fun LabTextButton(
 }
 
 @Composable
-public fun LabSmallTextButton(
+public fun LabTextSmallButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     iconStart: ImageSource? = null,
     iconEnd: ImageSource? = null,
+    iconSize: Dp = LabButtonDefaults.smallIconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
@@ -66,15 +72,19 @@ public fun LabSmallTextButton(
     colors: LabButtonColors = LabButtonDefaults.textButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
     border: LabButtonBorder = LabButtonDefaults.textButtonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.smallTextButtonContentPadding,
+    contentPadding: PaddingValues = LabButtonDefaults.smallTextButtonContentPaddings(
+        hasIconStart = iconStart != null,
+        hasIconEnd = iconEnd != null,
+    ),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
-    LabButton(
+    LabSmallButton(
         text = text,
         onClick = onClick,
         modifier = modifier,
         iconStart = iconStart,
         iconEnd = iconEnd,
+        iconSize = iconSize,
         iconSpacing = iconSpacing,
         showProgress = showProgress,
         enabled = enabled,
@@ -92,7 +102,19 @@ public fun LabSmallTextButton(
 private fun PreviewLightEnabled() {
     PreviewContainer {
         LabTextButton(
-            text = "Enabled",
+            text = "M Enabled",
+            onClick = {},
+            enabled = true
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightEnabled() {
+    PreviewContainer {
+        LabTextSmallButton(
+            text = "S Enabled",
             onClick = {},
             enabled = true
         )
@@ -104,7 +126,20 @@ private fun PreviewLightEnabled() {
 private fun PreviewLightFocused() {
     PreviewContainer {
         LabTextButton(
-            text = "Focused",
+            text = "M Focused",
+            onClick = {},
+            enabled = true,
+            interactionSource = previewInteractionSourceOf(FocusInteraction.Focus())
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightFocused() {
+    PreviewContainer {
+        LabTextSmallButton(
+            text = "S Focused",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(FocusInteraction.Focus())
@@ -117,7 +152,20 @@ private fun PreviewLightFocused() {
 private fun PreviewLightPressed() {
     PreviewContainer {
         LabTextButton(
-            text = "Pressed",
+            text = "M Pressed",
+            onClick = {},
+            enabled = true,
+            interactionSource = previewInteractionSourceOf(PressInteraction.Press(Offset.Zero))
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightPressed() {
+    PreviewContainer {
+        LabTextSmallButton(
+            text = "S Pressed",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(PressInteraction.Press(Offset.Zero))
@@ -130,7 +178,19 @@ private fun PreviewLightPressed() {
 private fun PreviewLightDisabled() {
     PreviewContainer {
         LabTextButton(
-            text = "Disabled",
+            text = "M Disabled",
+            onClick = {},
+            enabled = false
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDisabled() {
+    PreviewContainer {
+        LabTextSmallButton(
+            text = "S Disabled",
             onClick = {},
             enabled = false
         )
@@ -142,7 +202,20 @@ private fun PreviewLightDisabled() {
 private fun PreviewLightEnabledLoading() {
     PreviewContainer {
         LabTextButton(
-            text = "Enabled",
+            text = "",
+            onClick = {},
+            enabled = true,
+            showProgress = true
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightEnabledLoading() {
+    PreviewContainer {
+        LabTextSmallButton(
+            text = "",
             onClick = {},
             enabled = true,
             showProgress = true
@@ -155,7 +228,20 @@ private fun PreviewLightEnabledLoading() {
 private fun PreviewLightDisabledLoading() {
     PreviewContainer {
         LabTextButton(
-            text = "Disabled",
+            text = "",
+            onClick = {},
+            enabled = false,
+            showProgress = true
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDisabledLoading() {
+    PreviewContainer {
+        LabTextSmallButton(
+            text = "",
             onClick = {},
             enabled = false,
             showProgress = true

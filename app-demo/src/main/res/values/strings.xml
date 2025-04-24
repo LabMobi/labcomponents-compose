@@ -17,4 +17,8 @@
     <string name="text_outlined_button_small">Outlined button - Small</string>
     <string name="label_outlined">Outlined</string>
     <string name="label_outlined_small">Outlined small</string>
+    <string name="text_text_button_medium_default">Text button - Medium (default)</string>
+    <string name="text_text_button_small">Text button - Small</string>
+    <string name="label_text">Text</string>
+    <string name="label_text_small">Text small</string>
 </resources>

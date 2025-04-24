@@ -54,6 +54,8 @@ import mobi.lab.components.compose.widget.image.ImageSource
 @Composable
 public fun LabButton(
     modifier: Modifier = Modifier,
+    minWidth: Dp = LabButtonDefaults.minWidth,
+    minHeight: Dp = LabButtonDefaults.minHeight,
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
@@ -75,6 +77,8 @@ public fun LabButton(
     LabButton(
         onClick = onClick,
         modifier = modifier,
+        minWidth = minWidth,
+        minHeight = minHeight,
         enabled = enabled,
         shape = shape,
         colors = colors,
@@ -84,7 +88,7 @@ public fun LabButton(
         interactionSource = interactionSource
     ) {
         LabButtonContent(
-            minHeight = LabButtonDefaults.minHeight,
+            minHeight = minHeight,
             showProgress = showProgress,
             iconStart = iconStart,
             iconSize = iconSize,
@@ -99,6 +103,8 @@ public fun LabButton(
 @Composable
 public fun LabSmallButton(
     modifier: Modifier = Modifier,
+    minWidth: Dp = LabButtonDefaults.smallMinWidth,
+    minHeight: Dp = LabButtonDefaults.smallMinHeight,
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
@@ -120,8 +126,8 @@ public fun LabSmallButton(
     LabButton(
         onClick = onClick,
         modifier = modifier,
-        minWidth = LabButtonDefaults.minWidth,
-        minHeight = LabButtonDefaults.smallMinHeight,
+        minWidth = minWidth,
+        minHeight = minHeight,
         enabled = enabled,
         textStyle = LabButtonDefaults.smallTextStyle,
         shape = shape,
@@ -460,7 +466,7 @@ private fun PreviewSmallLightBothIconDisabled() {
 private fun PreviewLightEnabledLoading() {
     PreviewContainer {
         LabButton(
-            text = "M Loading Enabled",
+            text = "",
             onClick = {},
             enabled = true,
             showProgress = true
@@ -473,7 +479,33 @@ private fun PreviewLightEnabledLoading() {
 private fun PreviewLightDisabledLoading() {
     PreviewContainer {
         LabButton(
-            text = "M Loading Disabled",
+            text = "",
+            onClick = {},
+            enabled = false,
+            showProgress = true
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightEnabledLoading() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "",
+            onClick = {},
+            enabled = true,
+            showProgress = true
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDisabledLoading() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "",
             onClick = {},
             enabled = false,
             showProgress = true
