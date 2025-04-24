@@ -2,6 +2,7 @@
 
 package mobi.lab.components.compose.demo.button
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,13 +17,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.demo.AppTheme
 import mobi.lab.components.compose.demo.R
 import mobi.lab.components.compose.demo.common.LabelSwitch
 import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
+import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.widget.button.LabFilledButton
+import mobi.lab.components.compose.widget.button.LabFilledSmallButton
 import mobi.lab.components.compose.widget.image.ImageSource
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
@@ -45,9 +50,9 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                         start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current) + 16.dp,
                         end = contentPadding.calculateRightPadding(LocalLayoutDirection.current) + 16.dp,
                         bottom = 0.dp
-                    )
+                    ),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                val buttonModifier = Modifier.padding(bottom = 4.dp)
                 val placeholderIcon = ImageSource.fromRes(R.drawable.ic_placeholder16)
                 val enabled = remember { mutableStateOf(true) }
                 Text("Buttons", style = LabTheme.typography.headlineLarge)
@@ -58,47 +63,65 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                     onCheckedChange = { enabled.value = !enabled.value },
                 )
 
-                SectionTitle("Filled button")
+                SectionTitle(stringResource(R.string.text_filled_button_medium_default))
                 LabFilledButton(
-                    modifier = buttonModifier,
-                    text = "Filled",
+                    text = stringResource(R.string.label_filled),
                     onClick = {},
                     enabled = enabled.value
                 )
                 LabFilledButton(
-                    modifier = buttonModifier,
-                    text = "Filled",
+                    text = stringResource(R.string.label_filled),
                     onClick = {},
                     enabled = enabled.value,
                     iconStart = placeholderIcon,
                 )
                 LabFilledButton(
-                    modifier = buttonModifier,
-                    text = "Filled",
+                    text = stringResource(R.string.label_filled),
                     onClick = {},
                     enabled = enabled.value,
                     iconEnd = placeholderIcon,
                 )
-
                 LabFilledButton(
-                    modifier = buttonModifier,
-                    text = "Filled small",
+                    text = stringResource(R.string.label_filled),
+                    onClick = {},
+                    enabled = enabled.value,
+                    iconStart = placeholderIcon,
+                    iconEnd = placeholderIcon,
+                )
+                LabFilledButton(
+                    onClick = {},
+                    enabled = enabled.value,
+                    showProgress = true,
+                )
+                SectionTitle(stringResource(R.string.text_filled_button_small))
+                LabFilledSmallButton(
+                    text = stringResource(R.string.label_filled_small),
                     onClick = {},
                     enabled = enabled.value
                 )
-                LabFilledButton(
-                    modifier = buttonModifier,
-                    text = "Filled small",
+                LabFilledSmallButton(
+                    text = stringResource(R.string.label_filled_small),
                     onClick = {},
                     enabled = enabled.value,
                     iconStart = placeholderIcon,
                 )
-                LabFilledButton(
-                    modifier = buttonModifier,
-                    text = "Filled small",
+                LabFilledSmallButton(
+                    text = stringResource(R.string.label_filled_small),
                     onClick = {},
                     enabled = enabled.value,
                     iconEnd = placeholderIcon,
+                )
+                LabFilledSmallButton(
+                    text = stringResource(R.string.label_filled_small),
+                    onClick = {},
+                    enabled = enabled.value,
+                    iconStart = placeholderIcon,
+                    iconEnd = placeholderIcon,
+                )
+                LabFilledSmallButton(
+                    onClick = {},
+                    enabled = enabled.value,
+                    showProgress = true,
                 )
                 Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
             }
@@ -113,4 +136,15 @@ fun SectionTitle(text: String) {
         text = text,
         style = LabTheme.typography.headlineSmall
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDisabledLoading() {
+    PreviewContainer {
+        ButtonDestination(
+            onNavigateUp = {},
+            onToggleLightDarkModeClicked = { }
+        )
+    }
 }

@@ -15,7 +15,6 @@ import mobi.lab.components.compose.theme.LabTheme
 public object LabButtonDefaults {
 
     public val iconSize: Dp = 24.dp
-
     public val smallIconSize: Dp = 16.dp
 
     public val contentPadding: PaddingValues = PaddingValues(
@@ -49,6 +48,7 @@ public object LabButtonDefaults {
     public val progressStrokeWidth: Dp = 3.dp
     public val minWidth: Dp = 58.dp
     public val minHeight: Dp = 48.dp
+    public val smallMinHeight: Dp = 36.dp
     public val iconSpacing: Dp = 8.dp
     public val borderWidth: Dp = 1.dp
     public val elevation: Dp = 0.dp
@@ -56,6 +56,9 @@ public object LabButtonDefaults {
     public val shape: Shape @Composable get() = LabTheme.shapes.button
     public val iconButtonShape: Shape @Composable get() = LabTheme.shapes.roundButton
     public val textStyle: TextStyle @Composable get() = LabTheme.typography.bodyLargeEmphasis.copy(color = Color.Unspecified)
+
+    // Text style for small buttons
+    public val smallTextStyle: TextStyle @Composable get() = LabTheme.typography.labelLarge.copy(color = Color.Unspecified)
 
     @Composable
     public fun buttonBorder(): LabButtonBorder {

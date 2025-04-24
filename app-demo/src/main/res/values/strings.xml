@@ -4,4 +4,8 @@
     <string name="notification_channel_name">Notifications</string>
     <string name="button">Button</string>
     <string name="Label_toggle_light_dark_theme">Toggle Light/Dark theme</string>
+    <string name="text_filled_button_medium_default">Filled button - Medium (default)</string>
+    <string name="text_filled_button_small">Filled button - Small</string>
+    <string name="label_filled">Filled</string>
+    <string name="label_filled_small">Filled small</string>
 </resources>

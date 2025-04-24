@@ -1,5 +1,5 @@
 @file:Suppress("LongParameterList", "UnusedPrivateMember")
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 
 package mobi.lab.components.compose.widget.button
 
@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Surface
@@ -34,10 +35,12 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.theme.noRippleConfiguration
 import mobi.lab.components.compose.util.PreviewContainer
@@ -84,6 +87,7 @@ public fun LabButton(
             ) {
                 if (iconStart != null) {
                     IconFromSource(
+                        modifier = Modifier.size(iconSize),
                         source = iconStart,
                         color = LocalContentColor.current,
                         contentDescription = ""
@@ -107,6 +111,7 @@ public fun LabButton(
                         Spacer(modifier = Modifier.width(iconSpacing))
                     }
                     IconFromSource(
+                        modifier = Modifier.size(iconSize),
                         source = iconEnd,
                         color = LocalContentColor.current,
                         contentDescription = ""
@@ -151,7 +156,10 @@ public fun LabSmallButton(
     LabButton(
         onClick = onClick,
         modifier = modifier,
+        minWidth = LabButtonDefaults.minWidth,
+        minHeight = LabButtonDefaults.smallMinHeight,
         enabled = enabled,
+        textStyle = LabButtonDefaults.smallTextStyle,
         shape = shape,
         colors = colors,
         elevation = elevation,
@@ -168,6 +176,7 @@ public fun LabSmallButton(
             ) {
                 if (iconStart != null) {
                     IconFromSource(
+                        modifier = Modifier.size(iconSize),
                         source = iconStart,
                         color = LocalContentColor.current,
                         contentDescription = ""
@@ -191,6 +200,7 @@ public fun LabSmallButton(
                         Spacer(modifier = Modifier.width(iconSpacing))
                     }
                     IconFromSource(
+                        modifier = Modifier.size(iconSize),
                         source = iconEnd,
                         color = LocalContentColor.current,
                         contentDescription = ""
@@ -218,7 +228,10 @@ public fun LabSmallButton(
 public fun LabButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    minWidth: Dp = LabButtonDefaults.minWidth,
+    minHeight: Dp = LabButtonDefaults.minHeight,
     enabled: Boolean = true,
+    textStyle: TextStyle = LabButtonDefaults.textStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.buttonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
@@ -227,13 +240,25 @@ public fun LabButton(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable RowScope.() -> Unit
 ) {
-    CompositionLocalProvider(LocalRippleConfiguration provides noRippleConfiguration()) {
+    // The small button minHeight / height is 36dp, which is lower than the required touch target of 48dp.
+    // While these rectangular buttons are wider and thus still present a proper touch target,
+    // then the square loading buttons below in the same table are 36dpx36dp and this not valid touch targets in terms
+    // of accessibility.
+    // I will currently suppress this issue in with LocalMinimumInteractiveComponentSize provides 36.dp,
+    // but we should address it.
+    CompositionLocalProvider(
+        LocalRippleConfiguration provides noRippleConfiguration(),
+        LocalMinimumInteractiveComponentSize provides 36.dp,
+    ) {
         val containerColor = colors.containerColor(enabled, interactionSource)
         val contentColor = colors.contentColor(enabled, interactionSource)
         val borderStroke = border.borderStroke(enabled, interactionSource)
         Surface(
             onClick = onClick,
-            modifier = modifier.semantics { role = Role.Button },
+            modifier = modifier.semantics { role = Role.Button }.defaultMinSize(
+                minWidth = minWidth,
+                minHeight = minHeight
+            ).padding(0.dp),
             enabled = enabled,
             shape = shape,
             color = containerColor.value,
@@ -242,18 +267,13 @@ public fun LabButton(
             border = borderStroke?.value,
             interactionSource = interactionSource
         ) {
-            val mergedStyle = LocalTextStyle.current.merge(LabButtonDefaults.textStyle)
+            val mergedStyle = LocalTextStyle.current.merge(textStyle)
             CompositionLocalProvider(
                 LocalContentColor provides contentColor.value,
                 LocalTextStyle provides mergedStyle,
             ) {
                 Row(
-                    Modifier
-                        .defaultMinSize(
-                            minWidth = LabButtonDefaults.minWidth,
-                            minHeight = LabButtonDefaults.minHeight
-                        )
-                        .padding(contentPadding),
+                    Modifier.padding(contentPadding),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
                     content = content
@@ -268,7 +288,18 @@ public fun LabButton(
 private fun PreviewLightEnabled() {
     PreviewContainer {
         LabButton(
-            text = "Enabled",
+            text = "M Enabled",
+            onClick = {},
+            enabled = true
+        )
+    }
+}
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightEnabled() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Enabled",
             onClick = {},
             enabled = true
         )
@@ -280,7 +311,20 @@ private fun PreviewLightEnabled() {
 private fun PreviewLightFocused() {
     PreviewContainer {
         LabButton(
-            text = "Focused",
+            text = "M Focused",
+            onClick = {},
+            enabled = true,
+            interactionSource = previewInteractionSourceOf(FocusInteraction.Focus())
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightFocused() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Focused",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(FocusInteraction.Focus())
@@ -293,7 +337,7 @@ private fun PreviewLightFocused() {
 private fun PreviewLightPressed() {
     PreviewContainer {
         LabButton(
-            text = "Pressed",
+            text = "M Pressed",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(PressInteraction.Press(Offset.Zero))
@@ -306,7 +350,7 @@ private fun PreviewLightPressed() {
 private fun PreviewLightDisabled() {
     PreviewContainer {
         LabButton(
-            text = "Disabled",
+            text = "M Disabled",
             onClick = {},
             enabled = false
         )
@@ -318,7 +362,7 @@ private fun PreviewLightDisabled() {
 private fun PreviewLightEnabledLoading() {
     PreviewContainer {
         LabButton(
-            text = "Enabled",
+            text = "M Loading Enabled",
             onClick = {},
             enabled = true,
             showProgress = true
@@ -331,7 +375,7 @@ private fun PreviewLightEnabledLoading() {
 private fun PreviewLightDisabledLoading() {
     PreviewContainer {
         LabButton(
-            text = "Disabled",
+            text = "M Loading Disabled",
             onClick = {},
             enabled = false,
             showProgress = true
@@ -344,7 +388,7 @@ private fun PreviewLightDisabledLoading() {
 private fun PreviewDarkEnabled() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Enabled",
+            text = "M Enabled",
             onClick = {},
             enabled = true
         )
@@ -356,7 +400,7 @@ private fun PreviewDarkEnabled() {
 private fun PreviewDarkFocused() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Focused",
+            text = "M Focused",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(FocusInteraction.Focus())
@@ -369,7 +413,7 @@ private fun PreviewDarkFocused() {
 private fun PreviewDarkPressed() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Pressed",
+            text = "M Pressed",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(PressInteraction.Press(Offset.Zero))
@@ -382,7 +426,7 @@ private fun PreviewDarkPressed() {
 private fun PreviewDarkDisabled() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Disabled",
+            text = "M Disabled",
             onClick = {},
             enabled = false
         )
@@ -394,7 +438,7 @@ private fun PreviewDarkDisabled() {
 private fun PreviewDarkEnabledLoading() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Enabled",
+            text = "M Loading Enabled",
             onClick = {},
             enabled = true,
             showProgress = true
@@ -407,7 +451,7 @@ private fun PreviewDarkEnabledLoading() {
 private fun PreviewDarkDisabledLoading() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Disabled",
+            text = "M Loading Disabled",
             onClick = {},
             enabled = false,
             showProgress = true

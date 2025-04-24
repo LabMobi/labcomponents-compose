@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
@@ -44,11 +45,16 @@ public fun LabTopAppBar(
             if (navConfig != null) {
                 // Up navigation and left buttons can't be used at the same time.
                 Row {
-                    IconButton(onClick = navConfig.onClick) {
+                    IconButton(
+                        onClick = navConfig.onClick,
+                        colors = IconButtonDefaults.iconButtonColors().copy(
+                            contentColor = colors.navigationIconContentColor,
+                            containerColor = colors.containerColor,
+                        )
+                    ) {
                         IconFromSource(
                             source = navConfig.icon,
                             contentDescription = stringResource(R.string.lab_back),
-                            color = colors.navigationIconContentColor
                         )
                     }
                     Spacer(Modifier.size(16.dp))
