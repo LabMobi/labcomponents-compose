@@ -148,7 +148,7 @@ public object LabButtonDefaults {
     public fun outlinedButtonBorder(): LabButtonBorder {
         return LabButtonBorder.Enabled(
             color = LabTheme.colors.outlineVariant,
-            focusedColor = LabTheme.colors.secondaryFocused,
+            focusedColor = LabTheme.colors.primary,
             pressedColor = LabTheme.colors.outlineVariant,
             disabledColor = LabTheme.colors.outlineVariantDisabled,
             width = borderWidth
@@ -201,14 +201,14 @@ public object LabButtonDefaults {
     @Composable
     public fun outlinedButtonColors(): LabButtonColors {
         return LabButtonColors(
-            contentColor = LabTheme.colors.onSurface,
-            focusedContentColor = LabTheme.colors.onSurface,
-            pressedContentColor = LabTheme.colors.onSurface,
+            contentColor = LabTheme.colors.primary,
+            focusedContentColor = LabTheme.colors.primary,
+            pressedContentColor = LabTheme.colors.primary,
             disabledContentColor = LabTheme.colors.onSurfaceDisabled,
-            containerColor = LabTheme.colors.surface,
-            focusedContainerColor = LabTheme.colors.surface,
-            pressedContainerColor = LabTheme.colors.surfaceFocused,
-            disabledContainerColor = LabTheme.colors.surfaceDisabled,
+            containerColor = Color.Transparent, // No token here atm
+            focusedContainerColor = LabTheme.colors.primarySurfaceFocused,
+            pressedContainerColor = LabTheme.colors.primarySurfacePressed,
+            disabledContainerColor = Color.Transparent, // No token here atm
         )
     }
 

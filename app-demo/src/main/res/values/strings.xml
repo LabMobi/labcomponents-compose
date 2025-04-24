@@ -13,4 +13,8 @@
     <string name="text_toned_button_small">Toned button - Small</string>
     <string name="label_toned">Toned</string>
     <string name="label_toned_small">Toned small</string>
+    <string name="text_outlined_button_medium_default">Outlined button - Medium (default)</string>
+    <string name="text_outlined_button_small">Outlined button - Small</string>
+    <string name="label_outlined">Outlined</string>
+    <string name="label_outlined_small">Outlined small</string>
 </resources>
