@@ -140,6 +140,11 @@ public object LabButtonDefaults {
     }
 
     @Composable
+    public fun tonedButtonBorder(): LabButtonBorder {
+        return LabButtonBorder.Disabled
+    }
+
+    @Composable
     public fun outlinedButtonBorder(): LabButtonBorder {
         return LabButtonBorder.Enabled(
             color = LabTheme.colors.outlineVariant,
@@ -176,6 +181,20 @@ public object LabButtonDefaults {
             focusedContainerColor = LabTheme.colors.primaryFocused,
             pressedContainerColor = LabTheme.colors.primaryPressed,
             disabledContainerColor = LabTheme.colors.primarySurfaceDisabled,
+        )
+    }
+
+    @Composable
+    public fun tonedButtonColors(): LabButtonColors {
+        return LabButtonColors(
+            contentColor = LabTheme.colors.onSecondarySurface,
+            focusedContentColor = LabTheme.colors.onSecondarySurface,
+            pressedContentColor = LabTheme.colors.onSecondarySurface,
+            disabledContentColor = LabTheme.colors.onSecondarySurfaceDisabled,
+            containerColor = LabTheme.colors.secondarySurface,
+            focusedContainerColor = LabTheme.colors.secondarySurfaceFocused,
+            pressedContainerColor = LabTheme.colors.secondarySurfacePressed,
+            disabledContainerColor = LabTheme.colors.secondarySurfaceDisabled,
         )
     }
 

@@ -9,4 +9,8 @@
     <string name="label_filled">Filled</string>
     <string name="label_filled_small">Filled small</string>
     <string name="title_buttons">Buttons</string>
+    <string name="text_toned_button_medium_default">Toned button - Medium (default)</string>
+    <string name="text_toned_button_small">Toned button - Small</string>
+    <string name="label_toned">Toned</string>
+    <string name="label_toned_small">Toned small</string>
 </resources>

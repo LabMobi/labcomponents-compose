@@ -206,15 +206,18 @@ public fun LabButton(
 }
 
 @Composable
-private fun LabButtonContent(
+public fun LabButtonContent(
     minHeight: Dp = LabButtonDefaults.minHeight,
-    showProgress: Boolean,
-    iconStart: ImageSource?,
-    iconSize: Dp,
-    text: String?,
-    iconSpacing: Dp,
-    iconEnd: ImageSource?,
-    contentPadding: PaddingValues
+    showProgress: Boolean = false,
+    iconStart: ImageSource? = null,
+    iconSize: Dp = LabButtonDefaults.iconSize,
+    text: String? = "",
+    iconSpacing: Dp = LabButtonDefaults.iconSpacing,
+    iconEnd: ImageSource? = null,
+    contentPadding: PaddingValues = LabButtonDefaults.contentPaddings(
+        hasIconStart = iconStart != null,
+        hasIconEnd = iconEnd != null
+    ),
 ) {
     Box {
         val contentAlpha = remember(showProgress) { if (showProgress) 0.0f else 1.0f }

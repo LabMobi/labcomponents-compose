@@ -28,6 +28,8 @@ import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.widget.button.LabFilledButton
 import mobi.lab.components.compose.widget.button.LabFilledSmallButton
+import mobi.lab.components.compose.widget.button.LabTonedButton
+import mobi.lab.components.compose.widget.button.LabTonedSmallButton
 import mobi.lab.components.compose.widget.image.ImageSource
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
@@ -64,7 +66,7 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                     checked = enabled.value,
                     onCheckedChange = { enabled.value = !enabled.value },
                 )
-
+                // Filled
                 SectionTitle(stringResource(R.string.text_filled_button_medium_default))
                 LabFilledButton(
                     text = stringResource(R.string.label_filled),
@@ -122,6 +124,68 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                     iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
                 )
                 LabFilledSmallButton(
+                    onClick = {},
+                    enabled = enabled.value,
+                    showProgress = true,
+                )
+                // Toned
+                SectionTitle(stringResource(R.string.text_toned_button_medium_default))
+                LabTonedButton(
+                    text = stringResource(R.string.label_toned),
+                    onClick = {},
+                    enabled = enabled.value
+                )
+                LabTonedButton(
+                    text = stringResource(R.string.label_toned),
+                    onClick = {},
+                    enabled = enabled.value,
+                    iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                )
+                LabTonedButton(
+                    text = stringResource(R.string.label_toned),
+                    onClick = {},
+                    enabled = enabled.value,
+                    iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                )
+                LabTonedButton(
+                    text = stringResource(R.string.label_toned),
+                    onClick = {},
+                    enabled = enabled.value,
+                    iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                )
+                LabTonedButton(
+                    text = "",
+                    onClick = {},
+                    enabled = enabled.value,
+                    showProgress = true,
+                )
+                SectionTitle(stringResource(R.string.text_toned_button_small))
+                LabTonedSmallButton(
+                    text = stringResource(R.string.label_toned_small),
+                    onClick = {},
+                    enabled = enabled.value
+                )
+                LabTonedSmallButton(
+                    text = stringResource(R.string.label_toned_small),
+                    onClick = {},
+                    enabled = enabled.value,
+                    iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                )
+                LabTonedSmallButton(
+                    text = stringResource(R.string.label_toned_small),
+                    onClick = {},
+                    enabled = enabled.value,
+                    iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                )
+                LabTonedSmallButton(
+                    text = stringResource(R.string.label_toned_small),
+                    onClick = {},
+                    enabled = enabled.value,
+                    iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                )
+                LabTonedSmallButton(
                     onClick = {},
                     enabled = enabled.value,
                     showProgress = true,
