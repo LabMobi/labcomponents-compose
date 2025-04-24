@@ -59,7 +59,9 @@ public fun LabButton(
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
+    iconStartContentDescription: String = "",
     iconEnd: ImageSource? = null,
+    iconEndContentDescription: String = "",
     iconSize: Dp = LabButtonDefaults.iconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
@@ -85,17 +87,19 @@ public fun LabButton(
         elevation = elevation,
         border = border,
         contentPadding = contentPadding,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
     ) {
         LabButtonContent(
             minHeight = minHeight,
             showProgress = showProgress,
             iconStart = iconStart,
+            iconStartContentDescription = iconStartContentDescription,
             iconSize = iconSize,
             text = text,
             iconSpacing = iconSpacing,
             iconEnd = iconEnd,
-            contentPadding = contentPadding
+            iconEndContentDescription = iconEndContentDescription,
+            contentPadding = contentPadding,
         )
     }
 }
@@ -108,7 +112,9 @@ public fun LabSmallButton(
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
+    iconStartContentDescription: String = "",
     iconEnd: ImageSource? = null,
+    iconEndContentDescription: String = "",
     iconSize: Dp = LabButtonDefaults.smallIconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
@@ -141,10 +147,12 @@ public fun LabSmallButton(
             minHeight = LabButtonDefaults.smallMinHeight,
             showProgress = showProgress,
             iconStart = iconStart,
+            iconStartContentDescription = iconStartContentDescription,
             iconSize = iconSize,
             text = text,
             iconSpacing = iconSpacing,
             iconEnd = iconEnd,
+            iconEndContentDescription = iconEndContentDescription,
             contentPadding = contentPadding
         )
     }
@@ -216,10 +224,12 @@ public fun LabButtonContent(
     minHeight: Dp = LabButtonDefaults.minHeight,
     showProgress: Boolean = false,
     iconStart: ImageSource? = null,
+    iconStartContentDescription: String = "",
     iconSize: Dp = LabButtonDefaults.iconSize,
     text: String? = "",
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     iconEnd: ImageSource? = null,
+    iconEndContentDescription: String = "",
     contentPadding: PaddingValues = LabButtonDefaults.contentPaddings(
         hasIconStart = iconStart != null,
         hasIconEnd = iconEnd != null
@@ -237,7 +247,7 @@ public fun LabButtonContent(
                     modifier = Modifier.size(iconSize),
                     source = iconStart,
                     color = LocalContentColor.current,
-                    contentDescription = ""
+                    contentDescription = iconStartContentDescription
                 )
                 if (!text.isNullOrEmpty()) {
                     Spacer(modifier = Modifier.width(iconSpacing))
@@ -261,7 +271,7 @@ public fun LabButtonContent(
                     modifier = Modifier.size(iconSize),
                     source = iconEnd,
                     color = LocalContentColor.current,
-                    contentDescription = ""
+                    contentDescription = iconEndContentDescription
                 )
             }
         }

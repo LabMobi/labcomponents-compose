@@ -127,6 +127,7 @@ private fun MyTopBarWithButtonComposableWithRightButtonPreview() {
             actions = {
                 LabIconButton(
                     icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+                    contentDescription = "Like",
                     onClick = {},
                     enabled = true,
                     colors = LabButtonDefaults.iconButtonColors().copy(containerColor = LabTheme.colors.background)
