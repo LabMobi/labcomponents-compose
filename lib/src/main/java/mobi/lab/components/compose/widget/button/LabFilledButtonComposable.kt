@@ -34,7 +34,10 @@ public fun LabFilledButton(
     colors: LabButtonColors = LabButtonDefaults.filledButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
     border: LabButtonBorder = LabButtonDefaults.filledButtonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.contentPadding,
+    contentPadding: PaddingValues = LabButtonDefaults.contentPaddings(
+        hasIconStart = iconStart != null,
+        hasIconEnd = iconEnd != null
+    ),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabButton(
@@ -71,7 +74,10 @@ public fun LabFilledSmallButton(
     colors: LabButtonColors = LabButtonDefaults.filledButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
     border: LabButtonBorder = LabButtonDefaults.filledButtonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.smallContentPadding,
+    contentPadding: PaddingValues = LabButtonDefaults.smallContentPaddings(
+        hasIconStart = iconStart != null,
+        hasIconEnd = iconEnd != null
+    ),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabSmallButton(

@@ -17,15 +17,84 @@ public object LabButtonDefaults {
     public val iconSize: Dp = 24.dp
     public val smallIconSize: Dp = 16.dp
 
+    // Content padding differs based if there is an icon or not and if it is a medium or small button
     public val contentPadding: PaddingValues = PaddingValues(
         horizontal = 24.dp,
         vertical = 12.dp,
+    )
+
+    public val contentPaddingWithStartIcon: PaddingValues = PaddingValues(
+        start = 16.dp,
+        end = 24.dp,
+        top = 12.dp,
+        bottom = 12.dp,
+    )
+
+    public val contentPaddingWithEndIcon: PaddingValues = PaddingValues(
+        start = 24.dp,
+        end = 16.dp,
+        top = 12.dp,
+        bottom = 12.dp,
+    )
+
+    public val contentPaddingWithBothIcons: PaddingValues = PaddingValues(
+        start = 12.dp,
+        end = 16.dp,
+        top = 12.dp,
+        bottom = 12.dp,
     )
 
     public val smallContentPadding: PaddingValues = PaddingValues(
         horizontal = 16.dp,
         vertical = 8.dp,
     )
+
+    public val smallContentPaddingWithStartIcon: PaddingValues = PaddingValues(
+        start = 12.dp,
+        end = 16.dp,
+        top = 8.dp,
+        bottom = 8.dp,
+    )
+
+    public val smallContentPaddingWithEndIcon: PaddingValues = PaddingValues(
+        start = 16.dp,
+        end = 12.dp,
+        top = 8.dp,
+        bottom = 8.dp,
+    )
+
+    public val smallContentPaddingWithBothIcons: PaddingValues = PaddingValues(
+        start = 12.dp,
+        end = 12.dp,
+        top = 8.dp,
+        bottom = 8.dp,
+    )
+
+    @Composable
+    public fun contentPaddings(hasIconStart: Boolean, hasIconEnd: Boolean): PaddingValues {
+        return if (hasIconStart && hasIconEnd) {
+            contentPaddingWithBothIcons
+        } else if (hasIconStart) {
+            contentPaddingWithStartIcon
+        } else if (hasIconEnd) {
+            contentPaddingWithEndIcon
+        } else {
+            contentPadding
+        }
+    }
+
+    @Composable
+    public fun smallContentPaddings(hasIconStart: Boolean, hasIconEnd: Boolean): PaddingValues {
+        return if (hasIconStart && hasIconEnd) {
+            smallContentPaddingWithBothIcons
+        } else if (hasIconStart) {
+            smallContentPaddingWithStartIcon
+        } else if (hasIconEnd) {
+            smallContentPaddingWithEndIcon
+        } else {
+            smallContentPadding
+        }
+    }
 
     public val iconButtonContentPadding: PaddingValues = PaddingValues(8.dp)
 

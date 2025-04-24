@@ -1,5 +1,5 @@
 @file:Suppress("LongParameterList", "UnusedPrivateMember")
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package mobi.lab.components.compose.widget.button
 
@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -67,7 +66,10 @@ public fun LabButton(
     colors: LabButtonColors = LabButtonDefaults.buttonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
     border: LabButtonBorder = LabButtonDefaults.buttonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.contentPadding,
+    contentPadding: PaddingValues = LabButtonDefaults.contentPaddings(
+        hasIconStart = iconStart != null,
+        hasIconEnd = iconEnd != null
+    ),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabButton(
@@ -153,7 +155,10 @@ public fun LabSmallButton(
     colors: LabButtonColors = LabButtonDefaults.buttonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
     border: LabButtonBorder = LabButtonDefaults.buttonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.smallContentPadding,
+    contentPadding: PaddingValues = LabButtonDefaults.smallContentPaddings(
+        hasIconStart = iconStart != null,
+        hasIconEnd = iconEnd != null
+    ),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabButton(
@@ -239,7 +244,7 @@ public fun LabButton(
     colors: LabButtonColors = LabButtonDefaults.buttonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
     border: LabButtonBorder = LabButtonDefaults.buttonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.contentPadding,
+    contentPadding: PaddingValues,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable RowScope.() -> Unit
 ) {
@@ -258,10 +263,7 @@ public fun LabButton(
         val borderStroke = border.borderStroke(enabled, interactionSource)
         Surface(
             onClick = onClick,
-            modifier = modifier.semantics { role = Role.Button }.defaultMinSize(
-                minWidth = minWidth,
-                minHeight = minHeight
-            ).padding(0.dp),
+            modifier = modifier.semantics { role = Role.Button },
             enabled = enabled,
             shape = shape,
             color = containerColor.value,
@@ -276,7 +278,12 @@ public fun LabButton(
                 LocalTextStyle provides mergedStyle,
             ) {
                 Row(
-                    Modifier.padding(contentPadding),
+                    Modifier
+                        .defaultMinSize(
+                            minWidth = minWidth,
+                            minHeight = minHeight
+                        )
+                        .padding(contentPadding),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
                     content = content
@@ -297,6 +304,7 @@ private fun PreviewLightEnabled() {
         )
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 private fun PreviewSmallLightEnabled() {
