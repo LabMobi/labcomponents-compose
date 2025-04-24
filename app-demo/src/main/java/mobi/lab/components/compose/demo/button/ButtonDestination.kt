@@ -29,6 +29,8 @@ import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.widget.button.LabFilledButton
 import mobi.lab.components.compose.widget.button.LabFilledSmallButton
+import mobi.lab.components.compose.widget.button.LabIconButton
+import mobi.lab.components.compose.widget.button.LabIconSmallButton
 import mobi.lab.components.compose.widget.button.LabOutlinedButton
 import mobi.lab.components.compose.widget.button.LabOutlinedSmallButton
 import mobi.lab.components.compose.widget.button.LabTextButton
@@ -75,6 +77,7 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                 TonedButtons(enabled)
                 OutlinedButtons(enabled)
                 TextButtons(enabled)
+                IconButtons(enabled)
                 Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
             }
         }
@@ -336,6 +339,34 @@ private fun TextButtons(enabled: MutableState<Boolean>) {
     )
     LabTextSmallButton(
         text = "",
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+    )
+}
+
+@Composable
+private fun IconButtons(enabled: MutableState<Boolean>) {
+    SectionTitle(stringResource(R.string.text_icon_button_medium_default))
+    LabIconButton(
+        icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        onClick = {},
+        enabled = enabled.value
+    )
+    LabIconButton(
+        icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+    )
+    SectionTitle(stringResource(R.string.text_icon_button_small))
+    LabIconSmallButton(
+        icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        onClick = {},
+        enabled = enabled.value
+    )
+    LabIconSmallButton(
+        icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
         onClick = {},
         enabled = enabled.value,
         showProgress = true,

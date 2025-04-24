@@ -3,7 +3,6 @@
     <string name="app_name">LabComponents Compose</string>
     <string name="notification_channel_name">Notifications</string>
     <string name="button">Button</string>
-    <string name="Label_toggle_light_dark_theme">Toggle Light/Dark theme</string>
     <string name="text_filled_button_medium_default">Filled button - Medium (default)</string>
     <string name="text_filled_button_small">Filled button - Small</string>
     <string name="label_filled">Filled</string>
@@ -21,4 +20,8 @@
     <string name="text_text_button_small">Text button - Small</string>
     <string name="label_text">Text</string>
     <string name="label_text_small">Text small</string>
+    <string name="text_icon_button_medium_default">Icon button - Medium (default)</string>
+    <string name="text_icon_button_small">Icon button - Small</string>
+    <string name="label_icon">Icon</string>
+    <string name="label_icon_small">Icon small</string>
 </resources>

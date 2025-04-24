@@ -279,7 +279,7 @@ public object LabThemeDefaults {
             primarySurfacePressed = PaletteTokens.primary30.withAlpha(EMPHASIS_VERY_HIGH),
             primarySurfaceDisabled = PaletteTokens.primary30.withAlpha(EMPHASIS_SMALL),
             onPrimarySurface = PaletteTokens.primary90,
-            onPrimarySurfaceDisabled = neutral10Disabled,
+            onPrimarySurfaceDisabled = neutral90Disabled,
             secondary = PaletteTokens.secondary80,
             secondaryFocused = PaletteTokens.secondary90,
             secondaryPressed = PaletteTokens.secondary90,

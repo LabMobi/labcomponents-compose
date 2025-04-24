@@ -180,7 +180,7 @@ public object LabButtonDefaults {
     public val elevation: Dp = 0.dp
 
     public val shape: Shape @Composable get() = LabTheme.shapes.button
-    public val iconButtonShape: Shape @Composable get() = LabTheme.shapes.roundButton
+    public val iconButtonShape: Shape @Composable get() = LabTheme.shapes.button
     public val textStyle: TextStyle @Composable get() = LabTheme.typography.bodyLarge.copy(color = Color.Unspecified)
 
     // Text style for small buttons
@@ -290,14 +290,16 @@ public object LabButtonDefaults {
     @Composable
     public fun iconButtonColors(): LabButtonColors {
         return LabButtonColors(
-            contentColor = LabTheme.colors.onSurface,
-            focusedContentColor = LabTheme.colors.onSurface,
-            pressedContentColor = LabTheme.colors.onSurface,
-            disabledContentColor = LabTheme.colors.onSurfaceDisabled,
-            containerColor = LabTheme.colors.surface,
-            focusedContainerColor = LabTheme.colors.secondarySurfaceFocused,
-            pressedContainerColor = LabTheme.colors.secondarySurfacePressed,
-            disabledContainerColor = LabTheme.colors.secondarySurfaceDisabled,
+            contentColor = LabTheme.colors.primary,
+            focusedContentColor = LabTheme.colors.primary,
+            pressedContentColor = LabTheme.colors.primary,
+            disabledContentColor = LabTheme.colors.onPrimarySurfaceDisabled,
+            // No token here atm
+            containerColor = Color.Transparent,
+            focusedContainerColor = LabTheme.colors.primarySurfaceFocused,
+            pressedContainerColor = LabTheme.colors.primarySurfacePressed,
+            // No token here atm
+            disabledContainerColor = Color.Transparent,
         )
     }
 
