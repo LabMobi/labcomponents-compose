@@ -2,7 +2,6 @@
 
 package mobi.lab.components.compose.demo.button
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
