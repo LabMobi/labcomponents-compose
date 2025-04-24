@@ -124,7 +124,7 @@ public object LabButtonDefaults {
 
     public val shape: Shape @Composable get() = LabTheme.shapes.button
     public val iconButtonShape: Shape @Composable get() = LabTheme.shapes.roundButton
-    public val textStyle: TextStyle @Composable get() = LabTheme.typography.bodyLargeEmphasis.copy(color = Color.Unspecified)
+    public val textStyle: TextStyle @Composable get() = LabTheme.typography.bodyLarge.copy(color = Color.Unspecified)
 
     // Text style for small buttons
     public val smallTextStyle: TextStyle @Composable get() = LabTheme.typography.labelLarge.copy(color = Color.Unspecified)
@@ -174,7 +174,7 @@ public object LabButtonDefaults {
             disabledContentColor = LabTheme.colors.onPrimaryDisabled,
             containerColor = LabTheme.colors.primary,
             focusedContainerColor = LabTheme.colors.primaryFocused,
-            pressedContainerColor = LabTheme.colors.primaryFocused,
+            pressedContainerColor = LabTheme.colors.primaryPressed,
             disabledContainerColor = LabTheme.colors.primarySurfaceDisabled,
         )
     }

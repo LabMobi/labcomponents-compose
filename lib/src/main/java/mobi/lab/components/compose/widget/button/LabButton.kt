@@ -83,60 +83,16 @@ public fun LabButton(
         contentPadding = contentPadding,
         interactionSource = interactionSource
     ) {
-        Box {
-            val contentAlpha = remember(showProgress) { if (showProgress) 0.0f else 1.0f }
-            Row(
-                modifier = Modifier.alpha(contentAlpha),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                if (iconStart != null) {
-                    IconFromSource(
-                        modifier = Modifier.size(iconSize),
-                        source = iconStart,
-                        color = LocalContentColor.current,
-                        contentDescription = ""
-                    )
-                    if (!text.isNullOrEmpty()) {
-                        Spacer(modifier = Modifier.width(iconSpacing))
-                    }
-                }
-                // Need to set the color here as TextStyle color overrides Button colors
-                if (text != null) {
-                    Text(
-                        text = text,
-                        style = LocalTextStyle.current,
-                        color = LocalContentColor.current,
-                        textAlign = TextAlign.Center,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-                if (iconEnd != null) {
-                    if (!text.isNullOrEmpty()) {
-                        Spacer(modifier = Modifier.width(iconSpacing))
-                    }
-                    IconFromSource(
-                        modifier = Modifier.size(iconSize),
-                        source = iconEnd,
-                        color = LocalContentColor.current,
-                        contentDescription = ""
-                    )
-                }
-            }
-            if (showProgress) {
-                val height = remember(contentPadding) {
-                    LabButtonDefaults.minHeight - contentPadding.calculateBottomPadding() - contentPadding.calculateTopPadding()
-                }
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .size(height),
-                    color = LocalContentColor.current,
-                    strokeWidth = LabButtonDefaults.progressStrokeWidth,
-                    trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
-                )
-            }
-        }
+        LabButtonContent(
+            minHeight = LabButtonDefaults.minHeight,
+            showProgress = showProgress,
+            iconStart = iconStart,
+            iconSize = iconSize,
+            text = text,
+            iconSpacing = iconSpacing,
+            iconEnd = iconEnd,
+            contentPadding = contentPadding
+        )
     }
 }
 
@@ -175,60 +131,16 @@ public fun LabSmallButton(
         contentPadding = contentPadding,
         interactionSource = interactionSource
     ) {
-        Box {
-            val contentAlpha = remember(showProgress) { if (showProgress) 0.0f else 1.0f }
-            Row(
-                modifier = Modifier.alpha(contentAlpha),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                if (iconStart != null) {
-                    IconFromSource(
-                        modifier = Modifier.size(iconSize),
-                        source = iconStart,
-                        color = LocalContentColor.current,
-                        contentDescription = ""
-                    )
-                    if (!text.isNullOrEmpty()) {
-                        Spacer(modifier = Modifier.width(iconSpacing))
-                    }
-                }
-                // Need to set the color here as TextStyle color overrides Button colors
-                if (text != null) {
-                    Text(
-                        text = text,
-                        style = LocalTextStyle.current,
-                        color = LocalContentColor.current,
-                        textAlign = TextAlign.Center,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-                if (iconEnd != null) {
-                    if (!text.isNullOrEmpty()) {
-                        Spacer(modifier = Modifier.width(iconSpacing))
-                    }
-                    IconFromSource(
-                        modifier = Modifier.size(iconSize),
-                        source = iconEnd,
-                        color = LocalContentColor.current,
-                        contentDescription = ""
-                    )
-                }
-            }
-            if (showProgress) {
-                val height = remember(contentPadding) {
-                    LabButtonDefaults.minHeight - contentPadding.calculateBottomPadding() - contentPadding.calculateTopPadding()
-                }
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .size(height),
-                    color = LocalContentColor.current,
-                    strokeWidth = LabButtonDefaults.progressStrokeWidth,
-                    trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
-                )
-            }
-        }
+        LabButtonContent(
+            minHeight = LabButtonDefaults.smallMinHeight,
+            showProgress = showProgress,
+            iconStart = iconStart,
+            iconSize = iconSize,
+            text = text,
+            iconSpacing = iconSpacing,
+            iconEnd = iconEnd,
+            contentPadding = contentPadding
+        )
     }
 }
 
@@ -289,6 +201,73 @@ public fun LabButton(
                     content = content
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun LabButtonContent(
+    minHeight: Dp = LabButtonDefaults.minHeight,
+    showProgress: Boolean,
+    iconStart: ImageSource?,
+    iconSize: Dp,
+    text: String?,
+    iconSpacing: Dp,
+    iconEnd: ImageSource?,
+    contentPadding: PaddingValues
+) {
+    Box {
+        val contentAlpha = remember(showProgress) { if (showProgress) 0.0f else 1.0f }
+        Row(
+            modifier = Modifier.alpha(contentAlpha),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            if (iconStart != null) {
+                IconFromSource(
+                    modifier = Modifier.size(iconSize),
+                    source = iconStart,
+                    color = LocalContentColor.current,
+                    contentDescription = ""
+                )
+                if (!text.isNullOrEmpty()) {
+                    Spacer(modifier = Modifier.width(iconSpacing))
+                }
+            }
+            // Need to set the color here as TextStyle color overrides Button colors
+            if (text != null) {
+                Text(
+                    text = text,
+                    style = LocalTextStyle.current,
+                    color = LocalContentColor.current,
+                    textAlign = TextAlign.Center,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            if (iconEnd != null) {
+                if (!text.isNullOrEmpty()) {
+                    Spacer(modifier = Modifier.width(iconSpacing))
+                }
+                IconFromSource(
+                    modifier = Modifier.size(iconSize),
+                    source = iconEnd,
+                    color = LocalContentColor.current,
+                    contentDescription = ""
+                )
+            }
+        }
+        if (showProgress) {
+            val height = remember(contentPadding) {
+                minHeight - contentPadding.calculateBottomPadding() - contentPadding.calculateTopPadding()
+            }
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .size(height),
+                color = LocalContentColor.current,
+                strokeWidth = LabButtonDefaults.progressStrokeWidth,
+                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+            )
         }
     }
 }

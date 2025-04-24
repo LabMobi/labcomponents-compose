@@ -8,4 +8,5 @@
     <string name="text_filled_button_small">Filled button - Small</string>
     <string name="label_filled">Filled</string>
     <string name="label_filled_small">Filled small</string>
+    <string name="title_buttons">Buttons</string>
 </resources>

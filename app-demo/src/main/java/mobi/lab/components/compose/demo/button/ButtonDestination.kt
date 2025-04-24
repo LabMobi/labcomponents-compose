@@ -38,7 +38,11 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
     AppTheme {
         LabScaffold(
             topBar = {
-                LabTopAppBar("Button", navConfig = upNavConfig(onNavigateUp), actions = { LightDarkModeMenu(onToggleLightDarkModeClicked) })
+                LabTopAppBar(
+                    stringResource(R.string.title_buttons),
+                    navConfig = upNavConfig(onNavigateUp),
+                    actions = { LightDarkModeMenu(onToggleLightDarkModeClicked) }
+                )
             }
         ) { contentPadding ->
             Column(
@@ -54,7 +58,6 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 val enabled = remember { mutableStateOf(true) }
-                Text("Buttons", style = LabTheme.typography.headlineLarge)
                 LabelSwitch(
                     modifier = Modifier.fillMaxSize(),
                     label = "Enabled state",
@@ -88,6 +91,7 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                     iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
                 )
                 LabFilledButton(
+                    text = "",
                     onClick = {},
                     enabled = enabled.value,
                     showProgress = true,
@@ -139,7 +143,7 @@ fun SectionTitle(text: String) {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewSmallLightDisabledLoading() {
+private fun PreviewLightButtonDestination() {
     PreviewContainer {
         ButtonDestination(
             onNavigateUp = {},

@@ -28,7 +28,7 @@ public object LabThemeDefaults {
     }
 
     @Composable
-    public fun shapes(cornerSize: Dp = 4.dp): LabShapes {
+    public fun shapes(cornerSize: Dp = 8.dp): LabShapes {
         return LabShapes(
             button = RoundedCornerShape(cornerSize),
             roundButton = CircleShape,
