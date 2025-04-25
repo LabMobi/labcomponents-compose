@@ -14,4 +14,7 @@ object NavDestination {
 
     @Serializable
     object Typography
+
+    @Serializable
+    object Progress
 }

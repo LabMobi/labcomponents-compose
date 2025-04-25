@@ -1,8 +1,13 @@
 package mobi.lab.components.compose.widget.progress
 
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import mobi.lab.components.compose.theme.LabTheme
 
 public object LabIndeterminateProgressDefaults {
-    public val buttonProgressSize: Dp = 24.dp
+
+    @Composable
+    public fun defaultIndeterminateProgressColor(): Color {
+        return LabTheme.colors.onSurface
+    }
 }

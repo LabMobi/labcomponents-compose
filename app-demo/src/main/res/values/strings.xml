@@ -26,4 +26,10 @@
     <string name="label_icon_small">Icon small</string>
     <string name="tect_button_with_a_placeholder_icon">Button with a placeholder icon</string>
     <string name="text_toggle_between_light_and_dark_theme">Toggle between light and dark theme</string>
+    <string name="title_progress">Progress</string>
+    <string name="text_indeterminate_progress">Indeterminate</string>
+    <string name="btn_buttons">Buttons</string>
+    <string name="btn_colors">Colors</string>
+    <string name="btn_typography">Typography</string>
+    <string name="btn_progress">Progress</string>
 </resources>

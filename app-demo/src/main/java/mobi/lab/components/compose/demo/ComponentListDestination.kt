@@ -30,6 +30,7 @@ fun ComponentListDestination(
     onButtonsClicked: () -> Unit,
     onColorsClicked: () -> Unit,
     onTypographyClicked: () -> Unit,
+    onProgressClicked: () -> Unit,
     onToggleLightDarkModeClicked: () -> Unit,
 ) {
     AppTheme {
@@ -52,13 +53,16 @@ fun ComponentListDestination(
                     )
             ) {
                 item {
-                    ListItem("Buttons", onButtonsClicked)
+                    ListItem(title = stringResource(R.string.btn_buttons), onClick = onButtonsClicked)
                 }
                 item {
-                    ListItem("Colors", onColorsClicked)
+                    ListItem(title = stringResource(R.string.btn_colors), onClick = onColorsClicked)
                 }
                 item {
-                    ListItem("Typography", onTypographyClicked)
+                    ListItem(title = stringResource(R.string.btn_typography), onClick = onTypographyClicked)
+                }
+                item {
+                    ListItem(title = stringResource(R.string.btn_progress), onClick = onProgressClicked)
                 }
                 // Final content padding here so we get the scroll-out-of-the-screen affect
                 item {

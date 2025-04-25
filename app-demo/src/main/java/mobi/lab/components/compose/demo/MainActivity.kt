@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import mobi.lab.components.compose.demo.button.ButtonDestination
 import mobi.lab.components.compose.demo.color.ColorsDestination
+import mobi.lab.components.compose.demo.progress.ProgressDestination
 import mobi.lab.components.compose.demo.typography.TypographyDestination
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                         onButtonsClicked = { navController.navigate(NavDestination.Button) },
                         onColorsClicked = { navController.navigate(NavDestination.Colors) },
                         onTypographyClicked = { navController.navigate(NavDestination.Typography) },
+                        onProgressClicked = { navController.navigate(NavDestination.Progress) },
                         onToggleLightDarkModeClicked = ::toggleLightDarkMode
                     )
                 }
@@ -46,6 +48,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 composable<NavDestination.Typography> {
                     TypographyDestination(
+                        navUp,
+                        onToggleLightDarkModeClicked = ::toggleLightDarkMode,
+                    )
+                }
+                composable<NavDestination.Progress> {
+                    ProgressDestination(
                         navUp,
                         onToggleLightDarkModeClicked = ::toggleLightDarkMode,
                     )

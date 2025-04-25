@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalMinimumInteractiveComponentSize
@@ -43,13 +42,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.theme.noRippleConfiguration
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
-import mobi.lab.components.compose.util.withAlpha
 import mobi.lab.components.compose.widget.image.IconFromSource
 import mobi.lab.components.compose.widget.image.ImageSource
+import mobi.lab.components.compose.widget.progress.LabIndeterminateProgress
 
 @Composable
 public fun LabButton(
@@ -279,13 +277,11 @@ public fun LabButtonContent(
             val height = remember(contentPadding) {
                 minHeight - contentPadding.calculateBottomPadding() - contentPadding.calculateTopPadding()
             }
-            CircularProgressIndicator(
+            LabIndeterminateProgress(
                 modifier = Modifier
                     .align(Alignment.Center)
                     .size(height),
                 color = LocalContentColor.current,
-                strokeWidth = LabButtonDefaults.progressStrokeWidth,
-                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
             )
         }
     }
