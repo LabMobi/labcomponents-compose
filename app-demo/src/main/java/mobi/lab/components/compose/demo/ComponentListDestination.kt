@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
@@ -29,11 +30,16 @@ fun ComponentListDestination(
     onButtonsClicked: () -> Unit,
     onColorsClicked: () -> Unit,
     onTypographyClicked: () -> Unit,
+    onProgressClicked: () -> Unit,
+    onToggleLightDarkModeClicked: () -> Unit,
 ) {
     AppTheme {
         LabScaffold(
             topBar = {
-                LabTopAppBar(stringResource(R.string.app_name))
+                LabTopAppBar(
+                    title = stringResource(R.string.app_name),
+                    actions = { LightDarkModeMenu(onToggleLightDarkModeClicked) },
+                )
             }
         ) { contentPadding ->
             LazyColumn(
@@ -47,13 +53,16 @@ fun ComponentListDestination(
                     )
             ) {
                 item {
-                    ListItem("Buttons", onButtonsClicked)
+                    ListItem(title = stringResource(R.string.btn_buttons), onClick = onButtonsClicked)
                 }
                 item {
-                    ListItem("Colors", onColorsClicked)
+                    ListItem(title = stringResource(R.string.btn_colors), onClick = onColorsClicked)
                 }
                 item {
-                    ListItem("Typography", onTypographyClicked)
+                    ListItem(title = stringResource(R.string.btn_typography), onClick = onTypographyClicked)
+                }
+                item {
+                    ListItem(title = stringResource(R.string.btn_progress), onClick = onProgressClicked)
                 }
                 // Final content padding here so we get the scroll-out-of-the-screen affect
                 item {

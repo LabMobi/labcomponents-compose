@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LabComponents Compose</string>
-    <string name="notification_channel_name">Notifications</string>
-    <string name="button">Button</string>
+    <string name="text_filled_button_medium_default">Filled button - Medium (default)</string>
+    <string name="text_filled_button_small">Filled button - Small</string>
+    <string name="label_filled">Filled</string>
+    <string name="label_filled_small">Filled small</string>
+    <string name="title_buttons">Buttons</string>
+    <string name="text_toned_button_medium_default">Toned button - Medium (default)</string>
+    <string name="text_toned_button_small">Toned button - Small</string>
+    <string name="label_toned">Toned</string>
+    <string name="label_toned_small">Toned small</string>
+    <string name="text_outlined_button_medium_default">Outlined button - Medium (default)</string>
+    <string name="text_outlined_button_small">Outlined button - Small</string>
+    <string name="label_outlined">Outlined</string>
+    <string name="label_outlined_small">Outlined small</string>
+    <string name="text_text_button_medium_default">Text button - Medium (default)</string>
+    <string name="text_text_button_small">Text button - Small</string>
+    <string name="label_text">Text</string>
+    <string name="label_text_small">Text small</string>
+    <string name="text_icon_button_medium_default">Icon button - Medium (default)</string>
+    <string name="text_icon_button_small">Icon button - Small</string>
+    <string name="text_button_with_a_placeholder_icon">Button with a placeholder icon</string>
+    <string name="text_toggle_between_light_and_dark_theme">Toggle between light and dark theme</string>
+    <string name="title_progress">Progress</string>
+    <string name="text_indeterminate_progress">Indeterminate</string>
+    <string name="btn_buttons">Buttons</string>
+    <string name="btn_colors">Colors</string>
+    <string name="btn_typography">Typography</string>
+    <string name="btn_progress">Progress</string>
 </resources>

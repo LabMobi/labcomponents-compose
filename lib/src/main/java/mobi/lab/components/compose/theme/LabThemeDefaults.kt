@@ -28,7 +28,7 @@ public object LabThemeDefaults {
     }
 
     @Composable
-    public fun shapes(cornerSize: Dp = 4.dp): LabShapes {
+    public fun shapes(cornerSize: Dp = 8.dp): LabShapes {
         return LabShapes(
             button = RoundedCornerShape(cornerSize),
             roundButton = CircleShape,
@@ -279,7 +279,7 @@ public object LabThemeDefaults {
             primarySurfacePressed = PaletteTokens.primary30.withAlpha(EMPHASIS_VERY_HIGH),
             primarySurfaceDisabled = PaletteTokens.primary30.withAlpha(EMPHASIS_SMALL),
             onPrimarySurface = PaletteTokens.primary90,
-            onPrimarySurfaceDisabled = neutral10Disabled,
+            onPrimarySurfaceDisabled = neutral90Disabled,
             secondary = PaletteTokens.secondary80,
             secondaryFocused = PaletteTokens.secondary90,
             secondaryPressed = PaletteTokens.secondary90,

@@ -15,47 +15,176 @@ import mobi.lab.components.compose.theme.LabTheme
 public object LabButtonDefaults {
 
     public val iconSize: Dp = 24.dp
-
     public val smallIconSize: Dp = 16.dp
 
-    public val contentPadding: PaddingValues = PaddingValues(
+    // Content padding differs based if there is an icon or not and if it is a medium or small button
+    public val contentPaddingNoIcons: PaddingValues = PaddingValues(
         horizontal = 24.dp,
         vertical = 12.dp,
     )
 
-    public val smallContentPadding: PaddingValues = PaddingValues(
+    public val contentPaddingWithStartIcon: PaddingValues = PaddingValues(
+        start = 16.dp,
+        end = 24.dp,
+        top = 12.dp,
+        bottom = 12.dp,
+    )
+
+    public val contentPaddingWithEndIcon: PaddingValues = PaddingValues(
+        start = 24.dp,
+        end = 16.dp,
+        top = 12.dp,
+        bottom = 12.dp,
+    )
+
+    public val contentPaddingWithBothIcons: PaddingValues = PaddingValues(
+        start = 12.dp,
+        end = 16.dp,
+        top = 12.dp,
+        bottom = 12.dp,
+    )
+
+    public val smallContentPaddingNoIcons: PaddingValues = PaddingValues(
         horizontal = 16.dp,
         vertical = 8.dp,
     )
+
+    public val smallContentPaddingWithStartIcon: PaddingValues = PaddingValues(
+        start = 12.dp,
+        end = 16.dp,
+        top = 8.dp,
+        bottom = 8.dp,
+    )
+
+    public val smallContentPaddingWithEndIcon: PaddingValues = PaddingValues(
+        start = 16.dp,
+        end = 12.dp,
+        top = 8.dp,
+        bottom = 8.dp,
+    )
+
+    public val smallContentPaddingWithBothIcons: PaddingValues = PaddingValues(
+        start = 12.dp,
+        end = 12.dp,
+        top = 8.dp,
+        bottom = 8.dp,
+    )
+
+    @Composable
+    public fun contentPaddings(hasIconStart: Boolean, hasIconEnd: Boolean): PaddingValues {
+        return if (hasIconStart && hasIconEnd) {
+            contentPaddingWithBothIcons
+        } else if (hasIconStart) {
+            contentPaddingWithStartIcon
+        } else if (hasIconEnd) {
+            contentPaddingWithEndIcon
+        } else {
+            contentPaddingNoIcons
+        }
+    }
+
+    @Composable
+    public fun smallContentPaddings(hasIconStart: Boolean, hasIconEnd: Boolean): PaddingValues {
+        return if (hasIconStart && hasIconEnd) {
+            smallContentPaddingWithBothIcons
+        } else if (hasIconStart) {
+            smallContentPaddingWithStartIcon
+        } else if (hasIconEnd) {
+            smallContentPaddingWithEndIcon
+        } else {
+            smallContentPaddingNoIcons
+        }
+    }
 
     public val iconButtonContentPadding: PaddingValues = PaddingValues(8.dp)
 
     public val smallIconButtonContentPadding: PaddingValues = PaddingValues(8.dp)
 
-    public val textButtonContentPadding: PaddingValues = PaddingValues(
+    public val textButtonContentPaddingNoIcons: PaddingValues = PaddingValues(
+        all = 12.dp,
+    )
+
+    public val textButtonContentPaddingWithStartIcon: PaddingValues = PaddingValues(
         start = 12.dp,
+        top = 12.dp,
+        end = 16.dp,
+        bottom = 12.dp
+    )
+
+    public val textButtonContentPaddingWithEndIcon: PaddingValues = PaddingValues(
+        start = 16.dp,
         top = 12.dp,
         end = 12.dp,
         bottom = 12.dp
     )
 
-    public val smallTextButtonContentPadding: PaddingValues = PaddingValues(
+    public val textButtonContentPaddingWithBothIcons: PaddingValues = PaddingValues(
+        all = 12.dp,
+    )
+
+    public val smallTextButtonContentPaddingNoIcons: PaddingValues = PaddingValues(
+        all = 8.dp,
+    )
+
+    public val smallTextButtonContentPaddingWithStartIcon: PaddingValues = PaddingValues(
         start = 8.dp,
+        top = 8.dp,
+        end = 12.dp,
+        bottom = 8.dp
+    )
+
+    public val smallTextButtonContentPaddingWithEndIcon: PaddingValues = PaddingValues(
+        start = 12.dp,
         top = 8.dp,
         end = 8.dp,
         bottom = 8.dp
     )
 
+    public val smallTextButtonContentPaddingWithBothIcons: PaddingValues = PaddingValues(
+        all = 8.dp,
+    )
+
+    @Composable
+    public fun textButtonContentPaddings(hasIconStart: Boolean, hasIconEnd: Boolean): PaddingValues {
+        return if (hasIconStart && hasIconEnd) {
+            textButtonContentPaddingWithBothIcons
+        } else if (hasIconStart) {
+            textButtonContentPaddingWithStartIcon
+        } else if (hasIconEnd) {
+            textButtonContentPaddingWithEndIcon
+        } else {
+            textButtonContentPaddingNoIcons
+        }
+    }
+
+    @Composable
+    public fun smallTextButtonContentPaddings(hasIconStart: Boolean, hasIconEnd: Boolean): PaddingValues {
+        return if (hasIconStart && hasIconEnd) {
+            smallTextButtonContentPaddingWithBothIcons
+        } else if (hasIconStart) {
+            smallTextButtonContentPaddingWithStartIcon
+        } else if (hasIconEnd) {
+            smallTextButtonContentPaddingWithEndIcon
+        } else {
+            smallTextButtonContentPaddingNoIcons
+        }
+    }
+
     public val progressStrokeWidth: Dp = 3.dp
-    public val minWidth: Dp = 58.dp
+    public val minWidth: Dp = 48.dp
     public val minHeight: Dp = 48.dp
+    public val smallMinWidth: Dp = 36.dp
+    public val smallMinHeight: Dp = 36.dp
     public val iconSpacing: Dp = 8.dp
     public val borderWidth: Dp = 1.dp
     public val elevation: Dp = 0.dp
 
     public val shape: Shape @Composable get() = LabTheme.shapes.button
-    public val iconButtonShape: Shape @Composable get() = LabTheme.shapes.roundButton
-    public val textStyle: TextStyle @Composable get() = LabTheme.typography.bodyLargeEmphasis.copy(color = Color.Unspecified)
+    public val iconButtonShape: Shape @Composable get() = LabTheme.shapes.button
+    public val textStyle: TextStyle @Composable get() = LabTheme.typography.bodyLarge.copy(color = Color.Unspecified)
+
+    // Text style for small buttons
+    public val smallTextStyle: TextStyle @Composable get() = LabTheme.typography.labelLarge.copy(color = Color.Unspecified)
 
     @Composable
     public fun buttonBorder(): LabButtonBorder {
@@ -68,10 +197,15 @@ public object LabButtonDefaults {
     }
 
     @Composable
+    public fun tonedButtonBorder(): LabButtonBorder {
+        return LabButtonBorder.Disabled
+    }
+
+    @Composable
     public fun outlinedButtonBorder(): LabButtonBorder {
         return LabButtonBorder.Enabled(
             color = LabTheme.colors.outlineVariant,
-            focusedColor = LabTheme.colors.secondaryFocused,
+            focusedColor = LabTheme.colors.primary,
             pressedColor = LabTheme.colors.outlineVariant,
             disabledColor = LabTheme.colors.outlineVariantDisabled,
             width = borderWidth
@@ -102,50 +236,70 @@ public object LabButtonDefaults {
             disabledContentColor = LabTheme.colors.onPrimaryDisabled,
             containerColor = LabTheme.colors.primary,
             focusedContainerColor = LabTheme.colors.primaryFocused,
-            pressedContainerColor = LabTheme.colors.primaryFocused,
+            pressedContainerColor = LabTheme.colors.primaryPressed,
             disabledContainerColor = LabTheme.colors.primarySurfaceDisabled,
+        )
+    }
+
+    @Composable
+    public fun tonedButtonColors(): LabButtonColors {
+        return LabButtonColors(
+            contentColor = LabTheme.colors.onSecondarySurface,
+            focusedContentColor = LabTheme.colors.onSecondarySurface,
+            pressedContentColor = LabTheme.colors.onSecondarySurface,
+            disabledContentColor = LabTheme.colors.onSecondarySurfaceDisabled,
+            containerColor = LabTheme.colors.secondarySurface,
+            focusedContainerColor = LabTheme.colors.secondarySurfaceFocused,
+            pressedContainerColor = LabTheme.colors.secondarySurfacePressed,
+            disabledContainerColor = LabTheme.colors.secondarySurfaceDisabled,
         )
     }
 
     @Composable
     public fun outlinedButtonColors(): LabButtonColors {
         return LabButtonColors(
-            contentColor = LabTheme.colors.onSurface,
-            focusedContentColor = LabTheme.colors.onSurface,
-            pressedContentColor = LabTheme.colors.onSurface,
+            contentColor = LabTheme.colors.primary,
+            focusedContentColor = LabTheme.colors.primary,
+            pressedContentColor = LabTheme.colors.primary,
             disabledContentColor = LabTheme.colors.onSurfaceDisabled,
-            containerColor = LabTheme.colors.surface,
-            focusedContainerColor = LabTheme.colors.surface,
-            pressedContainerColor = LabTheme.colors.surfaceFocused,
-            disabledContainerColor = LabTheme.colors.surfaceDisabled,
+            // No token here atm
+            containerColor = Color.Transparent,
+            focusedContainerColor = LabTheme.colors.primarySurfaceFocused,
+            pressedContainerColor = LabTheme.colors.primarySurfacePressed,
+            // No token here atm
+            disabledContainerColor = Color.Transparent,
         )
     }
 
     @Composable
     public fun textButtonColors(): LabButtonColors {
         return LabButtonColors(
-            contentColor = LabTheme.colors.onSurface,
-            focusedContentColor = LabTheme.colors.onSurface,
-            pressedContentColor = LabTheme.colors.onSurface,
+            contentColor = LabTheme.colors.primary,
+            focusedContentColor = LabTheme.colors.primary,
+            pressedContentColor = LabTheme.colors.primary,
             disabledContentColor = LabTheme.colors.onSurfaceDisabled,
-            containerColor = LabTheme.colors.surface,
-            focusedContainerColor = LabTheme.colors.surfaceFocused,
-            pressedContainerColor = LabTheme.colors.surfaceFocused,
-            disabledContainerColor = LabTheme.colors.surfaceDisabled,
+            // No token here atm
+            containerColor = Color.Transparent,
+            focusedContainerColor = LabTheme.colors.primarySurfaceFocused,
+            pressedContainerColor = LabTheme.colors.primarySurfacePressed,
+            // No token here atm
+            disabledContainerColor = Color.Transparent,
         )
     }
 
     @Composable
     public fun iconButtonColors(): LabButtonColors {
         return LabButtonColors(
-            contentColor = LabTheme.colors.onSurface,
-            focusedContentColor = LabTheme.colors.onSurface,
-            pressedContentColor = LabTheme.colors.onSurface,
-            disabledContentColor = LabTheme.colors.onSurfaceDisabled,
-            containerColor = LabTheme.colors.surface,
-            focusedContainerColor = LabTheme.colors.secondarySurfaceFocused,
-            pressedContainerColor = LabTheme.colors.secondarySurfacePressed,
-            disabledContainerColor = LabTheme.colors.secondarySurfaceDisabled,
+            contentColor = LabTheme.colors.primary,
+            focusedContentColor = LabTheme.colors.primary,
+            pressedContentColor = LabTheme.colors.primary,
+            disabledContentColor = LabTheme.colors.onPrimarySurfaceDisabled,
+            // No token here atm
+            containerColor = Color.Transparent,
+            focusedContainerColor = LabTheme.colors.primarySurfaceFocused,
+            pressedContainerColor = LabTheme.colors.primarySurfacePressed,
+            // No token here atm
+            disabledContainerColor = Color.Transparent,
         )
     }
 

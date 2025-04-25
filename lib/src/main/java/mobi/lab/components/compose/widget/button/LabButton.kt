@@ -16,9 +16,11 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Surface
@@ -34,25 +36,30 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import mobi.lab.components.compose.theme.LabTheme
+import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.theme.noRippleConfiguration
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
-import mobi.lab.components.compose.util.withAlpha
 import mobi.lab.components.compose.widget.image.IconFromSource
 import mobi.lab.components.compose.widget.image.ImageSource
+import mobi.lab.components.compose.widget.progress.LabIndeterminateProgress
 
 @Composable
 public fun LabButton(
     modifier: Modifier = Modifier,
+    minWidth: Dp = LabButtonDefaults.minWidth,
+    minHeight: Dp = LabButtonDefaults.minHeight,
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
+    iconStartContentDescription: String = "",
     iconEnd: ImageSource? = null,
+    iconEndContentDescription: String = "",
     iconSize: Dp = LabButtonDefaults.iconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
@@ -61,82 +68,51 @@ public fun LabButton(
     colors: LabButtonColors = LabButtonDefaults.buttonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
     border: LabButtonBorder = LabButtonDefaults.buttonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.contentPadding,
+    contentPadding: PaddingValues = LabButtonDefaults.contentPaddings(
+        hasIconStart = iconStart != null,
+        hasIconEnd = iconEnd != null
+    ),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabButton(
         onClick = onClick,
         modifier = modifier,
+        minWidth = minWidth,
+        minHeight = minHeight,
         enabled = enabled,
         shape = shape,
         colors = colors,
         elevation = elevation,
         border = border,
         contentPadding = contentPadding,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
     ) {
-        Box {
-            val contentAlpha = remember(showProgress) { if (showProgress) 0.0f else 1.0f }
-            Row(
-                modifier = Modifier.alpha(contentAlpha),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                if (iconStart != null) {
-                    IconFromSource(
-                        source = iconStart,
-                        color = LocalContentColor.current,
-                        contentDescription = ""
-                    )
-                    if (!text.isNullOrEmpty()) {
-                        Spacer(modifier = Modifier.width(iconSpacing))
-                    }
-                }
-                // Need to set the color here as TextStyle color overrides Button colors
-                if (text != null) {
-                    Text(
-                        text = text,
-                        style = LocalTextStyle.current,
-                        color = LocalContentColor.current,
-                        textAlign = TextAlign.Center,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-                if (iconEnd != null) {
-                    if (!text.isNullOrEmpty()) {
-                        Spacer(modifier = Modifier.width(iconSpacing))
-                    }
-                    IconFromSource(
-                        source = iconEnd,
-                        color = LocalContentColor.current,
-                        contentDescription = ""
-                    )
-                }
-            }
-            if (showProgress) {
-                val height = remember(contentPadding) {
-                    LabButtonDefaults.minHeight - contentPadding.calculateBottomPadding() - contentPadding.calculateTopPadding()
-                }
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .size(height),
-                    color = LocalContentColor.current,
-                    strokeWidth = LabButtonDefaults.progressStrokeWidth,
-                    trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
-                )
-            }
-        }
+        LabButtonContent(
+            minHeight = minHeight,
+            showProgress = showProgress,
+            iconStart = iconStart,
+            iconStartContentDescription = iconStartContentDescription,
+            iconSize = iconSize,
+            text = text,
+            iconSpacing = iconSpacing,
+            iconEnd = iconEnd,
+            iconEndContentDescription = iconEndContentDescription,
+            contentPadding = contentPadding,
+        )
     }
 }
 
 @Composable
 public fun LabSmallButton(
     modifier: Modifier = Modifier,
+    minWidth: Dp = LabButtonDefaults.smallMinWidth,
+    minHeight: Dp = LabButtonDefaults.smallMinHeight,
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
+    iconStartContentDescription: String = "",
     iconEnd: ImageSource? = null,
+    iconEndContentDescription: String = "",
     iconSize: Dp = LabButtonDefaults.smallIconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
@@ -145,13 +121,19 @@ public fun LabSmallButton(
     colors: LabButtonColors = LabButtonDefaults.buttonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
     border: LabButtonBorder = LabButtonDefaults.buttonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.smallContentPadding,
+    contentPadding: PaddingValues = LabButtonDefaults.smallContentPaddings(
+        hasIconStart = iconStart != null,
+        hasIconEnd = iconEnd != null
+    ),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabButton(
         onClick = onClick,
         modifier = modifier,
+        minWidth = minWidth,
+        minHeight = minHeight,
         enabled = enabled,
+        textStyle = LabButtonDefaults.smallTextStyle,
         shape = shape,
         colors = colors,
         elevation = elevation,
@@ -159,58 +141,18 @@ public fun LabSmallButton(
         contentPadding = contentPadding,
         interactionSource = interactionSource
     ) {
-        Box {
-            val contentAlpha = remember(showProgress) { if (showProgress) 0.0f else 1.0f }
-            Row(
-                modifier = Modifier.alpha(contentAlpha),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                if (iconStart != null) {
-                    IconFromSource(
-                        source = iconStart,
-                        color = LocalContentColor.current,
-                        contentDescription = ""
-                    )
-                    if (!text.isNullOrEmpty()) {
-                        Spacer(modifier = Modifier.width(iconSpacing))
-                    }
-                }
-                // Need to set the color here as TextStyle color overrides Button colors
-                if (text != null) {
-                    Text(
-                        text = text,
-                        style = LocalTextStyle.current,
-                        color = LocalContentColor.current,
-                        textAlign = TextAlign.Center,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-                if (iconEnd != null) {
-                    if (!text.isNullOrEmpty()) {
-                        Spacer(modifier = Modifier.width(iconSpacing))
-                    }
-                    IconFromSource(
-                        source = iconEnd,
-                        color = LocalContentColor.current,
-                        contentDescription = ""
-                    )
-                }
-            }
-            if (showProgress) {
-                val height = remember(contentPadding) {
-                    LabButtonDefaults.minHeight - contentPadding.calculateBottomPadding() - contentPadding.calculateTopPadding()
-                }
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .size(height),
-                    color = LocalContentColor.current,
-                    strokeWidth = LabButtonDefaults.progressStrokeWidth,
-                    trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
-                )
-            }
-        }
+        LabButtonContent(
+            minHeight = LabButtonDefaults.smallMinHeight,
+            showProgress = showProgress,
+            iconStart = iconStart,
+            iconStartContentDescription = iconStartContentDescription,
+            iconSize = iconSize,
+            text = text,
+            iconSpacing = iconSpacing,
+            iconEnd = iconEnd,
+            iconEndContentDescription = iconEndContentDescription,
+            contentPadding = contentPadding
+        )
     }
 }
 
@@ -218,16 +160,28 @@ public fun LabSmallButton(
 public fun LabButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    minWidth: Dp = LabButtonDefaults.minWidth,
+    minHeight: Dp = LabButtonDefaults.minHeight,
     enabled: Boolean = true,
+    textStyle: TextStyle = LabButtonDefaults.textStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.buttonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
     border: LabButtonBorder = LabButtonDefaults.buttonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.contentPadding,
+    contentPadding: PaddingValues,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable RowScope.() -> Unit
 ) {
-    CompositionLocalProvider(LocalRippleConfiguration provides noRippleConfiguration()) {
+    // The small button minHeight / height is 36dp, which is lower than the required touch target of 48dp.
+    // While these rectangular buttons are wider and thus still present a proper touch target,
+    // then the square loading buttons below in the same table are 36dpx36dp and this not valid touch targets in terms
+    // of accessibility.
+    // I will currently suppress this issue in with LocalMinimumInteractiveComponentSize provides 36.dp,
+    // but we should address it.
+    CompositionLocalProvider(
+        LocalRippleConfiguration provides noRippleConfiguration(),
+        LocalMinimumInteractiveComponentSize provides 36.dp,
+    ) {
         val containerColor = colors.containerColor(enabled, interactionSource)
         val contentColor = colors.contentColor(enabled, interactionSource)
         val borderStroke = border.borderStroke(enabled, interactionSource)
@@ -242,7 +196,7 @@ public fun LabButton(
             border = borderStroke?.value,
             interactionSource = interactionSource
         ) {
-            val mergedStyle = LocalTextStyle.current.merge(LabButtonDefaults.textStyle)
+            val mergedStyle = LocalTextStyle.current.merge(textStyle)
             CompositionLocalProvider(
                 LocalContentColor provides contentColor.value,
                 LocalTextStyle provides mergedStyle,
@@ -250,8 +204,8 @@ public fun LabButton(
                 Row(
                     Modifier
                         .defaultMinSize(
-                            minWidth = LabButtonDefaults.minWidth,
-                            minHeight = LabButtonDefaults.minHeight
+                            minWidth = minWidth,
+                            minHeight = minHeight
                         )
                         .padding(contentPadding),
                     horizontalArrangement = Arrangement.Center,
@@ -263,12 +217,94 @@ public fun LabButton(
     }
 }
 
+@Composable
+public fun LabButtonContent(
+    minHeight: Dp = LabButtonDefaults.minHeight,
+    showProgress: Boolean = false,
+    iconStart: ImageSource? = null,
+    iconStartContentDescription: String = "",
+    iconSize: Dp = LabButtonDefaults.iconSize,
+    text: String? = "",
+    iconSpacing: Dp = LabButtonDefaults.iconSpacing,
+    iconEnd: ImageSource? = null,
+    iconEndContentDescription: String = "",
+    contentPadding: PaddingValues = LabButtonDefaults.contentPaddings(
+        hasIconStart = iconStart != null,
+        hasIconEnd = iconEnd != null
+    ),
+) {
+    Box {
+        val contentAlpha = remember(showProgress) { if (showProgress) 0.0f else 1.0f }
+        Row(
+            modifier = Modifier.alpha(contentAlpha),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            if (iconStart != null) {
+                IconFromSource(
+                    modifier = Modifier.size(iconSize),
+                    source = iconStart,
+                    color = LocalContentColor.current,
+                    contentDescription = iconStartContentDescription
+                )
+                if (!text.isNullOrEmpty()) {
+                    Spacer(modifier = Modifier.width(iconSpacing))
+                }
+            }
+            // Need to set the color here as TextStyle color overrides Button colors
+            if (text != null) {
+                Text(
+                    text = text,
+                    style = LocalTextStyle.current,
+                    color = LocalContentColor.current,
+                    textAlign = TextAlign.Center,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            if (iconEnd != null) {
+                if (!text.isNullOrEmpty()) {
+                    Spacer(modifier = Modifier.width(iconSpacing))
+                }
+                IconFromSource(
+                    modifier = Modifier.size(iconSize),
+                    source = iconEnd,
+                    color = LocalContentColor.current,
+                    contentDescription = iconEndContentDescription
+                )
+            }
+        }
+        if (showProgress) {
+            val height = remember(contentPadding) {
+                minHeight - contentPadding.calculateBottomPadding() - contentPadding.calculateTopPadding()
+            }
+            LabIndeterminateProgress(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .size(height),
+                color = LocalContentColor.current,
+            )
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun PreviewLightEnabled() {
     PreviewContainer {
         LabButton(
-            text = "Enabled",
+            text = "M Enabled",
+            onClick = {},
+            enabled = true
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightEnabled() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Enabled",
             onClick = {},
             enabled = true
         )
@@ -280,7 +316,20 @@ private fun PreviewLightEnabled() {
 private fun PreviewLightFocused() {
     PreviewContainer {
         LabButton(
-            text = "Focused",
+            text = "M Focused",
+            onClick = {},
+            enabled = true,
+            interactionSource = previewInteractionSourceOf(FocusInteraction.Focus())
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightFocused() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Focused",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(FocusInteraction.Focus())
@@ -293,7 +342,20 @@ private fun PreviewLightFocused() {
 private fun PreviewLightPressed() {
     PreviewContainer {
         LabButton(
-            text = "Pressed",
+            text = "M Pressed",
+            onClick = {},
+            enabled = true,
+            interactionSource = previewInteractionSourceOf(PressInteraction.Press(Offset.Zero))
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightPressed() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Pressed",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(PressInteraction.Press(Offset.Zero))
@@ -306,9 +368,101 @@ private fun PreviewLightPressed() {
 private fun PreviewLightDisabled() {
     PreviewContainer {
         LabButton(
-            text = "Disabled",
+            text = "M Disabled",
             onClick = {},
             enabled = false
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDisabled() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "M Disabled",
+            onClick = {},
+            enabled = false
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightStartIconDisabled() {
+    PreviewContainer {
+        LabButton(
+            text = "M Icon Start",
+            onClick = {},
+            enabled = false,
+            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightStartIconDisabled() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Icon Start",
+            onClick = {},
+            enabled = false,
+            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightEndIconDisabled() {
+    PreviewContainer {
+        LabButton(
+            text = "M Icon Start",
+            onClick = {},
+            enabled = false,
+            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightEndIconDisabled() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Icon Start",
+            onClick = {},
+            enabled = false,
+            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightBothIconDisabled() {
+    PreviewContainer {
+        LabButton(
+            text = "M Icon Both",
+            onClick = {},
+            enabled = false,
+            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightBothIconDisabled() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Icon Both",
+            onClick = {},
+            enabled = false,
+            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
         )
     }
 }
@@ -318,7 +472,7 @@ private fun PreviewLightDisabled() {
 private fun PreviewLightEnabledLoading() {
     PreviewContainer {
         LabButton(
-            text = "Enabled",
+            text = "",
             onClick = {},
             enabled = true,
             showProgress = true
@@ -331,7 +485,33 @@ private fun PreviewLightEnabledLoading() {
 private fun PreviewLightDisabledLoading() {
     PreviewContainer {
         LabButton(
-            text = "Disabled",
+            text = "",
+            onClick = {},
+            enabled = false,
+            showProgress = true
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightEnabledLoading() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "",
+            onClick = {},
+            enabled = true,
+            showProgress = true
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDisabledLoading() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "",
             onClick = {},
             enabled = false,
             showProgress = true
@@ -344,7 +524,7 @@ private fun PreviewLightDisabledLoading() {
 private fun PreviewDarkEnabled() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Enabled",
+            text = "M Enabled",
             onClick = {},
             enabled = true
         )
@@ -356,7 +536,7 @@ private fun PreviewDarkEnabled() {
 private fun PreviewDarkFocused() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Focused",
+            text = "M Focused",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(FocusInteraction.Focus())
@@ -369,7 +549,7 @@ private fun PreviewDarkFocused() {
 private fun PreviewDarkPressed() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Pressed",
+            text = "M Pressed",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(PressInteraction.Press(Offset.Zero))
@@ -382,7 +562,7 @@ private fun PreviewDarkPressed() {
 private fun PreviewDarkDisabled() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Disabled",
+            text = "M Disabled",
             onClick = {},
             enabled = false
         )
@@ -394,7 +574,7 @@ private fun PreviewDarkDisabled() {
 private fun PreviewDarkEnabledLoading() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Enabled",
+            text = "M Loading Enabled",
             onClick = {},
             enabled = true,
             showProgress = true
@@ -407,7 +587,7 @@ private fun PreviewDarkEnabledLoading() {
 private fun PreviewDarkDisabledLoading() {
     PreviewContainer(isDark = true) {
         LabButton(
-            text = "Disabled",
+            text = "M Loading Disabled",
             onClick = {},
             enabled = false,
             showProgress = true
