@@ -36,10 +36,13 @@ Supported:
   ```kotlin
   // Medium
   LabFilledButton(
-  	text = "Click Me!",
-  	onClick = {},
-  	enabled = enabled.value
+      text = "Click Me!",
+      onClick = {},
+      enabled = enabled.value
   )
+  ```
+
+  ```kotlin
   // Small
   LabFilledSmallButton(
       text = "Click Me!",
@@ -55,6 +58,9 @@ Supported:
       text = "Click Me!",
       onClick = {},
   )
+  ```
+
+  ```kotlin
   // Small
   LabTonedSmallButton(
       text = "Click Me!",
@@ -70,6 +76,9 @@ Supported:
       text = "Click Me!",
       onClick = {},
   )
+  ```
+
+  ```kotlin
   // Small
   LabOutlinedSmallButton(
       text = text = "Click Me!",
@@ -85,6 +94,9 @@ Supported:
       text = "Click Me!",
       onClick = {},
   )
+  ```
+
+  ```kotlin
   // Small
   LabTextSmallButton(
       text = "Click Me!",
@@ -101,6 +113,9 @@ Supported:
       contentDescription = "Like",
       onClick = {},
   )
+  ```
+  
+  ```kotlin
   // Small
   LabIconSmallButton(
       icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
@@ -120,6 +135,12 @@ See usage examples at https://github.com/LabMobi/labcomponents-compose/blob/main
 See usage examples at https://github.com/LabMobi/labcomponents-compose/blob/main/app-demo/src/main/java/mobi/lab/components/compose/demo/typography/TypographyDestination.kt
 
 ## Progress indicators
+
+- Indeterminate progress
+
+  ```kotlin
+  LabIndeterminateProgress(modifier = Modifier.size(40.dp))
+  ```
 
 See usage examples at https://github.com/LabMobi/labcomponents-compose/blob/main/app-demo/src/main/java/mobi/lab/components/compose/demo/progress/ProgressDestination.kt
 
