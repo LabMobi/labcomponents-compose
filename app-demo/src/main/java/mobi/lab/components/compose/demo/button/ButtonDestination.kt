@@ -350,13 +350,13 @@ private fun IconButtons(enabled: MutableState<Boolean>) {
     SectionTitle(stringResource(R.string.text_icon_button_medium_default))
     LabIconButton(
         icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
-        contentDescription = stringResource(R.string.tect_button_with_a_placeholder_icon),
+        contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
         onClick = {},
         enabled = enabled.value
     )
     LabIconButton(
         icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
-        contentDescription = stringResource(R.string.tect_button_with_a_placeholder_icon),
+        contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
         onClick = {},
         enabled = enabled.value,
         showProgress = true,
@@ -364,13 +364,13 @@ private fun IconButtons(enabled: MutableState<Boolean>) {
     SectionTitle(stringResource(R.string.text_icon_button_small))
     LabIconSmallButton(
         icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
-        contentDescription = stringResource(R.string.tect_button_with_a_placeholder_icon),
+        contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
         onClick = {},
         enabled = enabled.value
     )
     LabIconSmallButton(
         icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
-        contentDescription = stringResource(R.string.tect_button_with_a_placeholder_icon),
+        contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
         onClick = {},
         enabled = enabled.value,
         showProgress = true,

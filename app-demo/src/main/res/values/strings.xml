@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LabComponents Compose</string>
-    <string name="notification_channel_name">Notifications</string>
-    <string name="button">Button</string>
     <string name="text_filled_button_medium_default">Filled button - Medium (default)</string>
     <string name="text_filled_button_small">Filled button - Small</string>
     <string name="label_filled">Filled</string>
@@ -22,9 +20,7 @@
     <string name="label_text_small">Text small</string>
     <string name="text_icon_button_medium_default">Icon button - Medium (default)</string>
     <string name="text_icon_button_small">Icon button - Small</string>
-    <string name="label_icon">Icon</string>
-    <string name="label_icon_small">Icon small</string>
-    <string name="tect_button_with_a_placeholder_icon">Button with a placeholder icon</string>
+    <string name="text_button_with_a_placeholder_icon">Button with a placeholder icon</string>
     <string name="text_toggle_between_light_and_dark_theme">Toggle between light and dark theme</string>
     <string name="title_progress">Progress</string>
     <string name="text_indeterminate_progress">Indeterminate</string>
