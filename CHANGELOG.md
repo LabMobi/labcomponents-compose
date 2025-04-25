@@ -2,11 +2,19 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project does not use semantic versioning.
 
-## 0.0.2 - [UNRELEASED]
+## 0.0.3 - [UNRELEASED]
 
 ### Changed
 
 - ...
+
+## 0.0.2 - 2025.04.25
+
+### Changed
+
+- Added proper support for Filled, Toned, Outline and Icon buttons
+- Added indeterminate progress support
+- Updated Material BOM to 2025.04.01
 
 ## 0.0.1 - 2025.04.14
 
