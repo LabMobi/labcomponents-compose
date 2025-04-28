@@ -28,4 +28,5 @@
     <string name="btn_colors">Colors</string>
     <string name="btn_typography">Typography</string>
     <string name="btn_progress">Progress</string>
+    <string name="text_customization_custom_progress">Customizations - Custom progress</string>
 </resources>

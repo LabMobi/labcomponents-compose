@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
+import mobi.lab.components.compose.widget.button.LabButtonDefaults.DefaultButtonProgressIndicator
 import mobi.lab.components.compose.widget.image.ImageSource
 
 @Composable
@@ -38,6 +39,9 @@ public fun LabFilledButton(
         hasIconStart = iconStart != null,
         hasIconEnd = iconEnd != null
     ),
+    indeterminateProgressIndicator: @Composable (modifier: Modifier) -> Unit = { mod ->
+        DefaultButtonProgressIndicator(mod)
+    },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabButton(
@@ -55,6 +59,7 @@ public fun LabFilledButton(
         elevation = elevation,
         border = border,
         contentPadding = contentPadding,
+        indeterminateProgressIndicator = indeterminateProgressIndicator,
         interactionSource = interactionSource,
     )
 }
@@ -78,6 +83,9 @@ public fun LabFilledSmallButton(
         hasIconStart = iconStart != null,
         hasIconEnd = iconEnd != null
     ),
+    indeterminateProgressIndicator: @Composable (modifier: Modifier) -> Unit = { mod ->
+        DefaultButtonProgressIndicator(mod)
+    },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabSmallButton(
@@ -95,6 +103,7 @@ public fun LabFilledSmallButton(
         elevation = elevation,
         border = border,
         contentPadding = contentPadding,
+        indeterminateProgressIndicator = indeterminateProgressIndicator,
         interactionSource = interactionSource,
     )
 }

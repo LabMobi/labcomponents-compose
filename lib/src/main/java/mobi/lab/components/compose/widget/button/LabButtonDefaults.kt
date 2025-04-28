@@ -1,14 +1,19 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package mobi.lab.components.compose.widget.button
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.theme.LabTheme
+import mobi.lab.components.compose.widget.progress.LabIndeterminateCircularIndicator
 
 @Suppress("LongParameterList")
 @Immutable
@@ -170,7 +175,6 @@ public object LabButtonDefaults {
         }
     }
 
-    public val progressStrokeWidth: Dp = 3.dp
     public val minWidth: Dp = 48.dp
     public val minHeight: Dp = 48.dp
     public val smallMinWidth: Dp = 36.dp
@@ -314,6 +318,14 @@ public object LabButtonDefaults {
             focusedContainerColor = LabTheme.colors.secondaryFocused,
             pressedContainerColor = LabTheme.colors.secondaryFocused,
             disabledContainerColor = LabTheme.colors.secondaryDisabled,
+        )
+    }
+
+    @Composable
+    public fun DefaultButtonProgressIndicator(modifier: Modifier) {
+        LabIndeterminateCircularIndicator(
+            modifier = modifier,
+            color = LocalContentColor.current,
         )
     }
 }
