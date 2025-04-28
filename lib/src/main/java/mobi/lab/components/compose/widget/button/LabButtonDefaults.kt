@@ -101,7 +101,7 @@ public object LabButtonDefaults {
         }
     }
 
-    public val iconButtonContentPadding: PaddingValues = PaddingValues(8.dp)
+    public val iconButtonContentPadding: PaddingValues = PaddingValues(12.dp)
 
     public val smallIconButtonContentPadding: PaddingValues = PaddingValues(8.dp)
 
