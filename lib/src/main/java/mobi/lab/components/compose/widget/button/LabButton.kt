@@ -47,7 +47,7 @@ import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
 import mobi.lab.components.compose.widget.image.IconFromSource
 import mobi.lab.components.compose.widget.image.ImageSource
-import mobi.lab.components.compose.widget.progress.LabIndeterminateProgress
+import mobi.lab.components.compose.widget.progress.LabIndeterminateCircularIndicator
 
 @Composable
 public fun LabButton(
@@ -277,7 +277,7 @@ public fun LabButtonContent(
             val height = remember(contentPadding) {
                 minHeight - contentPadding.calculateBottomPadding() - contentPadding.calculateTopPadding()
             }
-            LabIndeterminateProgress(
+            LabIndeterminateCircularIndicator(
                 modifier = Modifier
                     .align(Alignment.Center)
                     .size(height),

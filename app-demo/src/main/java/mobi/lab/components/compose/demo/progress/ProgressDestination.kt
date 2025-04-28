@@ -22,7 +22,7 @@ import mobi.lab.components.compose.demo.R
 import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
-import mobi.lab.components.compose.widget.progress.LabIndeterminateProgress
+import mobi.lab.components.compose.widget.progress.LabIndeterminateCircularIndicator
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 import mobi.lab.components.compose.widget.topappbar.upNavConfig
@@ -60,8 +60,8 @@ fun ProgressDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: 
 @Composable
 private fun Progress() {
     SectionTitle(stringResource(R.string.text_indeterminate_progress))
-    LabIndeterminateProgress()
-    LabIndeterminateProgress(modifier = Modifier.size(40.dp))
+    LabIndeterminateCircularIndicator()
+    LabIndeterminateCircularIndicator(modifier = Modifier.size(40.dp))
 }
 
 @Composable

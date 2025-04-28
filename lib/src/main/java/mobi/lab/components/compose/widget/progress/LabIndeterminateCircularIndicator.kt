@@ -11,6 +11,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
@@ -22,27 +23,37 @@ import mobi.lab.components.compose.widget.image.IconFromSource
 import mobi.lab.components.compose.widget.image.ImageSource
 
 @Composable
-public fun LabIndeterminateProgress(
+public fun LabIndeterminateCircularIndicator(
     modifier: Modifier = Modifier,
-    icon: ImageSource = ImageSource.fromRes(R.drawable.ic_progress_default),
     color: Color = LabIndeterminateProgressDefaults.defaultIndeterminateProgressColor(),
     contentDescription: String = stringResource(R.string.text_loading_please_wait),
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "rotation")
-    val rotation by infiniteTransition.animateFloat(
+    val rotationProgress by infiniteTransition.animateFloat(
         initialValue = 0f,
-        targetValue = 360f,
+        targetValue = 1f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 1000, easing = LinearEasing),
+            animation = tween(
+                durationMillis = 1000,
+                easing = LinearEasing
+            ),
             repeatMode = RepeatMode.Restart,
         ),
         label = "rotation"
     )
 
+    // In order to not have a smooth rotation convert the 0..1 position to discrete rotations
+    val rotationPositions: List<Float> = remember {
+        // 12 discrete positions, 0f to 330f, with a rotation of 360/12 = 30 each
+        List(12) { it * 30f }
+    }
+    val currentRotationIndex: Int = ((rotationProgress * rotationPositions.size).toInt() % rotationPositions.size)
+    val currentRotation: Float = rotationPositions[currentRotationIndex]
+
     IconFromSource(
         modifier = modifier
-            .rotate(rotation),
-        source = icon,
+            .rotate(currentRotation),
+        source = ImageSource.fromRes(R.drawable.ic_progress_default),
         color = color,
         contentDescription = contentDescription
     )
@@ -50,8 +61,8 @@ public fun LabIndeterminateProgress(
 
 @Preview(showBackground = true)
 @Composable
-private fun CheckedEnabledPreview() {
+private fun LabIndeterminateCircularIndicatorPreview() {
     PreviewContainer {
-        LabIndeterminateProgress()
+        LabIndeterminateCircularIndicator()
     }
 }
