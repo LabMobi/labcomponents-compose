@@ -90,7 +90,7 @@ fun TypographyDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked
                     ListItem("Body small", LabTheme.typography.bodySmall)
                 }
                 item {
-                    ListItem("Body small emphasis", LabTheme.typography.bodySmall)
+                    ListItem("Body small emphasis", LabTheme.typography.bodySmallEmphasis)
                 }
                 // Label
                 item {
