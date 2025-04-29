@@ -11,10 +11,14 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.LocalTextSelectionColors
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
@@ -39,6 +43,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
+import mobi.lab.components.compose.widget.image.IconFromSource
+import mobi.lab.components.compose.widget.image.ImageSource
 
 @Composable
 public fun LabTextField(
@@ -51,8 +57,12 @@ public fun LabTextField(
     textStyleSmall: TextStyle = LabTextFieldDefaults.textStyleSmall,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null,
+    leadingIcon: ImageSource? = null,
+    leadingIconContentDescription: String = "",
+    trailingIcon: ImageSource? = null,
+    trailingIconContentDescription: String = "",
+    iconSize: Dp = LabTextFieldDefaults.iconSize,
+    iconSpacing: Dp = LabTextFieldDefaults.iconSpacing,
     prefix: @Composable (() -> Unit)? = null,
     suffix: @Composable (() -> Unit)? = null,
     supportingText: String? = null,
@@ -80,8 +90,8 @@ public fun LabTextField(
         textStyleSmall = textStyleSmall,
         label = textOrNull(label),
         placeholder = textOrNull(placeholder),
-        leadingIcon = leadingIcon,
-        trailingIcon = trailingIcon,
+        leadingIcon = iconOrNull(leadingIcon, leadingIconContentDescription, iconSize, iconSpacing),
+        trailingIcon = iconOrNull(trailingIcon, trailingIconContentDescription, iconSize, iconSpacing),
         prefix = prefix,
         suffix = suffix,
         supportingText = supportingTextOrNull(error = errorValue, supportingText = supportingText, errorReserveSpace = errorReserveSpace),
@@ -286,10 +296,6 @@ private fun animateBorderStrokeAsState(
     return rememberUpdatedState(BorderStroke(animatedThickness.value, SolidColor(indicatorColor.value)))
 }
 
-private fun isStringEmpty(string: String?): Boolean {
-    return string.isNullOrEmpty()
-}
-
 @Composable
 internal fun supportingTextOrNull(error: String?, supportingText: String?, errorReserveSpace: Boolean): @Composable (() -> Unit)? {
     var value = error
@@ -312,25 +318,19 @@ internal fun textOrNull(value: String?): @Composable (() -> Unit)? {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-private fun PreviewLightTextFieldEmpty() {
-    PreviewContainer {
-        LabTextField(
-            value = "",
-            onValueChange = {}
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewDarkTextFieldEmpty() {
-    PreviewContainer(isDark = true) {
-        LabTextField(
-            value = "",
-            onValueChange = {}
-        )
+internal fun iconOrNull(iconSource: ImageSource?, contentDescription: String, iconSize: Dp, iconSpacing: Dp): @Composable (() -> Unit)? {
+    return if (iconSource == null) {
+        null
+    } else {
+        {
+            IconFromSource(
+                modifier = Modifier.size(iconSize),
+                source = iconSource,
+                color = LocalContentColor.current,
+                contentDescription = contentDescription
+            )
+        }
     }
 }
 
@@ -375,6 +375,36 @@ private fun PreviewDarkTextFieldWithText() {
     PreviewContainer(isDark = true) {
         LabTextField(
             value = "Text here",
+            onValueChange = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightWithTextAndLabelAndSupportingTextAndIcons() {
+    PreviewContainer {
+        LabTextField(
+            value = "Text here",
+            label = "Label here",
+            supportingText = "Support text here",
+            leadingIcon = ImageSource.vector(Icons.Filled.Search),
+            trailingIcon = ImageSource.vector(Icons.Filled.Clear),
+            onValueChange = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewWithTextAndLabelAndSupportingTextAndIcons() {
+    PreviewContainer(isDark = true) {
+        LabTextField(
+            value = "Text here",
+            label = "Label here",
+            supportingText = "Support text here",
+            leadingIcon = ImageSource.vector(Icons.Filled.Search),
+            trailingIcon = ImageSource.vector(Icons.Filled.Clear),
             onValueChange = {}
         )
     }
@@ -475,6 +505,28 @@ private fun PreviewDarkTextFieldWithTextAndLabelAndError() {
             value = "Text here",
             label = "Label here",
             errorValue = "Error here",
+            onValueChange = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightTextFieldEmpty() {
+    PreviewContainer {
+        LabTextField(
+            value = "",
+            onValueChange = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewDarkTextFieldEmpty() {
+    PreviewContainer(isDark = true) {
+        LabTextField(
+            value = "",
             onValueChange = {}
         )
     }

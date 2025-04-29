@@ -20,6 +20,11 @@ import mobi.lab.components.compose.util.withFontFamily
 public object LabThemeDefaults {
 
     @Composable
+    public fun dimensions(): LabDimensions {
+        return LabDimensions(maxContentWidth = 500.dp)
+    }
+
+    @Composable
     public fun constants(): LabConstants {
         return LabConstants(
             disabledAlpha = 0.4f,

@@ -3,10 +3,13 @@
 package mobi.lab.components.compose.demo.textfield
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -14,8 +17,12 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
@@ -27,6 +34,8 @@ import mobi.lab.components.compose.demo.common.LabelSwitch
 import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
+import mobi.lab.components.compose.util.limitMaxContentWidth
+import mobi.lab.components.compose.widget.image.ImageSource
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
 import mobi.lab.components.compose.widget.textfield.LabTextField
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
@@ -44,78 +53,242 @@ fun TextFieldDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked:
                 )
             }
         ) { contentPadding ->
-            Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
-                    .fillMaxSize()
-                    .padding(
-                        top = contentPadding.calculateTopPadding(),
-                        start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current) + 16.dp,
-                        end = contentPadding.calculateRightPadding(LocalLayoutDirection.current) + 16.dp,
-                        bottom = 0.dp
-                    ),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.TopCenter
             ) {
-                val enabled = rememberSaveable { mutableStateOf(true) }
-                val showError = rememberSaveable { mutableStateOf(false) }
-                val errorText = if (showError.value) {
-                    stringResource(R.string.text_error_here)
-                } else {
-                    null
-                }
-                Row(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalArrangement = Arrangement.Center
+                Column(
+                    modifier = Modifier
+                        .limitMaxContentWidth()
+                        .imePadding()
+                        .verticalScroll(rememberScrollState())
+                        .fillMaxSize()
+                        .padding(
+                            top = contentPadding.calculateTopPadding(),
+                            start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current) + 16.dp,
+                            end = contentPadding.calculateRightPadding(LocalLayoutDirection.current) + 16.dp,
+                            bottom = 0.dp
+                        ),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    LabelSwitch(
-                        label = stringResource(R.string.label_enabled_state),
-                        checked = enabled.value,
-                        onCheckedChange = { enabled.value = !enabled.value },
-                    )
-                    Spacer(modifier = Modifier.size(16.dp))
-                    LabelSwitch(
-                        label = stringResource(R.string.Label_show_error),
-                        checked = showError.value,
-                        onCheckedChange = { showError.value = !showError.value },
-                    )
+                    val enabled = rememberSaveable { mutableStateOf(true) }
+                    val showError = rememberSaveable { mutableStateOf(false) }
+                    val singleLine = rememberSaveable { mutableStateOf(true) }
+                    val errorText = if (showError.value) {
+                        stringResource(R.string.text_error_here)
+                    } else {
+                        null
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        LabelSwitch(
+                            label = stringResource(R.string.label_enabled_state),
+                            checked = enabled.value,
+                            onCheckedChange = { enabled.value = !enabled.value },
+                        )
+                        Spacer(modifier = Modifier.size(16.dp))
+                        LabelSwitch(
+                            label = stringResource(R.string.label_show_error),
+                            checked = showError.value,
+                            onCheckedChange = { showError.value = !showError.value },
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        LabelSwitch(
+                            label = stringResource(R.string.label_single_line),
+                            checked = singleLine.value,
+                            onCheckedChange = { singleLine.value = !singleLine.value },
+                        )
+                    }
+                    LabelText(enabled, errorText, singleLine)
+                    InputText(enabled, errorText, singleLine)
+                    PlaceholderText(enabled, errorText, singleLine)
+                    Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
                 }
-                SectionTitle(stringResource(R.string.text_text_field_empty))
-                LabTextField(
-                    value = "",
-                    onValueChange = {},
-                    enabled = enabled.value,
-                    errorValue = errorText,
-                    errorReserveSpace = true,
-                )
-                SectionTitle(stringResource(R.string.text_text_field_empty_with_label))
-                LabTextField(
-                    value = "",
-                    label = stringResource(R.string.label_label_here),
-                    onValueChange = {},
-                    enabled = enabled.value,
-                    errorValue = errorText,
-                    errorReserveSpace = true,
-                )
-                SectionTitle(stringResource(R.string.text_text_field_value))
-                LabTextField(
-                    value = stringResource(R.string.text_text_here),
-                    onValueChange = {},
-                    enabled = enabled.value,
-                    errorValue = errorText,
-                    errorReserveSpace = true,
-                )
-                SectionTitle(stringResource(R.string.text_text_field_value_and_label))
-                LabTextField(
-                    value = stringResource(R.string.text_text_here),
-                    label = stringResource(R.string.label_label_here),
-                    onValueChange = {},
-                    enabled = enabled.value,
-                    errorValue = errorText,
-                    errorReserveSpace = true,
-                )
             }
         }
     }
+}
+
+@Composable
+fun LabelText(enabled: MutableState<Boolean>, errorText: String?, singleLine: MutableState<Boolean>) {
+    SectionTitle(stringResource(R.string.text_label_text))
+    var textLabel1: String by rememberSaveable { mutableStateOf("") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textLabel1,
+        label = stringResource(R.string.label_label),
+        onValueChange = { textLabel1 = it },
+        enabled = enabled.value,
+        supportingText = stringResource(R.string.text_supporting_text),
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+    var textLabel2: String by rememberSaveable { mutableStateOf("") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textLabel2,
+        label = stringResource(R.string.label_label),
+        leadingIcon = ImageSource.fromRes(R.drawable.ic_search),
+        supportingText = stringResource(R.string.text_supporting_text),
+        onValueChange = { textLabel2 = it },
+        enabled = enabled.value,
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+    var textLabel3: String by rememberSaveable { mutableStateOf("") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textLabel3,
+        label = stringResource(R.string.label_label),
+        trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        supportingText = stringResource(R.string.text_supporting_text),
+        onValueChange = { textLabel3 = it },
+        enabled = enabled.value,
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+    var textLabel4: String by rememberSaveable { mutableStateOf("") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textLabel4,
+        label = stringResource(R.string.label_label),
+        leadingIcon = ImageSource.fromRes(R.drawable.ic_search),
+        trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        supportingText = stringResource(R.string.text_supporting_text),
+        onValueChange = { textLabel4 = it },
+        enabled = enabled.value,
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+}
+
+@Composable
+fun InputText(enabled: MutableState<Boolean>, errorText: String?, singleLine: MutableState<Boolean>) {
+    SectionTitle(stringResource(R.string.text_input_text))
+    var textInput1: String by rememberSaveable { mutableStateOf("Input") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textInput1,
+        label = stringResource(R.string.label_label),
+        onValueChange = { textInput1 = it },
+        enabled = enabled.value,
+        supportingText = stringResource(R.string.text_supporting_text),
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+    var textInput2: String by rememberSaveable { mutableStateOf("Input") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textInput2,
+        label = stringResource(R.string.label_label),
+        leadingIcon = ImageSource.fromRes(R.drawable.ic_search),
+        supportingText = stringResource(R.string.text_supporting_text),
+        onValueChange = { textInput2 = it },
+        enabled = enabled.value,
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+    var textInput3: String by rememberSaveable { mutableStateOf("Input") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textInput3,
+        label = stringResource(R.string.label_label),
+        trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        supportingText = stringResource(R.string.text_supporting_text),
+        onValueChange = { textInput3 = it },
+        enabled = enabled.value,
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+    var textInput4: String by rememberSaveable { mutableStateOf("Input") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textInput4,
+        label = stringResource(R.string.label_label),
+        leadingIcon = ImageSource.fromRes(R.drawable.ic_search),
+        trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        supportingText = stringResource(R.string.text_supporting_text),
+        onValueChange = { textInput4 = it },
+        enabled = enabled.value,
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+}
+
+@Composable
+fun PlaceholderText(enabled: MutableState<Boolean>, errorText: String?, singleLine: MutableState<Boolean>) {
+    SectionTitle(stringResource(R.string.text_placeholder_text))
+    var textPlaceholder1: String by rememberSaveable { mutableStateOf("") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textPlaceholder1,
+        label = stringResource(R.string.label_label),
+        placeholder = stringResource(R.string.label_placeholder),
+        onValueChange = { textPlaceholder1 = it },
+        enabled = enabled.value,
+        supportingText = stringResource(R.string.text_supporting_text),
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+    var textPlaceholder2: String by rememberSaveable { mutableStateOf("") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textPlaceholder2,
+        label = stringResource(R.string.label_label),
+        placeholder = stringResource(R.string.label_placeholder),
+        leadingIcon = ImageSource.fromRes(R.drawable.ic_search),
+        supportingText = stringResource(R.string.text_supporting_text),
+        onValueChange = { textPlaceholder2 = it },
+        enabled = enabled.value,
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+    var textPlaceholder3: String by rememberSaveable { mutableStateOf("") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textPlaceholder3,
+        label = stringResource(R.string.label_label),
+        placeholder = stringResource(R.string.label_placeholder),
+        trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        supportingText = stringResource(R.string.text_supporting_text),
+        onValueChange = { textPlaceholder3 = it },
+        enabled = enabled.value,
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+    var textPlaceholder4: String by rememberSaveable { mutableStateOf("") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textPlaceholder4,
+        label = stringResource(R.string.label_label),
+        placeholder = stringResource(R.string.label_placeholder),
+        leadingIcon = ImageSource.fromRes(R.drawable.ic_search),
+        trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        supportingText = stringResource(R.string.text_supporting_text),
+        onValueChange = { textPlaceholder4 = it },
+        enabled = enabled.value,
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
 }
 
 @Composable

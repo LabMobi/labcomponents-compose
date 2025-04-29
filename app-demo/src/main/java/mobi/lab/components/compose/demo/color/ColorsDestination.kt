@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
@@ -31,6 +33,7 @@ import mobi.lab.components.compose.demo.common.LabelSwitch
 import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.interactiveValue
+import mobi.lab.components.compose.util.limitMaxContentWidth
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 import mobi.lab.components.compose.widget.topappbar.upNavConfig
@@ -44,12 +47,15 @@ fun ColorsDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
             }
         ) { contentPadding ->
             Box(
-                modifier = Modifier.padding(
-                    top = contentPadding.calculateTopPadding(),
-                    start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current),
-                    end = contentPadding.calculateRightPadding(LocalLayoutDirection.current),
-                    bottom = 0.dp
-                )
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        top = contentPadding.calculateTopPadding(),
+                        start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current),
+                        end = contentPadding.calculateRightPadding(LocalLayoutDirection.current),
+                        bottom = 0.dp
+                    ),
+                contentAlignment = Alignment.TopCenter
             ) {
                 Content(
                     sections = getColorSections(),
@@ -65,7 +71,9 @@ private fun Content(sections: List<ColorSection>, modifier: Modifier = Modifier,
     val enabled = rememberSaveable { mutableStateOf(true) }
 
     LazyColumn(
-        modifier = modifier.padding(horizontal = 16.dp)
+        modifier = modifier
+            .limitMaxContentWidth()
+            .padding(horizontal = 16.dp)
     ) {
         item {
             Text("Colors", style = LabTheme.typography.headlineLarge)

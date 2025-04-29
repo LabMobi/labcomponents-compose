@@ -33,11 +33,18 @@
     <string name="text_text_field_value">TextField - With value</string>
     <string name="text_text_field_empty_with_label">TextField - Empty with label</string>
     <string name="label_enabled_state">Enabled state</string>
-    <string name="Label_show_error">Show error</string>
+    <string name="label_show_error">Show error</string>
     <string name="btn_text_fields">TextFields</string>
     <string name="text_text_field_empty">TextField - Empty</string>
-    <string name="label_label_here">Label here</string>
+    <string name="label_label">Label</string>
     <string name="text_text_field_value_and_label">TextField - Value and Label</string>
-    <string name="text_error_here">Error here</string>
+    <string name="text_error_here">Error text</string>
     <string name="text_text_here">Text here</string>
+    <string name="text_text_field_value_and_label_and_support_and_icons">TextField - Value, Label, Support, icons</string>
+    <string name="text_label_text">Label text</string>
+    <string name="text_supporting_text">Supporting text</string>
+    <string name="text_input_text">Input text</string>
+    <string name="text_placeholder_text">Placeholder text</string>
+    <string name="label_placeholder">Placeholder</string>
+    <string name="label_single_line">Single line</string>
 </resources>

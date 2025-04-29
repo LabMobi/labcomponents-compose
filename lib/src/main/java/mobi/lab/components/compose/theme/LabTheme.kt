@@ -29,12 +29,13 @@ public fun LabTheme(
     isDark: Boolean = isSystemInDarkTheme(),
     colors: LabColors = if (isDark) LabThemeDefaults.darkColors() else LabThemeDefaults.lightColors(),
     typography: LabTypography = LabThemeDefaults.typography(),
+    dimensions: LabDimensions = LabThemeDefaults.dimensions(),
     constants: LabConstants = LabThemeDefaults.constants(),
     shapes: LabShapes = LabThemeDefaults.shapes(),
     content: @Composable () -> Unit,
 ) {
     // Make our values available
-    ProvideLabValues(colors, typography, constants, shapes) {
+    ProvideLabValues(colors, typography, dimensions, constants, shapes) {
         MaterialTheme(
             colorScheme = debugColors(),
             typography = debugTypography(),
@@ -64,6 +65,11 @@ public object LabTheme {
         @ReadOnlyComposable
         get() = LocalLabTypography.current
 
+    public val dimensions: LabDimensions
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalAppDimensions.current
+
     public val constants: LabConstants
         @Composable
         @ReadOnlyComposable
@@ -79,6 +85,7 @@ public object LabTheme {
 internal fun ProvideLabValues(
     colors: LabColors,
     typography: LabTypography,
+    dimensions: LabDimensions,
     constants: LabConstants,
     shapes: LabShapes,
     content: @Composable () -> Unit
@@ -86,6 +93,7 @@ internal fun ProvideLabValues(
     CompositionLocalProvider(
         LocalLabColors provides colors,
         LocalLabTypography provides typography,
+        LocalAppDimensions provides dimensions,
         LocalLabConstants provides constants,
         LocalLabShapes provides shapes,
         content = content
@@ -98,6 +106,10 @@ private val LocalLabColors = staticCompositionLocalOf<LabColors> {
 
 private val LocalLabTypography = staticCompositionLocalOf<LabTypography> {
     error("No LabTypography provided")
+}
+
+private val LocalAppDimensions = staticCompositionLocalOf<LabDimensions> {
+    error("No AppDimensions provided")
 }
 
 private val LocalLabConstants = staticCompositionLocalOf<LabConstants> {

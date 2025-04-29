@@ -37,6 +37,9 @@ public object LabTextFieldDefaults {
     public val unfocusedIndicatorThickness: Dp = 1.dp
     public val focusedIndicatorThickness: Dp = 2.dp
 
+    public val iconSpacing: Dp = 8.dp
+    public val iconSize: Dp = 24.dp
+
     @Composable
     public fun colors(
         primaryColor: Color = LabTheme.colors.secondaryFocused,

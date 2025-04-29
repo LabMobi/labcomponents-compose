@@ -3,9 +3,11 @@
 package mobi.lab.components.compose.demo.button
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -18,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
@@ -29,6 +32,7 @@ import mobi.lab.components.compose.demo.common.LabelSwitch
 import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
+import mobi.lab.components.compose.util.limitMaxContentWidth
 import mobi.lab.components.compose.util.withAlpha
 import mobi.lab.components.compose.widget.button.LabFilledButton
 import mobi.lab.components.compose.widget.button.LabFilledSmallButton
@@ -57,32 +61,38 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                 )
             }
         ) { contentPadding ->
-            Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
-                    .fillMaxSize()
-                    .padding(
-                        top = contentPadding.calculateTopPadding(),
-                        start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current) + 16.dp,
-                        end = contentPadding.calculateRightPadding(LocalLayoutDirection.current) + 16.dp,
-                        bottom = 0.dp
-                    ),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.TopCenter
             ) {
-                val enabled = rememberSaveable { mutableStateOf(true) }
-                LabelSwitch(
-                    modifier = Modifier.fillMaxSize(),
-                    label = "Enabled state",
-                    checked = enabled.value,
-                    onCheckedChange = { enabled.value = !enabled.value },
-                )
-                FilledButtons(enabled)
-                TonedButtons(enabled)
-                OutlinedButtons(enabled)
-                TextButtons(enabled)
-                IconButtons(enabled)
-                CustomButtons(enabled)
-                Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
+                Column(
+                    modifier = Modifier
+                        .limitMaxContentWidth()
+                        .verticalScroll(rememberScrollState())
+                        .fillMaxSize()
+                        .padding(
+                            top = contentPadding.calculateTopPadding(),
+                            start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current) + 16.dp,
+                            end = contentPadding.calculateRightPadding(LocalLayoutDirection.current) + 16.dp,
+                            bottom = 0.dp
+                        ),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    val enabled = rememberSaveable { mutableStateOf(true) }
+                    LabelSwitch(
+                        modifier = Modifier.fillMaxSize(),
+                        label = "Enabled state",
+                        checked = enabled.value,
+                        onCheckedChange = { enabled.value = !enabled.value },
+                    )
+                    FilledButtons(enabled)
+                    TonedButtons(enabled)
+                    OutlinedButtons(enabled)
+                    TextButtons(enabled)
+                    IconButtons(enabled)
+                    CustomButtons(enabled)
+                    Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
+                }
             }
         }
     }
