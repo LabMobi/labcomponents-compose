@@ -30,8 +30,14 @@
     <string name="btn_progress">Progress</string>
     <string name="text_customization_custom_progress">Customizations - Custom progress</string>
     <string name="title_text_fields">TextFields</string>
+    <string name="text_text_field_value">TextField - With value</string>
     <string name="text_text_field_empty_with_label">TextField - Empty with label</string>
     <string name="label_enabled_state">Enabled state</string>
     <string name="Label_show_error">Show error</string>
     <string name="btn_text_fields">TextFields</string>
+    <string name="text_text_field_empty">TextField - Empty</string>
+    <string name="label_label_here">Label here</string>
+    <string name="text_text_field_value_and_label">TextField - Value and Label</string>
+    <string name="text_error_here">Error here</string>
+    <string name="text_text_here">Text here</string>
 </resources>

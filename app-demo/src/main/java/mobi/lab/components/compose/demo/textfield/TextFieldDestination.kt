@@ -28,6 +28,7 @@ import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
+import mobi.lab.components.compose.widget.textfield.LabTextField
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 import mobi.lab.components.compose.widget.topappbar.upNavConfig
 
@@ -56,7 +57,12 @@ fun TextFieldDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked:
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 val enabled = rememberSaveable { mutableStateOf(true) }
-                val showError = rememberSaveable { mutableStateOf(true) }
+                val showError = rememberSaveable { mutableStateOf(false) }
+                val errorText = if (showError.value) {
+                    stringResource(R.string.text_error_here)
+                } else {
+                    null
+                }
                 Row(
                     modifier = Modifier.fillMaxSize(),
                     horizontalArrangement = Arrangement.Center
@@ -73,7 +79,40 @@ fun TextFieldDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked:
                         onCheckedChange = { showError.value = !showError.value },
                     )
                 }
+                SectionTitle(stringResource(R.string.text_text_field_empty))
+                LabTextField(
+                    value = "",
+                    onValueChange = {},
+                    enabled = enabled.value,
+                    errorValue = errorText,
+                    errorReserveSpace = true,
+                )
                 SectionTitle(stringResource(R.string.text_text_field_empty_with_label))
+                LabTextField(
+                    value = "",
+                    label = stringResource(R.string.label_label_here),
+                    onValueChange = {},
+                    enabled = enabled.value,
+                    errorValue = errorText,
+                    errorReserveSpace = true,
+                )
+                SectionTitle(stringResource(R.string.text_text_field_value))
+                LabTextField(
+                    value = stringResource(R.string.text_text_here),
+                    onValueChange = {},
+                    enabled = enabled.value,
+                    errorValue = errorText,
+                    errorReserveSpace = true,
+                )
+                SectionTitle(stringResource(R.string.text_text_field_value_and_label))
+                LabTextField(
+                    value = stringResource(R.string.text_text_here),
+                    label = stringResource(R.string.label_label_here),
+                    onValueChange = {},
+                    enabled = enabled.value,
+                    errorValue = errorText,
+                    errorReserveSpace = true,
+                )
             }
         }
     }
