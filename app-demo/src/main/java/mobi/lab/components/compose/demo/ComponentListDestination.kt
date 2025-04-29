@@ -19,9 +19,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
+import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 
@@ -29,6 +31,7 @@ import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 fun ComponentListDestination(
     onButtonsClicked: () -> Unit,
     onColorsClicked: () -> Unit,
+    onTextFieldClicked: () -> Unit,
     onTypographyClicked: () -> Unit,
     onProgressClicked: () -> Unit,
     onToggleLightDarkModeClicked: () -> Unit,
@@ -57,6 +60,9 @@ fun ComponentListDestination(
                 }
                 item {
                     ListItem(title = stringResource(R.string.btn_colors), onClick = onColorsClicked)
+                }
+                item {
+                    ListItem(title = stringResource(R.string.btn_text_fields), onClick = onTextFieldClicked)
                 }
                 item {
                     ListItem(title = stringResource(R.string.btn_typography), onClick = onTypographyClicked)
@@ -90,5 +96,20 @@ private fun ListItem(title: String, onClick: () -> Unit) {
             style = LabTheme.typography.bodyLarge
         )
         HorizontalDivider(modifier = Modifier.align(Alignment.BottomStart), color = LabTheme.colors.divider)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewComponentListDestination() {
+    PreviewContainer {
+        ComponentListDestination(
+            onButtonsClicked = {},
+            onColorsClicked = {},
+            onTextFieldClicked = {},
+            onTypographyClicked = {},
+            onProgressClicked = {},
+            onToggleLightDarkModeClicked = {}
+        )
     }
 }
