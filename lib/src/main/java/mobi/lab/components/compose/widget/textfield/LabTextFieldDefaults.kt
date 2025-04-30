@@ -42,18 +42,18 @@ public object LabTextFieldDefaults {
 
     @Composable
     public fun colors(
-        primaryColor: Color = LabTheme.colors.secondaryFocused,
+        primaryColor: Color = LabTheme.colors.primary,
         surfaceColor: Color = LabTheme.colors.surface,
         onSurfaceColor: Color = LabTheme.colors.onSurface,
         onSurfaceVariantColor: Color = LabTheme.colors.onSurfaceVariant,
-        outlineColor: Color = LabTheme.colors.outlineVariant,
+        outlineVariantColor: Color = LabTheme.colors.outlineVariant,
         errorColor: Color = LabTheme.colors.error,
         disabledAlpha: Float = LabTheme.constants.disabledAlpha,
     ): TextFieldColors {
         return TextFieldDefaults.colors().copy(
             focusedTextColor = onSurfaceColor,
             unfocusedTextColor = onSurfaceColor,
-            disabledTextColor = onSurfaceColor.withAlpha(disabledAlpha),
+            disabledTextColor = onSurfaceVariantColor.withAlpha(disabledAlpha),
             errorTextColor = errorColor,
             focusedContainerColor = surfaceColor,
             unfocusedContainerColor = surfaceColor,
@@ -66,8 +66,8 @@ public object LabTextFieldDefaults {
                 backgroundColor = primaryColor,
             ),
             focusedIndicatorColor = primaryColor,
-            unfocusedIndicatorColor = outlineColor,
-            disabledIndicatorColor = outlineColor.withAlpha(disabledAlpha),
+            unfocusedIndicatorColor = outlineVariantColor,
+            disabledIndicatorColor = outlineVariantColor.withAlpha(disabledAlpha),
             errorIndicatorColor = errorColor,
             focusedLeadingIconColor = onSurfaceVariantColor,
             unfocusedLeadingIconColor = onSurfaceVariantColor,
