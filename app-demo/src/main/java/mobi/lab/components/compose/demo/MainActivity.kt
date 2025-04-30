@@ -14,6 +14,7 @@ import mobi.lab.components.compose.demo.button.ButtonDestination
 import mobi.lab.components.compose.demo.color.ColorsDestination
 import mobi.lab.components.compose.demo.progress.ProgressDestination
 import mobi.lab.components.compose.demo.textfield.TextFieldDestination
+import mobi.lab.components.compose.demo.topappbar.TopAppBarDestination
 import mobi.lab.components.compose.demo.typography.TypographyDestination
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
                         onTextFieldClicked = { navController.navigate(NavDestination.TextField) },
                         onTypographyClicked = { navController.navigate(NavDestination.Typography) },
                         onProgressClicked = { navController.navigate(NavDestination.Progress) },
+                        onTopAppBarClicked = { navController.navigate(NavDestination.TopAppBar) },
                         onToggleLightDarkModeClicked = ::toggleLightDarkMode
                     )
                 }
@@ -62,6 +64,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 composable<NavDestination.TextField> {
                     TextFieldDestination(
+                        navUp,
+                        onToggleLightDarkModeClicked = ::toggleLightDarkMode,
+                    )
+                }
+                composable<NavDestination.TopAppBar> {
+                    TopAppBarDestination(
                         navUp,
                         onToggleLightDarkModeClicked = ::toggleLightDarkMode,
                     )

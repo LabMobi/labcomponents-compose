@@ -54,4 +54,10 @@
     <string name="label_password">Password</string>
     <string name="text_custom_autofillable_username_password">Custom - Auto-fillable username and password with a password visibility toggle</string>
     <string name="label_toggle_password_visibility">Toggle password visibility</string>
+    <string name="title_top_app_bar">TopAppBar</string>
+    <string name="text_title">Title</string>
+    <string name="text_topappbar_with_title">Title only</string>
+    <string name="btn_topappbar">TopAppBar</string>
+    <string name="text_topappbar_with_leading_icon">Leading icon</string>
+    <string name="text_topappbar_small_with_title">Small with title</string>
 </resources>

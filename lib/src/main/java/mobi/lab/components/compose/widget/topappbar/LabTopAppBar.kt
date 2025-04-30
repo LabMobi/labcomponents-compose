@@ -83,10 +83,10 @@ public object LabTopAppBarDefaults {
     public fun colors(): TopAppBarColors {
         return TopAppBarColors(
             // We only need this one atm:
-            containerColor = LabTheme.colors.background,
-            scrolledContainerColor = LabTheme.colors.background,
+            containerColor = LabTheme.colors.surface,
+            scrolledContainerColor = LabTheme.colors.surface,
             navigationIconContentColor = LabTheme.colors.primary,
-            titleContentColor = LabTheme.colors.onBackground,
+            titleContentColor = LabTheme.colors.onSurface,
             actionIconContentColor = LabTheme.colors.primary,
         )
     }
