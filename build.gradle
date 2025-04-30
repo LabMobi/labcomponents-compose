@@ -10,7 +10,7 @@ plugins {
 
 ext {
     // Current version of the library
-    libraryVersion = "0.0.3"
+    libraryVersion = "0.0.4"
 }
 
 subprojects {
