@@ -80,7 +80,7 @@ public fun LabTextField(
     minHeight: Dp = LabTextFieldDefaults.minHeight,
     minWidth: Dp = TextFieldDefaults.MinWidth
 ) {
-    LabTextFieldComposable(
+    LabTextField(
         value = value,
         onValueChange = onValueChange,
         modifier = modifier,
@@ -112,7 +112,7 @@ public fun LabTextField(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-public fun LabTextFieldComposable(
+public fun LabTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,

@@ -94,7 +94,7 @@ public object LabTopAppBarDefaults {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-private fun MyTopBarWithButtonComposableWithUpNavPreview() {
+private fun LabTopAppBarWithButtonComposableWithUpNavPreview() {
     PreviewContainer(Modifier.height(200.dp)) {
         LabTopAppBar(
             navConfig = upNavConfig(),
@@ -105,7 +105,7 @@ private fun MyTopBarWithButtonComposableWithUpNavPreview() {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-private fun MyTopBarWithButtonComposableWithNoNavConfigPreview() {
+private fun LabTopAppBarWithButtonComposableWithNoNavConfigPreview() {
     PreviewContainer(Modifier.height(200.dp)) {
         LabTopAppBar(
             navConfig = null,
@@ -119,7 +119,7 @@ private fun MyTopBarWithButtonComposableWithNoNavConfigPreview() {
  */
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-private fun MyTopBarWithButtonComposableWithRightButtonPreview() {
+private fun LabTopAppBarWithButtonComposableWithRightButtonPreview() {
     PreviewContainer(Modifier.height(200.dp)) {
         LabTopAppBar(
             navConfig = null,
