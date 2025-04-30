@@ -53,7 +53,7 @@ Supported:
   ```
 
 - Toned button
-  ![Filled button](docs/assets/button-toned.svg)
+  ![Toned button](docs/assets/button-toned.svg)
 
   ```kotlin
   // Medium
@@ -72,7 +72,7 @@ Supported:
   ```
 
 - Outlined button
-  ![Filled button](docs/assets/button-outlined.svg)
+  ![Outlined button](docs/assets/button-outlined.svg)
 
   ```kotlin
   // Medium
@@ -91,7 +91,7 @@ Supported:
   ```
 
 - Text button
-  ![Filled button](docs/assets/button-text.svg)
+  ![Text button](docs/assets/button-text.svg)
 
   ```kotlin
   // Medium
@@ -110,7 +110,7 @@ Supported:
   ```
 
 - Icon button
-  ![Filled button](docs/assets/button-icon.svg)
+  ![Icon button](docs/assets/button-icon.svg)
   
   ```kotlin
   // Medium
@@ -145,7 +145,7 @@ See
 ## TextFields
 
 - TextField with a label
-  ![Filled button](docs/assets/text-label.svg)
+  ![TextField with a label](docs/assets/text-label.svg)
 
   ```kotlin
   var text1: String by rememberSaveable { mutableStateOf("Input") }
@@ -218,7 +218,7 @@ See
 ## Progress indicators
 
 - Indeterminate progress
-  ![Filled button](docs/assets/progress-indeterminate.svg)
+  ![Indeterminate progress](docs/assets/progress-indeterminate.svg)
   
   ```kotlin
   LabIndeterminateProgress()
