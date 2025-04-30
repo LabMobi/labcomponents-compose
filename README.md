@@ -221,13 +221,13 @@ See
   ![Indeterminate progress](docs/assets/progress-indeterminate.svg)
   
   ```kotlin
-  LabIndeterminateProgress()
+  LabIndeterminateCircularIndicator()
   ```
 
 - Indeterminate progress with a larger size
 
   ```kotlin
-  LabIndeterminateProgress(modifier = Modifier.size(40.dp))
+  LabIndeterminateCircularIndicator(modifier = Modifier.size(40.dp))
   ```
 
 See 

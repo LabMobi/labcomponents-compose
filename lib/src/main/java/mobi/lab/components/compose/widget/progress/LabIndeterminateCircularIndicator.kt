@@ -25,7 +25,7 @@ import mobi.lab.components.compose.widget.image.ImageSource
 @Composable
 public fun LabIndeterminateCircularIndicator(
     modifier: Modifier = Modifier,
-    color: Color = LabIndeterminateProgressDefaults.defaultIndeterminateProgressColor(),
+    color: Color = LabIndeterminateCircularIndicatorDefaults.defaultIndeterminateProgressColor(),
     contentDescription: String = stringResource(R.string.text_loading_please_wait),
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "rotation")
