@@ -11,13 +11,17 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import mobi.lab.components.compose.theme.tokens.PaletteTokens
 import mobi.lab.components.compose.util.withAlpha
 import mobi.lab.components.compose.util.withFontFamily
 
 public object LabThemeDefaults {
+
+    @Composable
+    public fun dimensions(): LabDimensions {
+        return LabDimensions(maxContentWidth = 500.dp)
+    }
 
     @Composable
     public fun constants(): LabConstants {
@@ -50,86 +54,86 @@ public object LabThemeDefaults {
             fontSize = 56.sp,
             lineHeight = 64.sp,
             fontWeight = FontWeight.W400,
-            letterSpacing = 0.em,
+            letterSpacing = 0.sp,
         ),
         displayMedium: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 45.sp,
             lineHeight = 52.sp,
             fontWeight = FontWeight.W400,
-            letterSpacing = 0.em,
+            letterSpacing = 0.sp,
         ),
         displaySmall: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 36.sp,
             lineHeight = 44.sp,
             fontWeight = FontWeight.W400,
-            letterSpacing = 0.em,
+            letterSpacing = 0.sp,
         ),
         headlineLarge: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 32.sp,
             lineHeight = 40.sp,
             fontWeight = FontWeight.W400,
-            letterSpacing = 0.em,
+            letterSpacing = 0.sp,
         ),
         headlineMedium: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 28.sp,
             lineHeight = 36.sp,
             fontWeight = FontWeight.W400,
-            letterSpacing = 0.em,
+            letterSpacing = 0.sp,
         ),
         headlineSmall: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 24.sp,
             lineHeight = 32.sp,
             fontWeight = FontWeight.W400,
-            letterSpacing = 0.em,
+            letterSpacing = 0.sp,
         ),
         titleLarge: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 22.sp,
             lineHeight = 28.sp,
             fontWeight = FontWeight.W400,
-            letterSpacing = 0.em,
+            letterSpacing = 0.sp,
         ),
         titleMedium: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 16.sp,
             lineHeight = 24.sp,
             fontWeight = FontWeight.W500,
-            letterSpacing = 0.0094.em,
+            letterSpacing = 0.15.sp,
         ),
         titleSmall: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 14.sp,
             lineHeight = 20.sp,
             fontWeight = FontWeight.W500,
-            letterSpacing = 0.0071.em,
+            letterSpacing = 0.1.sp,
         ),
         bodyLarge: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 16.sp,
             lineHeight = 24.sp,
             fontWeight = FontWeight.W500,
-            letterSpacing = 0.0156.em,
+            letterSpacing = 0.25.sp,
         ),
-        bodyLargeEmphasis: TextStyle = bodyLarge.copy(fontWeight = FontWeight.W600),
+        bodyLargeEmphasis: TextStyle = bodyLarge.copy(fontWeight = FontWeight.W700),
         bodyMedium: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 14.sp,
             lineHeight = 20.sp,
-            fontWeight = FontWeight.W500,
-            letterSpacing = 0.0179.em,
+            fontWeight = FontWeight.W400,
+            letterSpacing = 0.25.sp,
         ),
         bodyMediumEmphasis: TextStyle = bodyMedium.copy(fontWeight = FontWeight.W600),
         bodySmall: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 12.sp,
             lineHeight = 16.sp,
-            fontWeight = FontWeight.W500,
-            letterSpacing = 0.0333.em,
+            fontWeight = FontWeight.W400,
+            letterSpacing = 0.4.sp,
         ),
         bodySmallEmphasis: TextStyle = bodySmall.copy(fontWeight = FontWeight.W600),
         labelLarge: TextStyle = TextStyle(
@@ -137,21 +141,21 @@ public object LabThemeDefaults {
             fontSize = 14.sp,
             lineHeight = 20.sp,
             fontWeight = FontWeight.W500,
-            letterSpacing = 0.0071.em,
+            letterSpacing = 0.1.sp,
         ),
         labelMedium: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 12.sp,
             lineHeight = 16.sp,
             fontWeight = FontWeight.W500,
-            letterSpacing = 0.0208.em,
+            letterSpacing = 0.25.sp,
         ),
         labelSmall: TextStyle = TextStyle(
             color = Color.Unspecified,
             fontSize = 11.sp,
             lineHeight = 16.sp,
             fontWeight = FontWeight.W500,
-            letterSpacing = 0.0455.em,
+            letterSpacing = 0.5.sp,
         ),
     ): LabTypography {
         return LabTypography(

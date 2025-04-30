@@ -17,4 +17,7 @@ object NavDestination {
 
     @Serializable
     object Progress
+
+    @Serializable
+    object TextField
 }

@@ -17,84 +17,79 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
+import mobi.lab.components.compose.widget.button.LabButtonDefaults.DefaultButtonProgressIndicator
 import mobi.lab.components.compose.widget.image.ImageSource
 
 @Composable
-public fun LabOutlinedButton(
+public fun LabIconButton(
     modifier: Modifier = Modifier,
-    text: String? = null,
-    onClick: () -> Unit,
-    iconStart: ImageSource? = null,
-    iconEnd: ImageSource? = null,
+    icon: ImageSource,
+    contentDescription: String,
     iconSize: Dp = LabButtonDefaults.iconSize,
-    iconSpacing: Dp = LabButtonDefaults.iconSpacing,
-    showProgress: Boolean = false,
+    onClick: () -> Unit,
     enabled: Boolean = true,
-    shape: Shape = LabButtonDefaults.shape,
-    colors: LabButtonColors = LabButtonDefaults.outlinedButtonColors(),
+    showProgress: Boolean = false,
+    shape: Shape = LabButtonDefaults.iconButtonShape,
+    colors: LabButtonColors = LabButtonDefaults.iconButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
-    border: LabButtonBorder = LabButtonDefaults.outlinedButtonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.contentPaddings(
-        hasIconStart = iconStart != null,
-        hasIconEnd = iconEnd != null,
-    ),
+    border: LabButtonBorder = LabButtonDefaults.iconButtonBorder(),
+    contentPadding: PaddingValues = LabButtonDefaults.iconButtonContentPadding,
+    indeterminateProgressIndicator: @Composable (modifier: Modifier) -> Unit = { mod ->
+        DefaultButtonProgressIndicator(mod)
+    },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabButton(
-        text = text,
         onClick = onClick,
         modifier = modifier,
-        iconStart = iconStart,
-        iconEnd = iconEnd,
+        iconStart = icon,
+        iconStartContentDescription = contentDescription,
         iconSize = iconSize,
-        iconSpacing = iconSpacing,
-        showProgress = showProgress,
         enabled = enabled,
+        showProgress = showProgress,
         shape = shape,
         colors = colors,
         elevation = elevation,
         border = border,
         contentPadding = contentPadding,
+        indeterminateProgressIndicator = indeterminateProgressIndicator,
         interactionSource = interactionSource,
     )
 }
 
 @Composable
-public fun LabOutlinedSmallButton(
+public fun LabIconSmallButton(
     modifier: Modifier = Modifier,
-    text: String? = null,
-    onClick: () -> Unit,
-    iconStart: ImageSource? = null,
-    iconEnd: ImageSource? = null,
+    icon: ImageSource,
+    contentDescription: String,
     iconSize: Dp = LabButtonDefaults.smallIconSize,
-    iconSpacing: Dp = LabButtonDefaults.iconSpacing,
-    showProgress: Boolean = false,
+    onClick: () -> Unit,
     enabled: Boolean = true,
-    shape: Shape = LabButtonDefaults.shape,
-    colors: LabButtonColors = LabButtonDefaults.outlinedButtonColors(),
+    showProgress: Boolean = false,
+    shape: Shape = LabButtonDefaults.iconButtonShape,
+    colors: LabButtonColors = LabButtonDefaults.iconButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
-    border: LabButtonBorder = LabButtonDefaults.outlinedButtonBorder(),
-    contentPadding: PaddingValues = LabButtonDefaults.smallContentPaddings(
-        hasIconStart = iconStart != null,
-        hasIconEnd = iconEnd != null,
-    ),
+    border: LabButtonBorder = LabButtonDefaults.iconButtonBorder(),
+    contentPadding: PaddingValues = LabButtonDefaults.smallIconButtonContentPadding,
+    indeterminateProgressIndicator: @Composable (modifier: Modifier) -> Unit = { mod ->
+        DefaultButtonProgressIndicator(mod)
+    },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabSmallButton(
-        text = text,
         onClick = onClick,
         modifier = modifier,
-        iconStart = iconStart,
-        iconEnd = iconEnd,
+        iconStart = icon,
+        iconStartContentDescription = contentDescription,
         iconSize = iconSize,
-        iconSpacing = iconSpacing,
-        showProgress = showProgress,
         enabled = enabled,
+        showProgress = showProgress,
         shape = shape,
         colors = colors,
         elevation = elevation,
         border = border,
         contentPadding = contentPadding,
+        indeterminateProgressIndicator = indeterminateProgressIndicator,
         interactionSource = interactionSource,
     )
 }
@@ -103,10 +98,11 @@ public fun LabOutlinedSmallButton(
 @Composable
 private fun PreviewLightEnabled() {
     PreviewContainer {
-        LabOutlinedButton(
-            text = "M Enabled",
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
-            enabled = true
+            enabled = true,
         )
     }
 }
@@ -115,8 +111,9 @@ private fun PreviewLightEnabled() {
 @Composable
 private fun PreviewSmallLightEnabled() {
     PreviewContainer {
-        LabOutlinedSmallButton(
-            text = "S Enabled",
+        LabIconSmallButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = true
         )
@@ -125,80 +122,28 @@ private fun PreviewSmallLightEnabled() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewIconStartLightEnabled() {
+private fun PreviewLightProgressEnabled() {
     PreviewContainer {
-        LabOutlinedButton(
-            text = "M Enabled",
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = true,
-            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            showProgress = true,
         )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewSmallIconStartLightEnabled() {
+private fun PreviewSmallLightProgressEnabled() {
     PreviewContainer {
-        LabOutlinedSmallButton(
-            text = "S Enabled",
+        LabIconSmallButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = true,
-            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewIconEndLightEnabled() {
-    PreviewContainer {
-        LabOutlinedButton(
-            text = "M Enabled",
-            onClick = {},
-            enabled = true,
-            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewSmallIconEndLightEnabled() {
-    PreviewContainer {
-        LabOutlinedSmallButton(
-            text = "S Enabled",
-            onClick = {},
-            enabled = true,
-            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewIconBothLightEnabled() {
-    PreviewContainer {
-        LabOutlinedButton(
-            text = "M Enabled",
-            onClick = {},
-            enabled = true,
-            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
-            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewSmallIconBothLightEnabled() {
-    PreviewContainer {
-        LabOutlinedSmallButton(
-            text = "S Enabled",
-            onClick = {},
-            enabled = true,
-            iconStart = ImageSource.vector(Icons.Filled.FavoriteBorder),
-            iconEnd = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            showProgress = true,
         )
     }
 }
@@ -207,8 +152,9 @@ private fun PreviewSmallIconBothLightEnabled() {
 @Composable
 private fun PreviewLightFocused() {
     PreviewContainer {
-        LabOutlinedButton(
-            text = "M Focused",
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(FocusInteraction.Focus())
@@ -220,8 +166,9 @@ private fun PreviewLightFocused() {
 @Composable
 private fun PreviewSmallLightFocused() {
     PreviewContainer {
-        LabOutlinedSmallButton(
-            text = "S Focused",
+        LabIconSmallButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(FocusInteraction.Focus())
@@ -233,8 +180,9 @@ private fun PreviewSmallLightFocused() {
 @Composable
 private fun PreviewLightPressed() {
     PreviewContainer {
-        LabOutlinedButton(
-            text = "M Pressed",
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(PressInteraction.Press(Offset.Zero))
@@ -246,8 +194,9 @@ private fun PreviewLightPressed() {
 @Composable
 private fun PreviewSmallLightPressed() {
     PreviewContainer {
-        LabOutlinedSmallButton(
-            text = "S Pressed",
+        LabIconSmallButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(PressInteraction.Press(Offset.Zero))
@@ -259,8 +208,9 @@ private fun PreviewSmallLightPressed() {
 @Composable
 private fun PreviewLightDisabled() {
     PreviewContainer {
-        LabOutlinedButton(
-            text = "M Disabled",
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = false
         )
@@ -271,8 +221,9 @@ private fun PreviewLightDisabled() {
 @Composable
 private fun PreviewSmallLightDisabled() {
     PreviewContainer {
-        LabOutlinedSmallButton(
-            text = "S Disabled",
+        LabIconSmallButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = false
         )
@@ -281,52 +232,28 @@ private fun PreviewSmallLightDisabled() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewLightEnabledLoading() {
+private fun PreviewLightProgressDisabled() {
     PreviewContainer {
-        LabOutlinedButton(
-            text = "M",
-            onClick = {},
-            enabled = true,
-            showProgress = true
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewSmallLightEnabledLoading() {
-    PreviewContainer {
-        LabOutlinedSmallButton(
-            text = "S",
-            onClick = {},
-            enabled = true,
-            showProgress = true
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewLightDisabledLoading() {
-    PreviewContainer {
-        LabOutlinedButton(
-            text = "M Disabled",
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = false,
-            showProgress = true
+            showProgress = true,
         )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewSmallLightDisabledLoading() {
+private fun PreviewSmallLightProgressDisabled() {
     PreviewContainer {
-        LabOutlinedSmallButton(
-            text = "S Disabled",
+        LabIconSmallButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = false,
-            showProgress = true
+            showProgress = true,
         )
     }
 }
@@ -335,8 +262,9 @@ private fun PreviewSmallLightDisabledLoading() {
 @Composable
 private fun PreviewDarkEnabled() {
     PreviewContainer(isDark = true) {
-        LabOutlinedButton(
-            text = "Enabled",
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = true
         )
@@ -347,8 +275,9 @@ private fun PreviewDarkEnabled() {
 @Composable
 private fun PreviewDarkFocused() {
     PreviewContainer(isDark = true) {
-        LabOutlinedButton(
-            text = "Focused",
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(FocusInteraction.Focus())
@@ -360,8 +289,9 @@ private fun PreviewDarkFocused() {
 @Composable
 private fun PreviewDarkPressed() {
     PreviewContainer(isDark = true) {
-        LabOutlinedButton(
-            text = "Pressed",
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = true,
             interactionSource = previewInteractionSourceOf(PressInteraction.Press(Offset.Zero))
@@ -373,36 +303,11 @@ private fun PreviewDarkPressed() {
 @Composable
 private fun PreviewDarkDisabled() {
     PreviewContainer(isDark = true) {
-        LabOutlinedButton(
-            text = "Disabled",
-            onClick = {},
-            enabled = false
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewDarkEnabledLoading() {
-    PreviewContainer(isDark = true) {
-        LabOutlinedButton(
-            text = "Enabled",
-            onClick = {},
-            enabled = true,
-            showProgress = true
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewDarkDisabledLoading() {
-    PreviewContainer(isDark = true) {
-        LabOutlinedButton(
-            text = "Disabled",
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+            contentDescription = "Like",
             onClick = {},
             enabled = false,
-            showProgress = true
         )
     }
 }

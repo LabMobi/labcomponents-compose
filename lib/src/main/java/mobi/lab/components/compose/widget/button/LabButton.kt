@@ -45,9 +45,9 @@ import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.theme.noRippleConfiguration
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
+import mobi.lab.components.compose.widget.button.LabButtonDefaults.DefaultButtonProgressIndicator
 import mobi.lab.components.compose.widget.image.IconFromSource
 import mobi.lab.components.compose.widget.image.ImageSource
-import mobi.lab.components.compose.widget.progress.LabIndeterminateProgress
 
 @Composable
 public fun LabButton(
@@ -72,6 +72,9 @@ public fun LabButton(
         hasIconStart = iconStart != null,
         hasIconEnd = iconEnd != null
     ),
+    indeterminateProgressIndicator: @Composable (modifier: Modifier) -> Unit = { mod ->
+        DefaultButtonProgressIndicator(mod)
+    },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabButton(
@@ -98,6 +101,7 @@ public fun LabButton(
             iconEnd = iconEnd,
             iconEndContentDescription = iconEndContentDescription,
             contentPadding = contentPadding,
+            indeterminateProgressIndicator = indeterminateProgressIndicator,
         )
     }
 }
@@ -125,6 +129,9 @@ public fun LabSmallButton(
         hasIconStart = iconStart != null,
         hasIconEnd = iconEnd != null
     ),
+    indeterminateProgressIndicator: @Composable (modifier: Modifier) -> Unit = { mod ->
+        DefaultButtonProgressIndicator(mod)
+    },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     LabButton(
@@ -151,7 +158,8 @@ public fun LabSmallButton(
             iconSpacing = iconSpacing,
             iconEnd = iconEnd,
             iconEndContentDescription = iconEndContentDescription,
-            contentPadding = contentPadding
+            contentPadding = contentPadding,
+            indeterminateProgressIndicator = indeterminateProgressIndicator,
         )
     }
 }
@@ -232,6 +240,9 @@ public fun LabButtonContent(
         hasIconStart = iconStart != null,
         hasIconEnd = iconEnd != null
     ),
+    indeterminateProgressIndicator: @Composable (modifier: Modifier) -> Unit = { mod ->
+        DefaultButtonProgressIndicator(mod)
+    },
 ) {
     Box {
         val contentAlpha = remember(showProgress) { if (showProgress) 0.0f else 1.0f }
@@ -277,12 +288,10 @@ public fun LabButtonContent(
             val height = remember(contentPadding) {
                 minHeight - contentPadding.calculateBottomPadding() - contentPadding.calculateTopPadding()
             }
-            LabIndeterminateProgress(
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .size(height),
-                color = LocalContentColor.current,
-            )
+            val modifier = Modifier
+                .size(height)
+                .align(Alignment.Center)
+            indeterminateProgressIndicator.invoke(modifier)
         }
     }
 }

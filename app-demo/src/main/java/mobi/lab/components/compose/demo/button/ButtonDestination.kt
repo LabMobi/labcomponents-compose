@@ -3,19 +3,24 @@
 package mobi.lab.components.compose.demo.button
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
@@ -27,6 +32,8 @@ import mobi.lab.components.compose.demo.common.LabelSwitch
 import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
+import mobi.lab.components.compose.util.limitMaxContentWidth
+import mobi.lab.components.compose.util.withAlpha
 import mobi.lab.components.compose.widget.button.LabFilledButton
 import mobi.lab.components.compose.widget.button.LabFilledSmallButton
 import mobi.lab.components.compose.widget.button.LabIconButton
@@ -54,31 +61,38 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                 )
             }
         ) { contentPadding ->
-            Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
-                    .fillMaxSize()
-                    .padding(
-                        top = contentPadding.calculateTopPadding(),
-                        start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current) + 16.dp,
-                        end = contentPadding.calculateRightPadding(LocalLayoutDirection.current) + 16.dp,
-                        bottom = 0.dp
-                    ),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.TopCenter
             ) {
-                val enabled = remember { mutableStateOf(true) }
-                LabelSwitch(
-                    modifier = Modifier.fillMaxSize(),
-                    label = "Enabled state",
-                    checked = enabled.value,
-                    onCheckedChange = { enabled.value = !enabled.value },
-                )
-                FilledButtons(enabled)
-                TonedButtons(enabled)
-                OutlinedButtons(enabled)
-                TextButtons(enabled)
-                IconButtons(enabled)
-                Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
+                Column(
+                    modifier = Modifier
+                        .limitMaxContentWidth()
+                        .verticalScroll(rememberScrollState())
+                        .fillMaxSize()
+                        .padding(
+                            top = contentPadding.calculateTopPadding(),
+                            start = contentPadding.calculateLeftPadding(LocalLayoutDirection.current) + 16.dp,
+                            end = contentPadding.calculateRightPadding(LocalLayoutDirection.current) + 16.dp,
+                            bottom = 0.dp
+                        ),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    val enabled = rememberSaveable { mutableStateOf(true) }
+                    LabelSwitch(
+                        modifier = Modifier.fillMaxSize(),
+                        label = "Enabled state",
+                        checked = enabled.value,
+                        onCheckedChange = { enabled.value = !enabled.value },
+                    )
+                    FilledButtons(enabled)
+                    TonedButtons(enabled)
+                    OutlinedButtons(enabled)
+                    TextButtons(enabled)
+                    IconButtons(enabled)
+                    CustomButtons(enabled)
+                    Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
+                }
             }
         }
     }
@@ -112,7 +126,7 @@ private fun FilledButtons(enabled: MutableState<Boolean>) {
         iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
     )
     LabFilledButton(
-        text = "",
+        text = stringResource(R.string.label_filled),
         onClick = {},
         enabled = enabled.value,
         showProgress = true,
@@ -374,6 +388,153 @@ private fun IconButtons(enabled: MutableState<Boolean>) {
         onClick = {},
         enabled = enabled.value,
         showProgress = true,
+    )
+}
+
+@Composable
+private fun CustomButtons(enabled: MutableState<Boolean>) {
+    SectionTitle(stringResource(R.string.text_customization_custom_progress))
+    LabFilledButton(
+        text = stringResource(R.string.label_filled),
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+        indeterminateProgressIndicator = { modifier ->
+            CircularProgressIndicator(
+                modifier = modifier,
+                color = LocalContentColor.current,
+                strokeWidth = 3.dp,
+                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+            )
+        }
+    )
+    LabFilledSmallButton(
+        text = stringResource(R.string.label_filled),
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+        indeterminateProgressIndicator = { modifier ->
+            CircularProgressIndicator(
+                modifier = modifier,
+                color = LocalContentColor.current,
+                strokeWidth = 3.dp,
+                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+            )
+        }
+    )
+    LabTonedButton(
+        text = stringResource(R.string.label_toned),
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+        indeterminateProgressIndicator = { modifier ->
+            CircularProgressIndicator(
+                modifier = modifier,
+                color = LocalContentColor.current,
+                strokeWidth = 3.dp,
+                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+            )
+        },
+    )
+    LabTonedSmallButton(
+        text = stringResource(R.string.label_toned),
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+        indeterminateProgressIndicator = { modifier ->
+            CircularProgressIndicator(
+                modifier = modifier,
+                color = LocalContentColor.current,
+                strokeWidth = 3.dp,
+                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+            )
+        },
+    )
+    LabOutlinedButton(
+        text = stringResource(R.string.label_outlined),
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+        indeterminateProgressIndicator = { modifier ->
+            CircularProgressIndicator(
+                modifier = modifier,
+                color = LocalContentColor.current,
+                strokeWidth = 3.dp,
+                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+            )
+        },
+    )
+    LabOutlinedSmallButton(
+        text = stringResource(R.string.label_outlined),
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+        indeterminateProgressIndicator = { modifier ->
+            CircularProgressIndicator(
+                modifier = modifier,
+                color = LocalContentColor.current,
+                strokeWidth = 3.dp,
+                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+            )
+        },
+    )
+    LabTextButton(
+        text = "",
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+        indeterminateProgressIndicator = { modifier ->
+            CircularProgressIndicator(
+                modifier = modifier,
+                color = LocalContentColor.current,
+                strokeWidth = 3.dp,
+                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+            )
+        },
+    )
+    LabTextSmallButton(
+        text = "",
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+        indeterminateProgressIndicator = { modifier ->
+            CircularProgressIndicator(
+                modifier = modifier,
+                color = LocalContentColor.current,
+                strokeWidth = 3.dp,
+                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+            )
+        },
+    )
+    LabIconButton(
+        icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+        indeterminateProgressIndicator = { modifier ->
+            CircularProgressIndicator(
+                modifier = modifier,
+                color = LocalContentColor.current,
+                strokeWidth = 3.dp,
+                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+            )
+        },
+    )
+    LabIconSmallButton(
+        icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
+        onClick = {},
+        enabled = enabled.value,
+        showProgress = true,
+        indeterminateProgressIndicator = { modifier ->
+            CircularProgressIndicator(
+                modifier = modifier,
+                color = LocalContentColor.current,
+                strokeWidth = 3.dp,
+                trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
+            )
+        },
     )
 }
 
