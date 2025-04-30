@@ -43,12 +43,14 @@ public object LabTextFieldDefaults {
     @Composable
     public fun colors(
         primaryColor: Color = LabTheme.colors.primary,
-        surfaceColor: Color = LabTheme.colors.surface,
+        // In the design system this is transparent and has no token
+        surfaceColor: Color = Color.Transparent,
         onSurfaceColor: Color = LabTheme.colors.onSurface,
         onSurfaceVariantColor: Color = LabTheme.colors.onSurfaceVariant,
         outlineVariantColor: Color = LabTheme.colors.outlineVariant,
         errorColor: Color = LabTheme.colors.error,
         disabledAlpha: Float = LabTheme.constants.disabledAlpha,
+
     ): TextFieldColors {
         return TextFieldDefaults.colors().copy(
             focusedTextColor = onSurfaceColor,
