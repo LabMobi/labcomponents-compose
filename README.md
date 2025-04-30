@@ -221,6 +221,12 @@ See
   ![Filled button](docs/assets/progress-indeterminate.svg)
   
   ```kotlin
+  LabIndeterminateProgress()
+  ```
+
+- Indeterminate progress with a larger size
+
+  ```kotlin
   LabIndeterminateProgress(modifier = Modifier.size(40.dp))
   ```
 

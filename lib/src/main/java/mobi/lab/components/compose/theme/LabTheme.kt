@@ -68,7 +68,7 @@ public object LabTheme {
     public val dimensions: LabDimensions
         @Composable
         @ReadOnlyComposable
-        get() = LocalAppDimensions.current
+        get() = LocalLabDimensions.current
 
     public val constants: LabConstants
         @Composable
@@ -93,7 +93,7 @@ internal fun ProvideLabValues(
     CompositionLocalProvider(
         LocalLabColors provides colors,
         LocalLabTypography provides typography,
-        LocalAppDimensions provides dimensions,
+        LocalLabDimensions provides dimensions,
         LocalLabConstants provides constants,
         LocalLabShapes provides shapes,
         content = content
@@ -108,8 +108,8 @@ private val LocalLabTypography = staticCompositionLocalOf<LabTypography> {
     error("No LabTypography provided")
 }
 
-private val LocalAppDimensions = staticCompositionLocalOf<LabDimensions> {
-    error("No AppDimensions provided")
+private val LocalLabDimensions = staticCompositionLocalOf<LabDimensions> {
+    error("No LabDimensions provided")
 }
 
 private val LocalLabConstants = staticCompositionLocalOf<LabConstants> {
