@@ -50,4 +50,8 @@
     <string name="label_clear">Clear</string>
     <string name="text_custom_both_icons_clickable">Custom - Both icons clickable</string>
     <string name="text_generate_content">Generate content</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="text_custom_autofillable_username_password">Custom - Auto-fillable username and password with a password visibility toggle</string>
+    <string name="label_toggle_password_visibility">Toggle password visibility</string>
 </resources>

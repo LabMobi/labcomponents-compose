@@ -13,7 +13,10 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,8 +27,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.autofill.ContentType
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentType
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.demo.AppTheme
@@ -321,6 +330,43 @@ fun Custom(enabled: MutableState<Boolean>, errorText: String?, singleLine: Mutab
         errorValue = errorText,
         errorReserveSpace = true,
         singleLine = singleLine.value,
+    )
+    SectionTitle(stringResource(R.string.text_custom_autofillable_username_password))
+    var textCustom2: String by rememberSaveable { mutableStateOf("") }
+    LabTextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .semantics { contentType = ContentType.EmailAddress },
+        value = textCustom2,
+        onValueChange = { textCustom2 = it },
+        label = stringResource(R.string.label_email),
+        enabled = enabled.value,
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+    var textCustom3: String by rememberSaveable { mutableStateOf("") }
+    var textCustom3ShowPassword by rememberSaveable { mutableStateOf(false) }
+    LabTextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .semantics { contentType = ContentType.Password },
+        value = textCustom3,
+        onValueChange = { textCustom3 = it },
+        label = stringResource(R.string.label_password),
+        trailingIcon = ImageSource.vector(Icons.Filled.Info),
+        trailingIconContentDescription = stringResource(R.string.label_toggle_password_visibility),
+        onTrailingIconClick = { textCustom3ShowPassword = !textCustom3ShowPassword },
+        enabled = enabled.value,
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+        visualTransformation = if (textCustom3ShowPassword) {
+            VisualTransformation.None
+        } else {
+            PasswordVisualTransformation()
+        },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
     )
 }
 
