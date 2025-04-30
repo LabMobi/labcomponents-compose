@@ -109,6 +109,7 @@ fun TextFieldDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked:
                     LabelText(enabled, errorText, singleLine)
                     InputText(enabled, errorText, singleLine)
                     PlaceholderText(enabled, errorText, singleLine)
+                    Custom(enabled, errorText, singleLine)
                     Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
                 }
             }
@@ -150,6 +151,10 @@ fun LabelText(enabled: MutableState<Boolean>, errorText: String?, singleLine: Mu
         value = textLabel3,
         label = stringResource(R.string.label_label),
         trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        trailingIconContentDescription = stringResource(R.string.label_clear),
+        onTrailingIconClick = {
+            textLabel3 = ""
+        },
         supportingText = stringResource(R.string.text_supporting_text),
         onValueChange = { textLabel3 = it },
         enabled = enabled.value,
@@ -164,6 +169,8 @@ fun LabelText(enabled: MutableState<Boolean>, errorText: String?, singleLine: Mu
         label = stringResource(R.string.label_label),
         leadingIcon = ImageSource.fromRes(R.drawable.ic_search),
         trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        trailingIconContentDescription = stringResource(R.string.label_clear),
+        onTrailingIconClick = { textLabel4 = "" },
         supportingText = stringResource(R.string.text_supporting_text),
         onValueChange = { textLabel4 = it },
         enabled = enabled.value,
@@ -207,6 +214,8 @@ fun InputText(enabled: MutableState<Boolean>, errorText: String?, singleLine: Mu
         value = textInput3,
         label = stringResource(R.string.label_label),
         trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        trailingIconContentDescription = stringResource(R.string.label_clear),
+        onTrailingIconClick = { textInput3 = "" },
         supportingText = stringResource(R.string.text_supporting_text),
         onValueChange = { textInput3 = it },
         enabled = enabled.value,
@@ -221,6 +230,8 @@ fun InputText(enabled: MutableState<Boolean>, errorText: String?, singleLine: Mu
         label = stringResource(R.string.label_label),
         leadingIcon = ImageSource.fromRes(R.drawable.ic_search),
         trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        trailingIconContentDescription = stringResource(R.string.label_clear),
+        onTrailingIconClick = { textInput4 = "" },
         supportingText = stringResource(R.string.text_supporting_text),
         onValueChange = { textInput4 = it },
         enabled = enabled.value,
@@ -237,7 +248,6 @@ fun PlaceholderText(enabled: MutableState<Boolean>, errorText: String?, singleLi
     LabTextField(
         modifier = Modifier.fillMaxWidth(),
         value = textPlaceholder1,
-        label = stringResource(R.string.label_label),
         placeholder = stringResource(R.string.label_placeholder),
         onValueChange = { textPlaceholder1 = it },
         enabled = enabled.value,
@@ -250,7 +260,6 @@ fun PlaceholderText(enabled: MutableState<Boolean>, errorText: String?, singleLi
     LabTextField(
         modifier = Modifier.fillMaxWidth(),
         value = textPlaceholder2,
-        label = stringResource(R.string.label_label),
         placeholder = stringResource(R.string.label_placeholder),
         leadingIcon = ImageSource.fromRes(R.drawable.ic_search),
         supportingText = stringResource(R.string.text_supporting_text),
@@ -264,9 +273,10 @@ fun PlaceholderText(enabled: MutableState<Boolean>, errorText: String?, singleLi
     LabTextField(
         modifier = Modifier.fillMaxWidth(),
         value = textPlaceholder3,
-        label = stringResource(R.string.label_label),
         placeholder = stringResource(R.string.label_placeholder),
         trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        trailingIconContentDescription = stringResource(R.string.label_clear),
+        onTrailingIconClick = { textPlaceholder3 = "" },
         supportingText = stringResource(R.string.text_supporting_text),
         onValueChange = { textPlaceholder3 = it },
         enabled = enabled.value,
@@ -278,10 +288,11 @@ fun PlaceholderText(enabled: MutableState<Boolean>, errorText: String?, singleLi
     LabTextField(
         modifier = Modifier.fillMaxWidth(),
         value = textPlaceholder4,
-        label = stringResource(R.string.label_label),
         placeholder = stringResource(R.string.label_placeholder),
         leadingIcon = ImageSource.fromRes(R.drawable.ic_search),
         trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        trailingIconContentDescription = stringResource(R.string.label_clear),
+        onTrailingIconClick = { textPlaceholder4 = "" },
         supportingText = stringResource(R.string.text_supporting_text),
         onValueChange = { textPlaceholder4 = it },
         enabled = enabled.value,
@@ -289,6 +300,43 @@ fun PlaceholderText(enabled: MutableState<Boolean>, errorText: String?, singleLi
         errorReserveSpace = true,
         singleLine = singleLine.value,
     )
+}
+
+@Composable
+fun Custom(enabled: MutableState<Boolean>, errorText: String?, singleLine: MutableState<Boolean>) {
+    SectionTitle(stringResource(R.string.text_custom_both_icons_clickable))
+    var textCustom1: String by rememberSaveable { mutableStateOf("") }
+    LabTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = textCustom1,
+        leadingIcon = ImageSource.fromRes(R.drawable.ic_search),
+        leadingIconContentDescription = stringResource(R.string.text_generate_content),
+        onLeadingIconClick = { textCustom1 = randomBookName() },
+        trailingIcon = ImageSource.fromRes(R.drawable.ic_cancel),
+        trailingIconContentDescription = stringResource(R.string.label_clear),
+        onTrailingIconClick = { textCustom1 = "" },
+        onValueChange = { textCustom1 = it },
+        enabled = enabled.value,
+        supportingText = stringResource(R.string.text_supporting_text),
+        errorValue = errorText,
+        errorReserveSpace = true,
+        singleLine = singleLine.value,
+    )
+}
+
+fun randomBookName(): String {
+    return listOf(
+        "Consider Phlebas",
+        "The Player of Games",
+        "The State of the Art",
+        "Use of Weapons",
+        "Excession",
+        "Inversions",
+        "Look to Windward",
+        "Matter",
+        "Surface Detail",
+        "The Hydrogen Sonata",
+    ).asSequence().shuffled().find { true } ?: "O_o"
 }
 
 @Composable

@@ -47,4 +47,7 @@
     <string name="text_placeholder_text">Placeholder text</string>
     <string name="label_placeholder">Placeholder</string>
     <string name="label_single_line">Single line</string>
+    <string name="label_clear">Clear</string>
+    <string name="text_custom_both_icons_clickable">Custom - Both icons clickable</string>
+    <string name="text_generate_content">Generate content</string>
 </resources>

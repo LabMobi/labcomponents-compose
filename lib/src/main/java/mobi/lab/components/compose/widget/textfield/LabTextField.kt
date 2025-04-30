@@ -10,8 +10,8 @@ import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -43,7 +43,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
-import mobi.lab.components.compose.widget.image.IconFromSource
+import mobi.lab.components.compose.widget.button.LabButtonDefaults
+import mobi.lab.components.compose.widget.button.LabIconButton
 import mobi.lab.components.compose.widget.image.ImageSource
 
 @Composable
@@ -59,8 +60,10 @@ public fun LabTextField(
     placeholder: String? = null,
     leadingIcon: ImageSource? = null,
     leadingIconContentDescription: String = "",
+    onLeadingIconClick: (() -> Unit)? = null,
     trailingIcon: ImageSource? = null,
     trailingIconContentDescription: String = "",
+    onTrailingIconClick: (() -> Unit)? = null,
     iconSize: Dp = LabTextFieldDefaults.iconSize,
     iconSpacing: Dp = LabTextFieldDefaults.iconSpacing,
     prefix: @Composable (() -> Unit)? = null,
@@ -90,8 +93,8 @@ public fun LabTextField(
         textStyleSmall = textStyleSmall,
         label = textOrNull(label),
         placeholder = textOrNull(placeholder),
-        leadingIcon = iconOrNull(leadingIcon, leadingIconContentDescription, iconSize, iconSpacing),
-        trailingIcon = iconOrNull(trailingIcon, trailingIconContentDescription, iconSize, iconSpacing),
+        leadingIcon = iconOrNull(leadingIcon, leadingIconContentDescription, onLeadingIconClick, enabled, iconSize, iconSpacing),
+        trailingIcon = iconOrNull(trailingIcon, trailingIconContentDescription, onTrailingIconClick, enabled, iconSize, iconSpacing),
         prefix = prefix,
         suffix = suffix,
         supportingText = supportingTextOrNull(error = errorValue, supportingText = supportingText, errorReserveSpace = errorReserveSpace),
@@ -319,16 +322,35 @@ internal fun textOrNull(value: String?): @Composable (() -> Unit)? {
 }
 
 @Composable
-internal fun iconOrNull(iconSource: ImageSource?, contentDescription: String, iconSize: Dp, iconSpacing: Dp): @Composable (() -> Unit)? {
+internal fun iconOrNull(
+    iconSource: ImageSource?,
+    contentDescription: String,
+    onIconClick: (() -> Unit)?,
+    enabled: Boolean,
+    iconSize: Dp,
+    iconSpacing: Dp
+): @Composable (() -> Unit)? {
     return if (iconSource == null) {
         null
     } else {
         {
-            IconFromSource(
-                modifier = Modifier.size(iconSize),
-                source = iconSource,
-                color = LocalContentColor.current,
-                contentDescription = contentDescription
+            // Add a LabIconButton and just disable it when it is not clickable or the LabTextField is disabled
+            LabIconButton(
+                icon = iconSource,
+                enabled = enabled && onIconClick != null,
+                contentDescription = contentDescription,
+                onClick = onIconClick ?: {},
+                iconSize = iconSize,
+                contentPadding = PaddingValues(all = iconSpacing),
+                colors = LabButtonDefaults.iconButtonColors().copy(
+                    contentColor = LocalContentColor.current,
+                    focusedContentColor = LocalContentColor.current,
+                    pressedContentColor = LocalContentColor.current,
+                    disabledContentColor = LocalContentColor.current,
+                    containerColor = Color.Transparent,
+                    // Focused and pressed states let's use from LabIconButton
+                    disabledContainerColor = Color.Transparent
+                )
             )
         }
     }
