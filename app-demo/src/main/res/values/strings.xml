@@ -56,10 +56,10 @@
     <string name="label_toggle_password_visibility">Toggle password visibility</string>
     <string name="title_top_app_bar">TopAppBar</string>
     <string name="text_title">Title</string>
-    <string name="text_topappbar_with_title">Title only</string>
+    <string name="text_topappbar_title_only">Title only</string>
     <string name="btn_topappbar">TopAppBar</string>
     <string name="text_topappbar_with_leading_icon">Leading icon</string>
-    <string name="text_topappbar_small_with_title">Small with title</string>
+    <string name="text_topappbar_small_with_title">(Small) TopAppBar with title</string>
     <string name="btn_back">Back</string>
     <string name="title_typography">Typography</string>
     <string name="text_topappbar_trailing_text_only">Trailing text only</string>
@@ -73,4 +73,6 @@
     <string name="text_topappbar_leading_text_and_trailing_action">Leading text and trailing action</string>
     <string name="text_topappbar_leading_and_trailing_texts">Leading and trailing texts</string>
     <string name="text_navigation_icon">Navigation icon</string>
+    <string name="text_topappbar_leading_and_trailing_icons">Leading and trailing icons</string>
+    <string name="text_topappbar_leading_icon_and_trailing_text">Leading icon and trailing text</string>
 </resources>

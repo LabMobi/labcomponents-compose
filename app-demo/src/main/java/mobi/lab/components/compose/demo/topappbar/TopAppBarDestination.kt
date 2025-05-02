@@ -92,7 +92,8 @@ private fun SmallWithTitle() {
         text = stringResource(R.string.text_edge_to_edge_top_app_bars),
         style = LabTheme.typography.bodySmall
     )
-    SectionTitle2(text = stringResource(R.string.text_topappbar_leading_text_and_trailing_action))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_leading_and_trailing_icons))
+    // Leading and trailing icons
     LabTopAppBar(
         title = stringResource(R.string.text_title),
         navConfig = navConfig(
@@ -121,7 +122,9 @@ private fun SmallWithTitle() {
             }
         }
     )
-    SectionTitle2(text = stringResource(R.string.text_topappbar_leading_and_trailing_texts))
+    Spacer(Modifier.size(16.dp))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_leading_icon_and_trailing_text))
+    // Leading icon and trailing text
     LabTopAppBar(
         stringResource(R.string.text_title),
         navConfig = navConfig(
@@ -138,8 +141,8 @@ private fun SmallWithTitle() {
         }
     )
     Spacer(Modifier.size(16.dp))
-
     SectionTitle2(text = stringResource(R.string.text_topappbar_leading_text_and_trailing_action))
+    // Leading text and trailing action
     LabTopAppBar(
         title = {
             Text(
@@ -178,7 +181,9 @@ private fun SmallWithTitle() {
             }
         }
     )
+    Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_leading_and_trailing_texts))
+    // Leading and trailing texts
     LabTopAppBar(
         title = {
             Text(
@@ -206,12 +211,14 @@ private fun SmallWithTitle() {
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_with_leading_icon))
+    // Leading icon
     LabTopAppBar(
         title = stringResource(R.string.text_title),
         navConfig = upNavConfig(icon = ImageSource.fromRes(R.drawable.ic_placeholder16)),
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_with_leading_text))
+    //
     LabTopAppBar(
         title = {
             Text(
@@ -231,6 +238,7 @@ private fun SmallWithTitle() {
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_trailing_icons_only))
+    // Trailing icons only
     LabTopAppBar(
         title = stringResource(R.string.text_title),
         actions = {
@@ -256,6 +264,7 @@ private fun SmallWithTitle() {
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_trailing_text_only))
+    // Trailing text only
     LabTopAppBar(
         title = stringResource(R.string.text_title),
         actions = {
@@ -267,7 +276,8 @@ private fun SmallWithTitle() {
         }
     )
     Spacer(Modifier.size(16.dp))
-    SectionTitle2(text = stringResource(R.string.text_topappbar_with_title))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_title_only))
+    // Title only
     LabTopAppBar(
         title = stringResource(R.string.text_title),
     )
