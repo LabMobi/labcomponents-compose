@@ -9,18 +9,23 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.demo.AppTheme
+import mobi.lab.components.compose.demo.R
 import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.limitMaxContentWidth
+import mobi.lab.components.compose.widget.image.ImageSource
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 import mobi.lab.components.compose.widget.topappbar.upNavConfig
@@ -30,7 +35,15 @@ fun TypographyDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked
     AppTheme {
         LabScaffold(
             topBar = {
-                LabTopAppBar("Typography", navConfig = upNavConfig(onNavigateUp), actions = { LightDarkModeMenu(onToggleLightDarkModeClicked) })
+                LabTopAppBar(
+                    title = "Typography",
+                    navConfig = upNavConfig(
+                        icon = ImageSource.vector(Icons.AutoMirrored.Filled.ArrowBack),
+                        contentDescription = stringResource(R.string.btn_back),
+                        onClick = onNavigateUp
+                    ),
+                    actions = { LightDarkModeMenu(onToggleLightDarkModeClicked) }
+                )
             }
         ) { contentPadding ->
             Box(

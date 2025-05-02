@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
@@ -56,7 +58,11 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
             topBar = {
                 LabTopAppBar(
                     stringResource(R.string.title_buttons),
-                    navConfig = upNavConfig(onNavigateUp),
+                    navConfig = upNavConfig(
+                        icon = ImageSource.vector(Icons.AutoMirrored.Filled.ArrowBack),
+                        contentDescription = stringResource(R.string.btn_back),
+                        onClick = onNavigateUp
+                    ),
                     actions = { LightDarkModeMenu(onToggleLightDarkModeClicked) }
                 )
             }

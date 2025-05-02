@@ -2,32 +2,27 @@
 
 package mobi.lab.components.compose.widget.topappbar
 
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import mobi.lab.components.compose.R
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.widget.button.LabButtonDefaults
 import mobi.lab.components.compose.widget.button.LabIconButton
-import mobi.lab.components.compose.widget.image.IconFromSource
 import mobi.lab.components.compose.widget.image.ImageSource
 
 @Composable
@@ -39,26 +34,20 @@ public fun LabTopAppBar(
     colors: TopAppBarColors = LabTopAppBarDefaults.colors(),
     actions: @Composable RowScope.() -> Unit = {},
 ) {
-    // We will not use the MyToolbar as the left text button is not any official spec
-    TopAppBar(
+    LabTopAppBar(
         navigationIcon = {
             if (navConfig != null) {
-                // Up navigation and left buttons can't be used at the same time.
-                Row {
-                    IconButton(
-                        onClick = navConfig.onClick,
-                        colors = IconButtonDefaults.iconButtonColors().copy(
-                            contentColor = colors.navigationIconContentColor,
-                            containerColor = colors.containerColor,
-                        )
-                    ) {
-                        IconFromSource(
-                            source = navConfig.icon,
-                            contentDescription = stringResource(R.string.lab_back),
-                        )
-                    }
-                    Spacer(Modifier.size(16.dp))
-                }
+                // In the design system template, this here is an instance of the icon button
+                // as per Elmo's decision.
+                LabIconButton(
+                    icon = navConfig.icon,
+                    contentDescription = navConfig.contentDescription,
+                    onClick = navConfig.onClick,
+                    colors = LabButtonDefaults.iconButtonColors().copy(
+                        containerColor = colors.containerColor,
+                        contentColor = colors.navigationIconContentColor
+                    )
+                )
             }
         },
         actions = actions,
@@ -78,18 +67,27 @@ public fun LabTopAppBar(
     )
 }
 
-public object LabTopAppBarDefaults {
-    @Composable
-    public fun colors(): TopAppBarColors {
-        return TopAppBarColors(
-            // We only need this one atm:
-            containerColor = LabTheme.colors.surface,
-            scrolledContainerColor = LabTheme.colors.surface,
-            navigationIconContentColor = LabTheme.colors.primary,
-            titleContentColor = LabTheme.colors.onSurface,
-            actionIconContentColor = LabTheme.colors.primary,
-        )
-    }
+@Composable
+public fun LabTopAppBar(
+    title: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
+    navigationIcon: @Composable () -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {},
+    expandedHeight: Dp = LabTopAppBarDefaults.topAppBarExpandedHeight,
+    windowInsets: WindowInsets = LabTopAppBarDefaults.windowInsets,
+    colors: TopAppBarColors = LabTopAppBarDefaults.colors(),
+    scrollBehavior: TopAppBarScrollBehavior? = null
+) {
+    TopAppBar(
+        title = title,
+        modifier = modifier,
+        navigationIcon = navigationIcon,
+        actions = actions,
+        expandedHeight = expandedHeight,
+        windowInsets = windowInsets,
+        colors = colors,
+        scrollBehavior = scrollBehavior,
+    )
 }
 
 @Preview(showBackground = true, showSystemUi = true)

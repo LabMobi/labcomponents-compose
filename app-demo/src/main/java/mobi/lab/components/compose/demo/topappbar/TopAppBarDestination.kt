@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +30,7 @@ import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.limitMaxContentWidth
+import mobi.lab.components.compose.widget.image.ImageSource
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 import mobi.lab.components.compose.widget.topappbar.upNavConfig
@@ -39,7 +42,11 @@ fun TopAppBarDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked:
             topBar = {
                 LabTopAppBar(
                     stringResource(R.string.title_top_app_bar),
-                    navConfig = upNavConfig(onNavigateUp),
+                    navConfig = upNavConfig(
+                        icon = ImageSource.vector(Icons.AutoMirrored.Filled.ArrowBack),
+                        contentDescription = stringResource(R.string.btn_back),
+                        onClick = onNavigateUp
+                    ),
                     actions = { LightDarkModeMenu(onToggleLightDarkModeClicked) }
                 )
             }
@@ -67,7 +74,7 @@ fun TopAppBarDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked:
                     SectionTitle2(text = stringResource(R.string.text_topappbar_with_leading_icon))
                     LabTopAppBar(
                         title = stringResource(R.string.text_title),
-                        navConfig = upNavConfig({ }),
+                        navConfig = upNavConfig(),
                     )
                     Spacer(Modifier.size(16.dp))
                     SectionTitle2(text = stringResource(R.string.text_topappbar_with_title))

@@ -60,4 +60,5 @@
     <string name="btn_topappbar">TopAppBar</string>
     <string name="text_topappbar_with_leading_icon">Leading icon</string>
     <string name="text_topappbar_small_with_title">Small with title</string>
+    <string name="btn_back">Back</string>
 </resources>
