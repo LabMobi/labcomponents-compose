@@ -7,6 +7,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.widget.button.LabButtonDefaults
@@ -24,6 +25,10 @@ public object LabTopAppBarDefaults {
             actionIconContentColor = LabTheme.colors.primary,
         )
     }
+
+    public val titleStyle: TextStyle
+        @Composable
+        get() = LabTheme.typography.titleLarge
 
     public val windowInsets: WindowInsets
         @Composable

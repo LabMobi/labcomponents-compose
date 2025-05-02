@@ -19,7 +19,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.widget.button.LabButtonDefaults
 import mobi.lab.components.compose.widget.button.LabIconButton
@@ -30,11 +29,26 @@ public fun LabTopAppBar(
     title: String?,
     modifier: Modifier = Modifier,
     navConfig: NavConfig? = null,
-    titleStyle: TextStyle = LabTheme.typography.titleLarge,
+    titleStyle: TextStyle = LabTopAppBarDefaults.titleStyle,
     colors: TopAppBarColors = LabTopAppBarDefaults.colors(),
     actions: @Composable RowScope.() -> Unit = {},
+    expandedHeight: Dp = LabTopAppBarDefaults.topAppBarExpandedHeight,
+    windowInsets: WindowInsets = LabTopAppBarDefaults.windowInsets,
+    scrollBehavior: TopAppBarScrollBehavior? = null,
 ) {
     LabTopAppBar(
+        title = {
+            if (title != null) {
+                Text(
+                    color = colors.titleContentColor,
+                    style = titleStyle,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    text = title,
+                )
+            }
+        },
+        modifier = modifier,
         navigationIcon = {
             if (navConfig != null) {
                 // In the design system template, this here is an instance of the icon button
@@ -51,19 +65,10 @@ public fun LabTopAppBar(
             }
         },
         actions = actions,
-        modifier = modifier,
+        expandedHeight = expandedHeight,
+        windowInsets = windowInsets,
         colors = colors,
-        title = {
-            if (title != null) {
-                Text(
-                    color = colors.titleContentColor,
-                    style = titleStyle,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    text = title,
-                )
-            }
-        }
+        scrollBehavior = scrollBehavior,
     )
 }
 
@@ -127,8 +132,6 @@ private fun LabTopAppBarWithButtonComposableWithRightButtonPreview() {
                     icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
                     contentDescription = "Like",
                     onClick = {},
-                    enabled = true,
-                    colors = LabButtonDefaults.iconButtonColors().copy(containerColor = LabTheme.colors.background)
                 )
             },
         )

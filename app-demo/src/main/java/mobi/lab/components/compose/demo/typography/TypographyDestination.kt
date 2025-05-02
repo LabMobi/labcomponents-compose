@@ -36,7 +36,7 @@ fun TypographyDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked
         LabScaffold(
             topBar = {
                 LabTopAppBar(
-                    title = "Typography",
+                    title = stringResource(R.string.title_typography),
                     navConfig = upNavConfig(
                         icon = ImageSource.vector(Icons.AutoMirrored.Filled.ArrowBack),
                         contentDescription = stringResource(R.string.btn_back),
