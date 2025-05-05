@@ -20,4 +20,7 @@ object NavDestination {
 
     @Serializable
     object TextField
+
+    @Serializable
+    object TopAppBar
 }

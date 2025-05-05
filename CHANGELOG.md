@@ -2,11 +2,18 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project does not use semantic versioning.
 
-## 0.0.4 - [UNRELEASED]
+## 0.0.5 - [UNRELEASED]
 
 ### Changed
 
 - ..
+
+## 0.0.4 - 2025.05.05
+
+### Changed
+
+- Added support for `LabTopAppBar` and `LabLargeTopAppBar`.
+- Renamed `LabIndeterminateProgressDefaults` to `LabIndeterminateCircularIndicatorDefaults`.
 
 ## 0.0.3 - 2025.04.30
 

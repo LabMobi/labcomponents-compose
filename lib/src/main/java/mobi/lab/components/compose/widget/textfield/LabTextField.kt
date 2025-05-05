@@ -36,7 +36,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -146,10 +145,7 @@ public fun LabTextField(
     MaterialTheme(
         typography = MaterialTheme.typography.copy(bodyLarge = textStyleLarge, bodySmall = textStyleSmall)
     ) {
-        // If color is not provided via the text style, use content color as a default
-        val textColor = textStyleLarge.color.takeOrElse {
-            colors.textColor(enabled, isError, interactionSource).value
-        }
+        val textColor = colors.textColor(enabled, isError, interactionSource).value
         val mergedTextStyle = textStyleLarge.merge(TextStyle(color = textColor))
         CompositionLocalProvider(LocalTextSelectionColors provides colors.textSelectionColors) {
             BasicTextField(
@@ -334,6 +330,8 @@ internal fun iconOrNull(
         null
     } else {
         {
+            // In the design system template, this here is an instance of the icon button
+            // as per design system owner's.
             // Add a LabIconButton and just disable it when it is not clickable or the LabTextField is disabled
             LabIconButton(
                 icon = iconSource,

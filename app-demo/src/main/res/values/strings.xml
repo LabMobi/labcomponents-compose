@@ -54,4 +54,26 @@
     <string name="label_password">Password</string>
     <string name="text_custom_autofillable_username_password">Custom - Auto-fillable username and password with a password visibility toggle</string>
     <string name="label_toggle_password_visibility">Toggle password visibility</string>
+    <string name="title_top_app_bar">TopAppBar</string>
+    <string name="text_title">Title</string>
+    <string name="text_topappbar_title_only">Title only</string>
+    <string name="btn_topappbar">TopAppBar</string>
+    <string name="text_topappbar_with_leading_icon">Leading icon</string>
+    <string name="text_topappbar_small_with_title">(Small) LabTopAppBar with title</string>
+    <string name="text_topappbar_large_with_title">LabLargeTopAppBar with title</string>
+    <string name="btn_back">Back</string>
+    <string name="title_typography">Typography</string>
+    <string name="text_topappbar_trailing_text_only">Trailing text only</string>
+    <string name="btn_enabled">Enabled</string>
+    <string name="text_edge_to_edge_top_app_bars">Note: As edgeToEdge() is enabled the LabTopAppBars have additional padding on top to account for status bar.</string>
+    <string name="text_topappbar_trailing_icons_only">Trailing icons only</string>
+    <string name="text_button_1">Button 1</string>
+    <string name="text_button_2">Button 2</string>
+    <string name="text_button_3">Button 3</string>
+    <string name="text_topappbar_with_leading_text">Leading text</string>
+    <string name="text_topappbar_leading_text_and_trailing_action">Leading text and trailing action</string>
+    <string name="text_topappbar_leading_and_trailing_texts">Leading and trailing texts</string>
+    <string name="text_navigation_icon">Navigation icon</string>
+    <string name="text_topappbar_leading_and_trailing_icons">Leading and trailing icons</string>
+    <string name="text_topappbar_leading_icon_and_trailing_text">Leading icon and trailing text</string>
 </resources>

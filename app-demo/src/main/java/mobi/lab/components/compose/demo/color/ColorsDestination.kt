@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,14 +28,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.google.android.material.color.MaterialColors
+import mobi.lab.components.compose.demo.R
 import mobi.lab.components.compose.demo.common.LabelSwitch
 import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.interactiveValue
 import mobi.lab.components.compose.util.limitMaxContentWidth
+import mobi.lab.components.compose.widget.image.ImageSource
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 import mobi.lab.components.compose.widget.topappbar.upNavConfig
@@ -43,7 +48,15 @@ fun ColorsDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
     LabTheme {
         LabScaffold(
             topBar = {
-                LabTopAppBar("Colors", navConfig = upNavConfig(onNavigateUp), actions = { LightDarkModeMenu(onToggleLightDarkModeClicked) })
+                LabTopAppBar(
+                    title = "Colors",
+                    navConfig = upNavConfig(
+                        icon = ImageSource.vector(Icons.AutoMirrored.Filled.ArrowBack),
+                        contentDescription = stringResource(R.string.btn_back),
+                        onClick = onNavigateUp
+                    ),
+                    actions = { LightDarkModeMenu(onToggleLightDarkModeClicked) }
+                )
             }
         ) { contentPadding ->
             Box(

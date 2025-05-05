@@ -34,6 +34,7 @@ fun ComponentListDestination(
     onTextFieldClicked: () -> Unit,
     onTypographyClicked: () -> Unit,
     onProgressClicked: () -> Unit,
+    onTopAppBarClicked: () -> Unit,
     onToggleLightDarkModeClicked: () -> Unit,
 ) {
     AppTheme {
@@ -63,6 +64,9 @@ fun ComponentListDestination(
                 }
                 item {
                     ListItem(title = stringResource(R.string.btn_text_fields), onClick = onTextFieldClicked)
+                }
+                item {
+                    ListItem(title = stringResource(R.string.btn_topappbar), onClick = onTopAppBarClicked)
                 }
                 item {
                     ListItem(title = stringResource(R.string.btn_typography), onClick = onTypographyClicked)
@@ -109,7 +113,8 @@ private fun PreviewComponentListDestination() {
             onTextFieldClicked = {},
             onTypographyClicked = {},
             onProgressClicked = {},
-            onToggleLightDarkModeClicked = {}
+            onTopAppBarClicked = {},
+            onToggleLightDarkModeClicked = {},
         )
     }
 }
