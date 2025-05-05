@@ -19,7 +19,7 @@ public object LabTopAppBarDefaults {
             containerColor = LabTheme.colors.surface,
             scrolledContainerColor = LabTheme.colors.surface,
             // In the design system template, this here is an instance of the icon button
-            // as per Elmo's decision.
+            // as per design system owner's decision.
             navigationIconContentColor = LabButtonDefaults.iconButtonColors().contentColor,
             titleContentColor = LabTheme.colors.onSurface,
             actionIconContentColor = LabTheme.colors.primary,

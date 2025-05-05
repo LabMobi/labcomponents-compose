@@ -331,7 +331,7 @@ internal fun iconOrNull(
     } else {
         {
             // In the design system template, this here is an instance of the icon button
-            // as per Elmo's decision.
+            // as per design system owner's.
             // Add a LabIconButton and just disable it when it is not clickable or the LabTextField is disabled
             LabIconButton(
                 icon = iconSource,

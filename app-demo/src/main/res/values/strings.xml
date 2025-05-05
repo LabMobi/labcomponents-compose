@@ -65,7 +65,7 @@
     <string name="title_typography">Typography</string>
     <string name="text_topappbar_trailing_text_only">Trailing text only</string>
     <string name="btn_enabled">Enabled</string>
-    <string name="text_edge_to_edge_top_app_bars">Note: As edgeToEdge() is enabled the small LabTopAppBars have additional padding on top to account for status bar.</string>
+    <string name="text_edge_to_edge_top_app_bars">Note: As edgeToEdge() is enabled the LabTopAppBars have additional padding on top to account for status bar.</string>
     <string name="text_topappbar_trailing_icons_only">Trailing icons only</string>
     <string name="text_button_1">Button 1</string>
     <string name="text_button_2">Button 2</string>

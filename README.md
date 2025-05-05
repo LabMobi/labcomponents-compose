@@ -7,17 +7,16 @@ Mobi Lab Components for Compose (`LabComponentsCompose`) help developers execute
 Maven Central artifact available from https://central.sonatype.com/search?q=mobi.lab.labcomponents:labcomponents-compose
 
 ```groovy
-implementation 'mobi.lab.labcomponents:labcomponents-compose:0.0.3' // Check the latest version from Maven Central
+implementation 'mobi.lab.labcomponents:labcomponents-compose:0.0.4'
 ```
 
-The components provide implementations for [Mobi Lab's design system](https://www.figma.com/file/gxt4iyWGyliILJSOCLXonl/P42-design-system-template?type=design&node-id=1652-14713&mode=design&t=j4TbnOpahS3korsT-0).
-
-These components are based on [Material Components for Android](https://github.com/material-components/material-components-android).
+The components provide implementations for [Mobi Lab's design system](https://www.figma.com/file/gxt4iyWGyliILJSOCLXonl/P42-design-system-template?type=design&node-id=1652-14713&mode=design&t=j4TbnOpahS3korsT-0). These components are based on [Material Components for Android](https://github.com/material-components/material-components-android).
 
 ## Compatible versions
 
 | Lab Components for Compose version | Compose BOM version used | CompileSdk used     |
 | ---------------------------------- | :----------------------- | ------------------- |
+| 0.0.4                              | 2025.04.01               | API 35 / Android 15 |
 | 0.0.3                              | 2025.04.01               | API 35 / Android 15 |
 | 0.0.2                              | 2025.04.01               | API 35 / Android 15 |
 | 0.0.1                              | 2025.04.01               | API 35 / Android 15 |
@@ -30,105 +29,108 @@ The project consists of the component library in `lib` module and the components
 
 ## Buttons
 
-Supported:
+### Filled button
 
-- Filled button
-  ![Filled button](docs/assets/button-filled.svg)
+![Filled button](docs/assets/button-filled.svg)
 
-  ```kotlin
-  // Medium
-  LabFilledButton(
-      text = "Click Me!",
-      onClick = {},
-      enabled = enabled.value
-  )
-  ```
+```kotlin
+// Medium
+LabFilledButton(
+    text = "Click Me!",
+    onClick = {},
+    enabled = enabled.value
+)
+```
 
-  ```kotlin
-  // Small
-  LabFilledSmallButton(
-      text = "Click Me!",
-      onClick = {},
-  )
-  ```
+```kotlin
+// Small
+LabFilledSmallButton(
+    text = "Click Me!",
+    onClick = {},
+)
+```
 
-- Toned button
-  ![Toned button](docs/assets/button-toned.svg)
+### Toned button
 
-  ```kotlin
-  // Medium
-  LabTonedButton(
-      text = "Click Me!",
-      onClick = {},
-  )
-  ```
+![Toned button](docs/assets/button-toned.svg)
 
-  ```kotlin
-  // Small
-  LabTonedSmallButton(
-      text = "Click Me!",
-      onClick = {},
-  )
-  ```
+```kotlin
+// Medium
+LabTonedButton(
+    text = "Click Me!",
+    onClick = {},
+)
+```
 
-- Outlined button
-  ![Outlined button](docs/assets/button-outlined.svg)
+```kotlin
+// Small
+LabTonedSmallButton(
+    text = "Click Me!",
+    onClick = {},
+)
+```
 
-  ```kotlin
-  // Medium
-  LabOutlinedButton(
-      text = "Click Me!",
-      onClick = {},
-  )
-  ```
+### Outlined button
 
-  ```kotlin
-  // Small
-  LabOutlinedSmallButton(
-      text = text = "Click Me!",
-      onClick = {},
-  )
-  ```
+![Outlined button](docs/assets/button-outlined.svg)
 
-- Text button
-  ![Text button](docs/assets/button-text.svg)
+```kotlin
+// Medium
+LabOutlinedButton(
+    text = "Click Me!",
+    onClick = {},
+)
+```
 
-  ```kotlin
-  // Medium
-  LabTextButton(
-      text = "Click Me!",
-      onClick = {},
-  )
-  ```
+```kotlin
+// Small
+LabOutlinedSmallButton(
+    text = text = "Click Me!",
+    onClick = {},
+)
+```
 
-  ```kotlin
-  // Small
-  LabTextSmallButton(
-      text = "Click Me!",
-      onClick = {},
-  )
-  ```
+### Text button
 
-- Icon button
-  ![Icon button](docs/assets/button-icon.svg)
-  
-  ```kotlin
-  // Medium
-  LabIconButton(
-      icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
-      contentDescription = "Like",
-      onClick = {},
-  )
-  ```
-  
-  ```kotlin
-  // Small
-  LabIconSmallButton(
-      icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
-      contentDescription = "Like",
-      onClick = {},
-  )
-  ```
+![Text button](docs/assets/button-text.svg)
+
+```kotlin
+// Medium
+LabTextButton(
+    text = "Click Me!",
+    onClick = {},
+)
+```
+
+```kotlin
+// Small
+LabTextSmallButton(
+    text = "Click Me!",
+    onClick = {},
+)
+```
+
+### Icon button
+
+![Icon button](docs/assets/button-icon.svg)
+
+```kotlin
+// Medium
+LabIconButton(
+    icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+    contentDescription = "Like",
+    onClick = {},
+)
+```
+
+```kotlin
+// Small
+LabIconSmallButton(
+    icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
+    contentDescription = "Like",
+    onClick = {},
+)
+```
 
 See 
 
@@ -142,71 +144,177 @@ See
 - usage examples at https://github.com/LabMobi/labcomponents-compose/blob/main/app-demo/src/main/java/mobi/lab/components/compose/demo/color/ColorsDestination.kt
 - design at https://www.figma.com/design/gxt4iyWGyliILJSOCLXonl/P42-DDD-design-system-template?node-id=1972-22024&m=dev
 
-## TextFields
+## Text fields
 
-- TextField with a label
-  ![TextField with a label](docs/assets/text-label.svg)
+### Text field with a label
 
-  ```kotlin
-  var text1: String by rememberSaveable { mutableStateOf("Input") }
-  LabTextField(
-      modifier = Modifier.fillMaxWidth(),
-      value = text1,
-      label = "Label",
-      onValueChange = { text1 = it },
-      enabled = enabled.value,
-      supportingText = "Supporting text",
-      errorValue = "",
-      errorReserveSpace = true,
-      singleLine = true,
-  )
-  ```
+![TextField with a label](docs/assets/text-label.svg)
 
-- TextFields for login via email and password
+```kotlin
+var text1: String by rememberSaveable { mutableStateOf("Input") }
+LabTextField(
+    modifier = Modifier.fillMaxWidth(),
+    value = text1,
+    label = "Label",
+    onValueChange = { text1 = it },
+    enabled = enabled.value,
+    supportingText = "Supporting text",
+    errorValue = "",
+    errorReserveSpace = true,
+    singleLine = true,
+)
+```
 
-  ```kotlin
-  var text2: String by rememberSaveable { mutableStateOf("") }
-  LabTextField(
-      modifier = Modifier
-          .fillMaxWidth()
-          .semantics { contentType = ContentType.EmailAddress },
-      value = text2,
-      onValueChange = { text2 = it },
-      label = "Email",
-      enabled = enabled.value,
-      errorValue = errorText,
-      errorReserveSpace = true,
-      singleLine = singleLine.value,
-  )
-  var text3: String by rememberSaveable { mutableStateOf("") }
-  var text3ShowPassword by rememberSaveable { mutableStateOf(false) }
-  LabTextField(
-      modifier = Modifier
-          .fillMaxWidth()
-          .semantics { contentType = ContentType.Password },
-      value = text3,
-      onValueChange = { text3 = it },
-      label = "Password",
-      trailingIcon = ImageSource.vector(Icons.Filled.Info),
-      trailingIconContentDescription = "Toggle password visibility",
-      onTrailingIconClick = { text3ShowPassword = !text3ShowPassword },
-      enabled = enabled.value,
-      errorValue = errorText,
-      errorReserveSpace = true,
-      singleLine = singleLine.value,
-      visualTransformation = if (text3ShowPassword) {
-          VisualTransformation.None
-      } else {
-          PasswordVisualTransformation()
-      },
-      keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-  )
-  ```
+### Text fields for login via email and password
+
+```kotlin
+var text2: String by rememberSaveable { mutableStateOf("") }
+LabTextField(
+    modifier = Modifier
+        .fillMaxWidth()
+        .semantics { contentType = ContentType.EmailAddress },
+    value = text2,
+    onValueChange = { text2 = it },
+    label = "Email",
+    enabled = enabled.value,
+    errorValue = errorText,
+    errorReserveSpace = true,
+    singleLine = singleLine.value,
+)
+var text3: String by rememberSaveable { mutableStateOf("") }
+var text3ShowPassword by rememberSaveable { mutableStateOf(false) }
+LabTextField(
+    modifier = Modifier
+        .fillMaxWidth()
+        .semantics { contentType = ContentType.Password },
+    value = text3,
+    onValueChange = { text3 = it },
+    label = "Password",
+    trailingIcon = ImageSource.vector(Icons.Filled.Info),
+    trailingIconContentDescription = "Toggle password visibility",
+    onTrailingIconClick = { text3ShowPassword = !text3ShowPassword },
+    enabled = enabled.value,
+    errorValue = errorText,
+    errorReserveSpace = true,
+    singleLine = singleLine.value,
+    visualTransformation = if (text3ShowPassword) {
+        VisualTransformation.None
+    } else {
+        PasswordVisualTransformation()
+    },
+    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+)
+```
 
 See 
 
 - usage examples at https://github.com/LabMobi/labcomponents-compose/tree/main/app-demo/src/main/java/mobi/lab/components/compose/demo/textfield/TextFieldDestination.kt
 - design at https://www.figma.com/design/gxt4iyWGyliILJSOCLXonl/P42-DDD-design-system-template?node-id=1971-21101&m=dev
+
+## Top app bar
+
+### Top app bar with a title only
+
+![TopAppBar with title](docs/assets/topappbar-small-title.svg)
+
+```kotlin
+// Normal (small) one
+LabTopAppBar(
+    title = "Title",
+)
+```
+
+![TopAppBar large with title](docs/assets/topappbar-large-title.svg)
+
+```kotlin
+// Large (two-row) one
+LabLargeTopAppBar(
+    title = "Title",
+)
+```
+
+### Top app bar with title and up navigation
+
+![TopAppBar with title and up](docs/assets/topappbar-small-title-up.svg)
+
+```kotlin
+// Normal (small) one
+LabTopAppBar(
+    title = "Title",
+    navConfig = upNavConfig(),
+)
+```
+
+![TopAppBar large with title and up](docs/assets/topappbar-large-title-up.svg)
+
+```kotlin
+// Large (two-row) one
+LabLargeTopAppBar(
+    title = "Title",
+    navConfig = upNavConfig(),
+)
+```
+
+### Top app bar with title, up navigation and action items
+
+![TopAppBar with title, up and actions](docs/assets/topappbar-small-title-up-actions.svg)
+
+```kotlin
+// Normal (small) one
+LabTopAppBar(
+    title = "Title",
+    navConfig = upNavConfig(),
+    actions = {
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.Edit),
+            contentDescription = "Edit",
+            onClick = {},
+        )
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.Email),
+            contentDescription = "Email",
+            onClick = {},
+        )
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.Call),
+            contentDescription = "Call",
+            onClick = {},
+        )
+    },
+)
+```
+
+![TopAppBar large with title, up and actions](docs/assets/topappbar-large-title-up-actions.svg)
+
+```kotlin
+// Large (two-row) one
+LabLargeTopAppBar(
+    title = "Title",
+    navConfig = upNavConfig(),
+    actions = {
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.Edit),
+            contentDescription = "Edit",
+            onClick = {},
+        )
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.Email),
+            contentDescription = "Email",
+            onClick = {},
+        )
+        LabIconButton(
+            icon = ImageSource.vector(Icons.Filled.Call),
+            contentDescription = "Call",
+            onClick = {},
+        )
+    },
+)
+```
+
+See
+
+- usage examples at https://github.com/LabMobi/labcomponents-compose/blob/main/app-demo/src/main/java/mobi/lab/components/compose/demo/topappbar/TopAppBarDestination.kt
+- design at https://www.figma.com/design/gxt4iyWGyliILJSOCLXonl/P42-DDD-design-system-template?node-id=3696-13277&m=dev
 
 ## Typography
 
@@ -217,18 +325,19 @@ See
 
 ## Progress indicators
 
-- Indeterminate progress
-  ![Indeterminate progress](docs/assets/progress-indeterminate.svg)
-  
-  ```kotlin
-  LabIndeterminateCircularIndicator()
-  ```
+### Indeterminate progress
 
-- Indeterminate progress with a larger size
+![Indeterminate progress](docs/assets/progress-indeterminate.svg)
 
-  ```kotlin
-  LabIndeterminateCircularIndicator(modifier = Modifier.size(40.dp))
-  ```
+```kotlin
+LabIndeterminateCircularIndicator()
+```
+
+### Indeterminate progress with a larger size
+
+```kotlin
+LabIndeterminateCircularIndicator(modifier = Modifier.size(40.dp))
+```
 
 See 
 

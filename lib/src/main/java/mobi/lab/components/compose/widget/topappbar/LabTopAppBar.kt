@@ -53,7 +53,7 @@ public fun LabTopAppBar(
         navigationIcon = {
             if (navConfig != null) {
                 // In the design system template, this here is an instance of the icon button
-                // as per Elmo's decision.
+                // as per design system owner's.
                 LabIconButton(
                     icon = navConfig.icon,
                     contentDescription = navConfig.contentDescription,
@@ -125,7 +125,7 @@ public fun LabLargeTopAppBar(
         navigationIcon = {
             if (navConfig != null) {
                 // In the design system template, this here is an instance of the icon button
-                // as per Elmo's decision.
+                // as per design system owner's.
                 LabIconButton(
                     icon = navConfig.icon,
                     contentDescription = navConfig.contentDescription,
@@ -176,7 +176,6 @@ public fun LabLargeTopAppBar(
 private fun LabTopAppBarLightWithTitle() {
     PreviewContainer {
         LabTopAppBar(
-            navConfig = null,
             title = "Title"
         )
     }
@@ -282,7 +281,6 @@ private fun LabTopAppBarDarkWithBackAndTitleAndAction() {
 private fun LabLargeTopAppBarLightWithTitle() {
     PreviewContainer {
         LabLargeTopAppBar(
-            navConfig = null,
             title = "Title"
         )
     }
