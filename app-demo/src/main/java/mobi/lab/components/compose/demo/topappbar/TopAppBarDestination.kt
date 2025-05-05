@@ -36,6 +36,7 @@ import mobi.lab.components.compose.widget.button.LabIconButton
 import mobi.lab.components.compose.widget.button.LabTextButton
 import mobi.lab.components.compose.widget.image.ImageSource
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
+import mobi.lab.components.compose.widget.topappbar.LabLargeTopAppBar
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 import mobi.lab.components.compose.widget.topappbar.LabTopAppBarDefaults
 import mobi.lab.components.compose.widget.topappbar.navConfig
@@ -77,6 +78,7 @@ fun TopAppBarDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked:
                 ) {
                     Spacer(Modifier.size(16.dp))
                     SmallWithTitle()
+                    LargeWithTitle()
                     Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
                 }
             }
@@ -93,7 +95,7 @@ private fun SmallWithTitle() {
         style = LabTheme.typography.bodySmall
     )
     SectionTitle2(text = stringResource(R.string.text_topappbar_leading_and_trailing_icons))
-    // Leading and trailing icons
+    // Leading and trailing icons (small top app bar)
     LabTopAppBar(
         title = stringResource(R.string.text_title),
         navConfig = navConfig(
@@ -124,7 +126,7 @@ private fun SmallWithTitle() {
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_leading_icon_and_trailing_text))
-    // Leading icon and trailing text
+    // Leading icon and trailing text (small top app bar)
     LabTopAppBar(
         stringResource(R.string.text_title),
         navConfig = navConfig(
@@ -142,12 +144,12 @@ private fun SmallWithTitle() {
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_leading_text_and_trailing_action))
-    // Leading text and trailing action
+    // Leading text and trailing action (small top app bar)
     LabTopAppBar(
         title = {
             Text(
-                color = LabTopAppBarDefaults.colors().titleContentColor,
-                style = LabTopAppBarDefaults.titleStyle,
+                color = LabTopAppBarDefaults.topAppBarColors().titleContentColor,
+                style = LabTopAppBarDefaults.topAppBarTitleStyle,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 text = stringResource(R.string.text_title),
@@ -183,12 +185,12 @@ private fun SmallWithTitle() {
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_leading_and_trailing_texts))
-    // Leading and trailing texts
+    // Leading and trailing texts (small top app bar)
     LabTopAppBar(
         title = {
             Text(
-                color = LabTopAppBarDefaults.colors().titleContentColor,
-                style = LabTopAppBarDefaults.titleStyle,
+                color = LabTopAppBarDefaults.topAppBarColors().titleContentColor,
+                style = LabTopAppBarDefaults.topAppBarTitleStyle,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 text = stringResource(R.string.text_title),
@@ -211,19 +213,19 @@ private fun SmallWithTitle() {
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_with_leading_icon))
-    // Leading icon
+    // Leading icon (small top app bar)
     LabTopAppBar(
         title = stringResource(R.string.text_title),
         navConfig = upNavConfig(icon = ImageSource.fromRes(R.drawable.ic_placeholder16)),
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_with_leading_text))
-    //
+    // Leading text (small top app bar)
     LabTopAppBar(
         title = {
             Text(
-                color = LabTopAppBarDefaults.colors().titleContentColor,
-                style = LabTopAppBarDefaults.titleStyle,
+                color = LabTopAppBarDefaults.topAppBarColors().titleContentColor,
+                style = LabTopAppBarDefaults.topAppBarTitleStyle,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 text = stringResource(R.string.text_title),
@@ -238,7 +240,7 @@ private fun SmallWithTitle() {
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_trailing_icons_only))
-    // Trailing icons only
+    // Trailing icons only (small top app bar)
     LabTopAppBar(
         title = stringResource(R.string.text_title),
         actions = {
@@ -264,7 +266,7 @@ private fun SmallWithTitle() {
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_trailing_text_only))
-    // Trailing text only
+    // Trailing text only (small top app bar)
     LabTopAppBar(
         title = stringResource(R.string.text_title),
         actions = {
@@ -277,8 +279,202 @@ private fun SmallWithTitle() {
     )
     Spacer(Modifier.size(16.dp))
     SectionTitle2(text = stringResource(R.string.text_topappbar_title_only))
-    // Title only
+    // Title only (small top app bar)
     LabTopAppBar(
+        title = stringResource(R.string.text_title),
+    )
+}
+
+@Composable
+fun LargeWithTitle() {
+    SectionTitle(text = stringResource(R.string.text_topappbar_large_with_title))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_leading_and_trailing_icons))
+    // Leading and trailing icons (large top app bar)
+    LabLargeTopAppBar(
+        title = stringResource(R.string.text_title),
+        navConfig = navConfig(
+            icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+            contentDescription = stringResource(R.string.text_navigation_icon),
+            onClick = {}
+        ),
+        actions = {
+            // The design system uses the LabIconButton here
+            Row {
+                LabIconButton(
+                    icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    contentDescription = stringResource(R.string.text_button_1),
+                    onClick = {}
+                )
+                LabIconButton(
+                    icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    contentDescription = stringResource(R.string.text_button_2),
+                    onClick = {}
+                )
+                LabIconButton(
+                    icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    contentDescription = stringResource(R.string.text_button_3),
+                    onClick = {}
+                )
+            }
+        }
+    )
+    Spacer(Modifier.size(16.dp))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_leading_icon_and_trailing_text))
+    // Leading icon and trailing text (large top app bar)
+    LabLargeTopAppBar(
+        stringResource(R.string.text_title),
+        navConfig = navConfig(
+            icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+            contentDescription = stringResource(R.string.text_navigation_icon),
+            onClick = {}
+        ),
+        actions = {
+            // The design system uses the LabTextButton here
+            LabTextButton(
+                text = stringResource(R.string.btn_enabled),
+                onClick = {}
+            )
+        }
+    )
+    Spacer(Modifier.size(16.dp))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_leading_text_and_trailing_action))
+    // Leading text and trailing action (large top app bar)
+    LabLargeTopAppBar(
+        title = {
+            Text(
+                color = LabTopAppBarDefaults.topAppBarColors().titleContentColor,
+                style = LabTopAppBarDefaults.topAppBarTitleStyle,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                text = stringResource(R.string.text_title),
+            )
+        },
+        navigationIcon = {
+            // The design system uses the LabTextButton here
+            LabTextButton(
+                text = stringResource(R.string.btn_enabled),
+                onClick = {}
+            )
+        },
+        actions = {
+            // The design system uses the LabIconButton here
+            Row {
+                LabIconButton(
+                    icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    contentDescription = stringResource(R.string.text_button_1),
+                    onClick = {}
+                )
+                LabIconButton(
+                    icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    contentDescription = stringResource(R.string.text_button_2),
+                    onClick = {}
+                )
+                LabIconButton(
+                    icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    contentDescription = stringResource(R.string.text_button_3),
+                    onClick = {}
+                )
+            }
+        }
+    )
+    Spacer(Modifier.size(16.dp))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_leading_and_trailing_texts))
+    // Leading and trailing texts (large top app bar)
+    LabLargeTopAppBar(
+        title = {
+            Text(
+                color = LabTopAppBarDefaults.topAppBarColors().titleContentColor,
+                style = LabTopAppBarDefaults.topAppBarTitleStyle,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                text = stringResource(R.string.text_title),
+            )
+        },
+        navigationIcon = {
+            // The design system uses the LabTextButton here
+            LabTextButton(
+                text = stringResource(R.string.btn_enabled),
+                onClick = {}
+            )
+        },
+        actions = {
+            // The design system uses the LabTextButton here
+            LabTextButton(
+                text = stringResource(R.string.btn_enabled),
+                onClick = {}
+            )
+        }
+    )
+    Spacer(Modifier.size(16.dp))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_with_leading_icon))
+    // Leading icon (large top app bar)
+    LabLargeTopAppBar(
+        title = stringResource(R.string.text_title),
+        navConfig = upNavConfig(icon = ImageSource.fromRes(R.drawable.ic_placeholder16)),
+    )
+    Spacer(Modifier.size(16.dp))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_with_leading_text))
+    // Leading text (large top app bar)
+    LabLargeTopAppBar(
+        title = {
+            Text(
+                color = LabTopAppBarDefaults.topAppBarColors().titleContentColor,
+                style = LabTopAppBarDefaults.topAppBarTitleStyle,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                text = stringResource(R.string.text_title),
+            )
+        },
+        navigationIcon = {
+            LabTextButton(
+                text = stringResource(R.string.btn_enabled),
+                onClick = {}
+            )
+        }
+    )
+    Spacer(Modifier.size(16.dp))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_trailing_icons_only))
+    // Trailing icons only (large top app bar)
+    LabLargeTopAppBar(
+        title = stringResource(R.string.text_title),
+        actions = {
+            // The design system uses the LabIconButton here
+            Row {
+                LabIconButton(
+                    icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    contentDescription = stringResource(R.string.text_button_1),
+                    onClick = {}
+                )
+                LabIconButton(
+                    icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    contentDescription = stringResource(R.string.text_button_2),
+                    onClick = {}
+                )
+                LabIconButton(
+                    icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+                    contentDescription = stringResource(R.string.text_button_3),
+                    onClick = {}
+                )
+            }
+        }
+    )
+    Spacer(Modifier.size(16.dp))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_trailing_text_only))
+    // Trailing text only (large top app bar)
+    LabLargeTopAppBar(
+        title = stringResource(R.string.text_title),
+        actions = {
+            // The design system uses the LabTextButton here
+            LabTextButton(
+                text = stringResource(R.string.btn_enabled),
+                onClick = {}
+            )
+        }
+    )
+    Spacer(Modifier.size(16.dp))
+    SectionTitle2(text = stringResource(R.string.text_topappbar_title_only))
+    // Title only (large top app bar)
+    LabLargeTopAppBar(
         title = stringResource(R.string.text_title),
     )
 }

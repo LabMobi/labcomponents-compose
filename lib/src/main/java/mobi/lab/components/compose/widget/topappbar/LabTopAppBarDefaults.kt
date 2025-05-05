@@ -14,7 +14,7 @@ import mobi.lab.components.compose.widget.button.LabButtonDefaults
 
 public object LabTopAppBarDefaults {
     @Composable
-    public fun colors(): TopAppBarColors {
+    public fun topAppBarColors(): TopAppBarColors {
         return TopAppBarColors(
             containerColor = LabTheme.colors.surface,
             scrolledContainerColor = LabTheme.colors.surface,
@@ -26,13 +26,31 @@ public object LabTopAppBarDefaults {
         )
     }
 
-    public val titleStyle: TextStyle
+    @Composable
+    public fun largeTopAppBarColors(): TopAppBarColors {
+        // Colors for now are 1:1 same as with TopAppBar
+        return topAppBarColors()
+    }
+
+    public val topAppBarTitleStyle: TextStyle
         @Composable
         get() = LabTheme.typography.titleLarge
 
-    public val windowInsets: WindowInsets
+    public val largeTopAppBarTitleStyle: TextStyle
+        @Composable
+        get() = LabTheme.typography.headlineSmall
+
+    public val topAppBarWindowInsets: WindowInsets
         @Composable
         get() = TopAppBarDefaults.windowInsets
 
+    public val largeTopAppBarWindowInsets: WindowInsets
+        // Insets are 1:1 same as with TopAppBar
+        @Composable
+        get() = topAppBarWindowInsets
+
     public val topAppBarExpandedHeight: Dp = TopAppBarDefaults.TopAppBarExpandedHeight
+
+    public val largeAppBarCollapsedHeight: Dp = TopAppBarDefaults.LargeAppBarCollapsedHeight
+    public val largeAppBarExpandedHeight: Dp = TopAppBarDefaults.LargeAppBarExpandedHeight
 }
