@@ -31,9 +31,10 @@ import mobi.lab.components.compose.widget.topappbar.LabTopAppBar
 fun ComponentListDestination(
     onButtonsClicked: () -> Unit,
     onColorsClicked: () -> Unit,
+    onSwitchClicked: () -> Unit,
+    onProgressClicked: () -> Unit,
     onTextFieldClicked: () -> Unit,
     onTypographyClicked: () -> Unit,
-    onProgressClicked: () -> Unit,
     onTopAppBarClicked: () -> Unit,
     onToggleLightDarkModeClicked: () -> Unit,
 ) {
@@ -63,6 +64,9 @@ fun ComponentListDestination(
                     ListItem(title = stringResource(R.string.btn_colors), onClick = onColorsClicked)
                 }
                 item {
+                    ListItem(title = stringResource(R.string.btn_progress), onClick = onProgressClicked)
+                }
+                item {
                     ListItem(title = stringResource(R.string.btn_text_fields), onClick = onTextFieldClicked)
                 }
                 item {
@@ -72,7 +76,7 @@ fun ComponentListDestination(
                     ListItem(title = stringResource(R.string.btn_typography), onClick = onTypographyClicked)
                 }
                 item {
-                    ListItem(title = stringResource(R.string.btn_progress), onClick = onProgressClicked)
+                    ListItem(title = stringResource(R.string.btn_switch), onClick = onSwitchClicked)
                 }
                 // Final content padding here so we get the scroll-out-of-the-screen affect
                 item {
@@ -110,10 +114,11 @@ private fun PreviewComponentListDestination() {
         ComponentListDestination(
             onButtonsClicked = {},
             onColorsClicked = {},
+            onProgressClicked = {},
             onTextFieldClicked = {},
             onTypographyClicked = {},
-            onProgressClicked = {},
             onTopAppBarClicked = {},
+            onSwitchClicked = {},
             onToggleLightDarkModeClicked = {},
         )
     }

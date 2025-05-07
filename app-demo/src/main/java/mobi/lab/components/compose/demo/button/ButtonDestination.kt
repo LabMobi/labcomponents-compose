@@ -87,9 +87,9 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                     val enabled = rememberSaveable { mutableStateOf(true) }
                     LabelSwitch(
                         modifier = Modifier.fillMaxSize(),
-                        label = "Enabled state",
                         checked = enabled.value,
                         onCheckedChange = { enabled.value = !enabled.value },
+                        label = "Enabled state",
                     )
                     FilledButtons(enabled)
                     TonedButtons(enabled)

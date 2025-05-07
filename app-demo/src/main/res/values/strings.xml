@@ -57,7 +57,7 @@
     <string name="title_top_app_bar">TopAppBar</string>
     <string name="text_title">Title</string>
     <string name="text_topappbar_title_only">Title only</string>
-    <string name="btn_topappbar">TopAppBar</string>
+    <string name="btn_topappbar">TopAppBars</string>
     <string name="text_topappbar_with_leading_icon">Leading icon</string>
     <string name="text_topappbar_small_with_title">(Small) LabTopAppBar with title</string>
     <string name="text_topappbar_large_with_title">LabLargeTopAppBar with title</string>
@@ -76,4 +76,6 @@
     <string name="text_navigation_icon">Navigation icon</string>
     <string name="text_topappbar_leading_and_trailing_icons">Leading and trailing icons</string>
     <string name="text_topappbar_leading_icon_and_trailing_text">Leading icon and trailing text</string>
+    <string name="btn_switch">Switch</string>
+    <string name="title_switch">Switch</string>
 </resources>

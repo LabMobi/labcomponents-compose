@@ -23,4 +23,7 @@ object NavDestination {
 
     @Serializable
     object TopAppBar
+
+    @Serializable
+    object Switch
 }

@@ -89,12 +89,11 @@ private fun Content(sections: List<ColorSection>, modifier: Modifier = Modifier,
             .padding(horizontal = 16.dp)
     ) {
         item {
-            Text("Colors", style = LabTheme.typography.headlineLarge)
             LabelSwitch(
                 modifier = Modifier.fillMaxSize(),
-                label = "Enabled state",
                 checked = enabled.value,
                 onCheckedChange = { enabled.value = !enabled.value },
+                label = "Enabled state",
             )
         }
         item {

@@ -99,15 +99,15 @@ fun TextFieldDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked:
                         horizontalArrangement = Arrangement.Center
                     ) {
                         LabelSwitch(
-                            label = stringResource(R.string.label_enabled_state),
                             checked = enabled.value,
                             onCheckedChange = { enabled.value = !enabled.value },
+                            label = stringResource(R.string.label_enabled_state),
                         )
                         Spacer(modifier = Modifier.size(16.dp))
                         LabelSwitch(
-                            label = stringResource(R.string.label_show_error),
                             checked = showError.value,
                             onCheckedChange = { showError.value = !showError.value },
+                            label = stringResource(R.string.label_show_error),
                         )
                     }
                     Row(
@@ -115,9 +115,9 @@ fun TextFieldDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked:
                         horizontalArrangement = Arrangement.Center
                     ) {
                         LabelSwitch(
-                            label = stringResource(R.string.label_single_line),
                             checked = singleLine.value,
                             onCheckedChange = { singleLine.value = !singleLine.value },
+                            label = stringResource(R.string.label_single_line),
                         )
                     }
                     LabelText(enabled, errorText, singleLine)

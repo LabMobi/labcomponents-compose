@@ -3,22 +3,46 @@
 package mobi.lab.components.compose.widget.switch
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.height
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import mobi.lab.components.compose.R
 import mobi.lab.components.compose.util.PreviewContainer
+import mobi.lab.components.compose.widget.image.IconFromSource
+import mobi.lab.components.compose.widget.image.ImageSource
 
 @Composable
 public fun LabSwitch(
     checked: Boolean,
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
-    thumbContent: (@Composable () -> Unit)? = null,
+    thumbCheckedImage: ImageSource? = ImageSource.fromRes(R.drawable.ic_switch_checked),
+    thumbUncheckedImage: ImageSource? = ImageSource.fromRes(R.drawable.ic_switch_unchecked),
+    enabled: Boolean = true,
+    colors: SwitchColors = LabSwitchDefaults.colors(),
+    interactionSource: MutableInteractionSource? = null,
+) {
+    LabSwitch(
+        checked = checked,
+        onCheckedChange = onCheckedChange,
+        modifier = modifier,
+        thumbContent = createThumbContent(checked, enabled, thumbCheckedImage, thumbUncheckedImage, colors),
+        enabled = enabled,
+        colors = colors,
+        interactionSource = interactionSource
+    )
+}
+
+@Composable
+public fun LabSwitch(
+    checked: Boolean,
+    onCheckedChange: ((Boolean) -> Unit)?,
+    modifier: Modifier = Modifier,
+    thumbContent: (@Composable () -> Unit)?,
     enabled: Boolean = true,
     colors: SwitchColors = LabSwitchDefaults.colors(),
     interactionSource: MutableInteractionSource? = null,
@@ -34,10 +58,49 @@ public fun LabSwitch(
     )
 }
 
+public fun createThumbContent(
+    checked: Boolean,
+    enabled: Boolean,
+    thumbCheckedImage: ImageSource?,
+    thumbUncheckedImage: ImageSource?,
+    colors: SwitchColors
+): @Composable (() -> Unit)? {
+    return if (checked && thumbCheckedImage != null) {
+        // TODO: Refactor into sub-methods
+        val iconColor = if (enabled) {
+            colors.checkedIconColor
+        } else {
+            colors.disabledCheckedIconColor
+        }
+        createThumbImage(thumbCheckedImage, iconColor)
+    } else if (!checked && thumbUncheckedImage != null) {
+        val iconColor = if (enabled) {
+            colors.uncheckedIconColor
+        } else {
+            colors.disabledUncheckedIconColor
+        }
+        createThumbImage(thumbUncheckedImage, iconColor)
+    } else {
+        // No icon
+        null
+    }
+}
+
+public fun createThumbImage(image: ImageSource, color: Color): @Composable () -> Unit {
+    return {
+        IconFromSource(
+            // TODO modifier = Modifier.size(iconSize),
+            source = image,
+            color = color,
+            contentDescription = ""
+        )
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun CheckedEnabledPreview() {
-    PreviewContainer(Modifier.height(200.dp)) {
+    PreviewContainer {
         LabSwitch(checked = true, enabled = true, onCheckedChange = {})
     }
 }
@@ -45,7 +108,7 @@ private fun CheckedEnabledPreview() {
 @Preview(showBackground = true)
 @Composable
 private fun UncheckedEnabledPreview() {
-    PreviewContainer(Modifier.height(200.dp)) {
+    PreviewContainer {
         LabSwitch(checked = false, enabled = true, onCheckedChange = {})
     }
 }
@@ -53,7 +116,7 @@ private fun UncheckedEnabledPreview() {
 @Preview(showBackground = true)
 @Composable
 private fun CheckedDisabledPreview() {
-    PreviewContainer(Modifier.height(200.dp)) {
+    PreviewContainer {
         LabSwitch(checked = true, enabled = false, onCheckedChange = {})
     }
 }
@@ -61,7 +124,7 @@ private fun CheckedDisabledPreview() {
 @Preview(showBackground = true)
 @Composable
 private fun UncheckedDisabledPreview() {
-    PreviewContainer(Modifier.height(200.dp)) {
+    PreviewContainer {
         LabSwitch(checked = false, enabled = false, onCheckedChange = {})
     }
 }
