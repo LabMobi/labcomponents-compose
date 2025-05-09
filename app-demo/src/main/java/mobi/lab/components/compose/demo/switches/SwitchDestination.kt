@@ -20,13 +20,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.demo.R
 import mobi.lab.components.compose.demo.common.LabelSwitch
 import mobi.lab.components.compose.demo.common.LightDarkModeMenu
+import mobi.lab.components.compose.demo.progress.SectionTitle
 import mobi.lab.components.compose.theme.LabTheme
+import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.limitMaxContentWidth
 import mobi.lab.components.compose.widget.image.ImageSource
 import mobi.lab.components.compose.widget.scaffold.LabScaffold
@@ -76,15 +80,41 @@ fun SwitchDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                         label = stringResource(R.string.label_enabled_state),
                     )
                     Spacer(Modifier.size(16.dp))
+                    SectionTitle(stringResource(R.string.text_switch_normal))
                     val checked1 = rememberSaveable { mutableStateOf(true) }
                     LabSwitch(
                         checked = checked1.value,
                         enabled = enabled.value,
                         onCheckedChange = { checked1.value = !checked1.value }
                     )
+                    Spacer(Modifier.size(16.dp))
+                    SectionTitle(stringResource(R.string.text_switch_custom_size))
+                    // Making switches larger is not supported yet.
+                    // But you can use scaling hack to make them larger.
+                    // Just remember to add padding as well is still measured by the default size.
+                    val checked2 = rememberSaveable { mutableStateOf(true) }
+                    LabSwitch(
+                        modifier = Modifier
+                            .scale(2f)
+                            .padding(all = 24.dp),
+                        checked = checked2.value,
+                        enabled = enabled.value,
+                        onCheckedChange = { checked2.value = !checked2.value }
+                    )
                     Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
                 }
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightSwitchDestination() {
+    PreviewContainer {
+        SwitchDestination(
+            onNavigateUp = {},
+            onToggleLightDarkModeClicked = { }
+        )
     }
 }

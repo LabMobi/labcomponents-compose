@@ -94,7 +94,7 @@ fun SectionTitle(text: String) {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewLightButtonDestination() {
+private fun PreviewLightProgressDestination() {
     PreviewContainer {
         ProgressDestination(
             onNavigateUp = {},

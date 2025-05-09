@@ -78,4 +78,6 @@
     <string name="text_topappbar_leading_icon_and_trailing_text">Leading icon and trailing text</string>
     <string name="btn_switch">Switch</string>
     <string name="title_switch">Switch</string>
+    <string name="text_switch_normal">Switch</string>
+    <string name="text_switch_custom_size">Switch - custom size</string>
 </resources>
