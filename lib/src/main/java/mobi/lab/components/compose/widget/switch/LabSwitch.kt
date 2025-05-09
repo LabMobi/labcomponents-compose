@@ -23,9 +23,9 @@ import mobi.lab.components.compose.widget.image.ImageSource
  */
 @Composable
 public fun LabSwitch(
+    modifier: Modifier = Modifier,
     checked: Boolean,
     onCheckedChange: ((Boolean) -> Unit)?,
-    modifier: Modifier = Modifier,
     thumbCheckedIcon: ImageSource? = ImageSource.fromRes(R.drawable.ic_switch_checked),
     thumbCheckedIconSize: Dp = LabSwitchDefaults.thumbCheckedIconSize,
     thumbUncheckedIcon: ImageSource? = ImageSource.fromRes(R.drawable.ic_switch_unchecked),
@@ -35,9 +35,9 @@ public fun LabSwitch(
     interactionSource: MutableInteractionSource? = null,
 ) {
     LabSwitch(
+        modifier = modifier,
         checked = checked,
         onCheckedChange = onCheckedChange,
-        modifier = modifier,
         thumbContent = createThumbContent(
             checked = checked,
             enabled = enabled,
@@ -59,9 +59,9 @@ public fun LabSwitch(
  */
 @Composable
 public fun LabSwitch(
+    modifier: Modifier = Modifier,
     checked: Boolean,
     onCheckedChange: ((Boolean) -> Unit)?,
-    modifier: Modifier = Modifier,
     thumbContent: (@Composable () -> Unit)?,
     enabled: Boolean = true,
     colors: SwitchColors = LabSwitchDefaults.colors(),
@@ -141,7 +141,7 @@ public fun createThumbIcon(icon: ImageSource, iconSize: Dp, color: Color): @Comp
 @Composable
 private fun CheckedEnabledPreview() {
     PreviewContainer {
-        LabSwitch(checked = true, enabled = true, onCheckedChange = {})
+        LabSwitch(checked = true, onCheckedChange = {}, enabled = true)
     }
 }
 
@@ -149,7 +149,7 @@ private fun CheckedEnabledPreview() {
 @Composable
 private fun UncheckedEnabledPreview() {
     PreviewContainer {
-        LabSwitch(checked = false, enabled = true, onCheckedChange = {})
+        LabSwitch(checked = false, onCheckedChange = {}, enabled = true)
     }
 }
 
@@ -157,7 +157,7 @@ private fun UncheckedEnabledPreview() {
 @Composable
 private fun CheckedDisabledPreview() {
     PreviewContainer {
-        LabSwitch(checked = true, enabled = false, onCheckedChange = {})
+        LabSwitch(checked = true, onCheckedChange = {}, enabled = false)
     }
 }
 
@@ -165,6 +165,6 @@ private fun CheckedDisabledPreview() {
 @Composable
 private fun UncheckedDisabledPreview() {
     PreviewContainer {
-        LabSwitch(checked = false, enabled = false, onCheckedChange = {})
+        LabSwitch(checked = false, onCheckedChange = {}, enabled = false)
     }
 }

@@ -84,8 +84,8 @@ fun SwitchDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                     val checked1 = rememberSaveable { mutableStateOf(true) }
                     LabSwitch(
                         checked = checked1.value,
-                        enabled = enabled.value,
-                        onCheckedChange = { checked1.value = !checked1.value }
+                        onCheckedChange = { checked1.value = !checked1.value },
+                        enabled = enabled.value
                     )
                     Spacer(Modifier.size(16.dp))
                     SectionTitle(stringResource(R.string.text_switch_custom_size))
@@ -98,8 +98,8 @@ fun SwitchDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                             .scale(2f)
                             .padding(all = 24.dp),
                         checked = checked2.value,
-                        enabled = enabled.value,
-                        onCheckedChange = { checked2.value = !checked2.value }
+                        onCheckedChange = { checked2.value = !checked2.value },
+                        enabled = enabled.value
                     )
                     Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
                 }
