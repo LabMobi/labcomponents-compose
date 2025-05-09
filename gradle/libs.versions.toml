@@ -39,7 +39,6 @@ compose-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-activity = { module = "androidx.activity:activity-compose" }
 compose-viewbinding = { module = "androidx.compose.ui:ui-viewbinding" }
-compose-accompanist-swiperefresh = "com.google.accompanist:accompanist-swiperefresh:0.36.0"
 
 # Utilities
 timber = "com.jakewharton.timber:timber:5.0.1"

@@ -3,6 +3,7 @@
 package mobi.lab.components.compose.widget.switch
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchColors
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import mobi.lab.components.compose.R
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.widget.image.IconFromSource
@@ -24,8 +26,10 @@ public fun LabSwitch(
     checked: Boolean,
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
-    thumbCheckedImage: ImageSource? = ImageSource.fromRes(R.drawable.ic_switch_checked),
-    thumbUncheckedImage: ImageSource? = ImageSource.fromRes(R.drawable.ic_switch_unchecked),
+    thumbCheckedIcon: ImageSource? = ImageSource.fromRes(R.drawable.ic_switch_checked),
+    thumbCheckedIconSize: Dp = LabSwitchDefaults.thumbCheckedIconSize,
+    thumbUncheckedIcon: ImageSource? = ImageSource.fromRes(R.drawable.ic_switch_unchecked),
+    thumbUncheckedIconSize: Dp = LabSwitchDefaults.thumbUncheckedIconSize,
     enabled: Boolean = true,
     colors: SwitchColors = LabSwitchDefaults.colors(),
     interactionSource: MutableInteractionSource? = null,
@@ -34,7 +38,15 @@ public fun LabSwitch(
         checked = checked,
         onCheckedChange = onCheckedChange,
         modifier = modifier,
-        thumbContent = createThumbContent(checked, enabled, thumbCheckedImage, thumbUncheckedImage, colors),
+        thumbContent = createThumbContent(
+            checked = checked,
+            enabled = enabled,
+            thumbCheckedIcon = thumbCheckedIcon,
+            thumbUncheckedIcon = thumbUncheckedIcon,
+            colors = colors,
+            thumbCheckedIconSize = thumbCheckedIconSize,
+            thumbUncheckedIconSize = thumbUncheckedIconSize,
+        ),
         enabled = enabled,
         colors = colors,
         interactionSource = interactionSource
@@ -69,36 +81,56 @@ public fun LabSwitch(
 public fun createThumbContent(
     checked: Boolean,
     enabled: Boolean,
-    thumbCheckedImage: ImageSource?,
-    thumbUncheckedImage: ImageSource?,
-    colors: SwitchColors
+    thumbCheckedIcon: ImageSource?,
+    thumbCheckedIconSize: Dp = LabSwitchDefaults.thumbCheckedIconSize,
+    thumbUncheckedIcon: ImageSource?,
+    thumbUncheckedIconSize: Dp = LabSwitchDefaults.thumbUncheckedIconSize,
+    colors: SwitchColors,
 ): @Composable (() -> Unit)? {
-    return if (checked && thumbCheckedImage != null) {
-        // TODO: Refactor into sub-methods
-        val iconColor = if (enabled) {
-            colors.checkedIconColor
-        } else {
-            colors.disabledCheckedIconColor
-        }
-        createThumbImage(thumbCheckedImage, iconColor)
-    } else if (!checked && thumbUncheckedImage != null) {
-        val iconColor = if (enabled) {
-            colors.uncheckedIconColor
-        } else {
-            colors.disabledUncheckedIconColor
-        }
-        createThumbImage(thumbUncheckedImage, iconColor)
+    // Do we have an image for this state?
+    var thumbIcon: ImageSource? = null
+    var thumbIconSize: Dp = thumbCheckedIconSize
+    if (checked && thumbCheckedIcon != null) {
+        thumbIcon = thumbCheckedIcon
+        thumbIconSize = thumbCheckedIconSize
+    } else if (!checked && thumbUncheckedIcon != null) {
+        thumbIcon = thumbUncheckedIcon
+        thumbIconSize = thumbUncheckedIconSize
+    }
+
+    return if (thumbIcon != null) {
+        // Set the image with proper state colors
+        createThumbIcon(
+            icon = thumbIcon,
+            iconSize = thumbIconSize,
+            color = getIconColorForState(checked, enabled, colors),
+        )
     } else {
-        // No icon
+        // No image, return null
         null
     }
 }
 
-public fun createThumbImage(image: ImageSource, color: Color): @Composable () -> Unit {
+@Suppress("KotlinConstantConditions")
+private fun getIconColorForState(
+    checked: Boolean,
+    enabled: Boolean,
+    colors: SwitchColors
+) = if (checked && enabled) {
+    colors.checkedIconColor
+} else if (checked && !enabled) {
+    colors.disabledCheckedIconColor
+} else if (!checked && enabled) {
+    colors.uncheckedIconColor
+} else {
+    colors.disabledUncheckedIconColor
+}
+
+public fun createThumbIcon(icon: ImageSource, iconSize: Dp, color: Color): @Composable () -> Unit {
     return {
         IconFromSource(
-            // TODO modifier = Modifier.size(iconSize),
-            source = image,
+            modifier = Modifier.size(iconSize),
+            source = icon,
             color = color,
             contentDescription = ""
         )

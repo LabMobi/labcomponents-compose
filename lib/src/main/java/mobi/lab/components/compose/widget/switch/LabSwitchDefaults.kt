@@ -6,29 +6,26 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SwitchColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.theme.LabTheme
 
 public object LabSwitchDefaults {
     @Composable
     public fun colors(): SwitchColors {
         return SwitchColors(
-            // TODO MW-111: Focused color? Pressed color?
             checkedThumbColor = LabTheme.colors.surface,
             checkedTrackColor = LabTheme.colors.secondary,
             checkedBorderColor = LabTheme.colors.secondary,
             checkedIconColor = LabTheme.colors.onBackground,
-            // TODO: MW-111: InverseSurface color?
             uncheckedThumbColor = LabTheme.colors.onBackground,
-            // TODO MW-111: Discuss with Elmo / Liisi
             uncheckedTrackColor = Color.Transparent,
             uncheckedBorderColor = LabTheme.colors.outlineVariant,
             uncheckedIconColor = LabTheme.colors.surface,
             disabledCheckedThumbColor = LabTheme.colors.surface,
             disabledCheckedTrackColor = LabTheme.colors.secondaryDisabled,
-            // TODO MW-111: Discuss with Elmo / Liisi
             // If this is not transparent then border and thumb colors are merged and border is darker
             disabledCheckedBorderColor = Color.Transparent,
-            // TODO MW-111: inverseOnSurface?
             disabledCheckedIconColor = LabTheme.colors.onSurfaceDisabled,
             disabledUncheckedThumbColor = LabTheme.colors.onSurfaceDisabled,
             disabledUncheckedTrackColor = LabTheme.colors.surfaceDisabled,
@@ -36,4 +33,7 @@ public object LabSwitchDefaults {
             disabledUncheckedIconColor = LabTheme.colors.surfaceDisabled,
         )
     }
+
+    public val thumbCheckedIconSize: Dp = 24.dp
+    public val thumbUncheckedIconSize: Dp = 24.dp
 }
