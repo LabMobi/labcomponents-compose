@@ -22,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.demo.R
 import mobi.lab.components.compose.demo.common.LabelSwitch
@@ -88,8 +87,4 @@ fun SwitchDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
             }
         }
     }
-}
-
-@Composable
-private fun Content(modifier: Modifier = Modifier, lastPadding: Dp) {
 }

@@ -15,6 +15,10 @@ import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.widget.image.IconFromSource
 import mobi.lab.components.compose.widget.image.ImageSource
 
+/**
+ * WARNING: LabSwitch is not yet fully specified in the design system and this experimental in nature.
+ * It will change in the future.
+ */
 @Composable
 public fun LabSwitch(
     checked: Boolean,
@@ -37,6 +41,10 @@ public fun LabSwitch(
     )
 }
 
+/**
+ * WARNING: LabSwitch is not yet fully specified in the design system and this experimental in nature.
+ * It will change in the future.
+ */
 @Composable
 public fun LabSwitch(
     checked: Boolean,

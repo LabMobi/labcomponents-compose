@@ -2,11 +2,18 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project does not use semantic versioning.
 
-## 0.0.5 - [UNRELEASED]
+## 0.0.6 - [UNRELEASED]
 
 ### Changed
 
 - ..
+
+## 0.0.5 - 2025.05.09
+
+### Changed
+
+- Added an experimental `LabSwitch` support. `LabSwitch` is not yet fully specified in the design system and will likely change in the future.
+- Updated compose BOM to `compose-bom:2025.05.00`
 
 ## 0.0.4 - 2025.05.05
 
