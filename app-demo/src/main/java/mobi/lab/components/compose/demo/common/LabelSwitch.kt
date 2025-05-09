@@ -18,12 +18,12 @@ import mobi.lab.components.compose.widget.switch.LabSwitch
 
 @Composable
 fun LabelSwitch(
+    modifier: Modifier = Modifier,
     checked: Boolean,
     onCheckedChange: ((Boolean) -> Unit)?,
     label: String,
     labelStyle: TextStyle = LabTheme.typography.bodyMedium,
-    labelPadding: Dp = 12.dp,
-    modifier: Modifier = Modifier
+    labelPadding: Dp = 12.dp
 ) {
     Row(
         modifier = modifier,

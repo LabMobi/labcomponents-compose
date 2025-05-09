@@ -7,7 +7,7 @@ Mobi Lab Components for Compose (`LabComponentsCompose`) help developers execute
 Maven Central artifact available from https://central.sonatype.com/search?q=mobi.lab.labcomponents:labcomponents-compose
 
 ```groovy
-implementation 'mobi.lab.labcomponents:labcomponents-compose:0.0.4'
+implementation 'mobi.lab.labcomponents:labcomponents-compose:0.0.5'
 ```
 
 The components provide implementations for [Mobi Lab's design system](https://www.figma.com/file/gxt4iyWGyliILJSOCLXonl/P42-design-system-template?type=design&node-id=1652-14713&mode=design&t=j4TbnOpahS3korsT-0). These components are based on [Material Components for Android](https://github.com/material-components/material-components-android).
@@ -16,10 +16,11 @@ The components provide implementations for [Mobi Lab's design system](https://ww
 
 | Lab Components for Compose version | Compose BOM version used | CompileSdk used     |
 | ---------------------------------- | :----------------------- | ------------------- |
-| 0.0.4                              | 2025.04.01               | API 35 / Android 15 |
-| 0.0.3                              | 2025.04.01               | API 35 / Android 15 |
-| 0.0.2                              | 2025.04.01               | API 35 / Android 15 |
-| 0.0.1                              | 2025.04.01               | API 35 / Android 15 |
+| 0.0.5                              | 2025.05.00               | API 36 / Android 16 |
+| 0.0.4                              | 2025.04.01               | API 36 / Android 16 |
+| 0.0.3                              | 2025.04.01               | API 36 / Android 16 |
+| 0.0.2                              | 2025.04.01               | API 36 / Android 16 |
+| 0.0.1                              | 2025.04.01               | API 36 / Android 16 |
 
 ## Description
 
@@ -343,6 +344,26 @@ See
 
 - usage examples at https://github.com/LabMobi/labcomponents-compose/blob/main/app-demo/src/main/java/mobi/lab/components/compose/demo/progress/ProgressDestination.kt
 - design at https://www.figma.com/design/gxt4iyWGyliILJSOCLXonl/P42-DDD-design-system-template?node-id=3680-8065&m=dev
+
+## Switch
+
+Warning: `LabSwitch` is not yet fully specified in the design system and will likely change in the future.
+
+![LabSwitch checked](docs/assets/switch-checked.svg)
+
+![LabSwitch unchecked](docs/assets/switch-unchecked.svg)
+
+```kotlin
+val checked = rememberSaveable { mutableStateOf(true) }
+LabSwitch(
+    checked = checked.value,
+    onCheckedChange = { checked.value = !checked.value }
+)
+```
+
+See 
+
+- usage examples at https://github.com/LabMobi/labcomponents-compose/tree/main/app-demo/src/main/java/mobi/lab/components/compose/demo/switches/SwitchDestination.kt
 
 ## Links
 

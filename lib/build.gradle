@@ -88,8 +88,6 @@ dependencies {
     implementation libs.compose.tooling.preview
     implementation libs.compose.activity
     implementation libs.compose.viewbinding
-    // TODO do we need this for swipe refresh or not?
-    implementation libs.compose.accompanist.swiperefresh
 }
 
 
