@@ -351,7 +351,7 @@ Warning: `LabSwitch` is not yet fully specified in the design system and will li
 
 ![LabSwitch checked](docs/assets/switch-checked.svg)
 
-![LabSwitch checked](docs/assets/switch-unchecked.svg)
+![LabSwitch unchecked](docs/assets/switch-unchecked.svg)
 
 ```kotlin
 val checked = rememberSaveable { mutableStateOf(true) }
