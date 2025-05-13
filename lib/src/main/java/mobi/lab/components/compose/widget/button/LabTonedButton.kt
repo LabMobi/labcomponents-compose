@@ -12,9 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
 import mobi.lab.components.compose.widget.button.LabButtonDefaults.DefaultButtonProgressIndicator
@@ -23,6 +27,8 @@ import mobi.lab.components.compose.widget.image.ImageSource
 @Composable
 public fun LabTonedButton(
     modifier: Modifier = Modifier,
+    minWidth: Dp = LabButtonDefaults.minWidth,
+    minHeight: Dp = LabButtonDefaults.minHeight,
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
@@ -31,6 +37,7 @@ public fun LabTonedButton(
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
+    textStyle: TextStyle = LabButtonDefaults.textStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.tonedButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
@@ -48,12 +55,15 @@ public fun LabTonedButton(
         text = text,
         onClick = onClick,
         modifier = modifier,
+        minWidth = minWidth,
+        minHeight = minHeight,
         iconStart = iconStart,
         iconEnd = iconEnd,
         iconSize = iconSize,
         iconSpacing = iconSpacing,
         showProgress = showProgress,
         enabled = enabled,
+        textStyle = textStyle,
         shape = shape,
         colors = colors,
         elevation = elevation,
@@ -67,6 +77,8 @@ public fun LabTonedButton(
 @Composable
 public fun LabTonedSmallButton(
     modifier: Modifier = Modifier,
+    minWidth: Dp = LabButtonDefaults.smallMinWidth,
+    minHeight: Dp = LabButtonDefaults.smallMinHeight,
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
@@ -75,6 +87,7 @@ public fun LabTonedSmallButton(
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
+    textStyle: TextStyle = LabButtonDefaults.smallTextStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.tonedButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
@@ -92,12 +105,15 @@ public fun LabTonedSmallButton(
         text = text,
         onClick = onClick,
         modifier = modifier,
+        minWidth = minWidth,
+        minHeight = minHeight,
         iconStart = iconStart,
         iconEnd = iconEnd,
         iconSize = iconSize,
         iconSpacing = iconSpacing,
         showProgress = showProgress,
         enabled = enabled,
+        textStyle = textStyle,
         shape = shape,
         colors = colors,
         elevation = elevation,
@@ -186,6 +202,31 @@ private fun PreviewLightDisabled() {
 
 @Preview(showBackground = true)
 @Composable
+private fun PreviewLightDifferentFont() {
+    PreviewContainer {
+        LabTonedButton(
+            text = "M Font different",
+            onClick = {},
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightDifferentSize() {
+    PreviewContainer {
+        LabTonedButton(
+            text = "M Size different",
+            onClick = {},
+            minWidth = 60.dp,
+            minHeight = 60.dp,
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 private fun PreviewLightEnabledLoading() {
     PreviewContainer {
         LabTonedButton(
@@ -250,12 +291,38 @@ private fun PreviewLightSmallEndIconEnabled() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewSmallLightDisabledLoading() {
+private fun PreviewSmallLightDisabled() {
     PreviewContainer {
         LabTonedSmallButton(
             text = "S Disabled",
             onClick = {},
             enabled = false,
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDifferentFont() {
+    PreviewContainer {
+        LabTonedSmallButton(
+            text = "S Font different",
+            onClick = {},
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDifferentSize() {
+    PreviewContainer {
+        LabTonedSmallButton(
+            text = "S Size different",
+            onClick = {},
+            minWidth = 28.dp,
+            minHeight = 28.dp,
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
         )
     }
 }

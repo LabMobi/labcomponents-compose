@@ -2,11 +2,18 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project does not use semantic versioning.
 
-## 0.0.6 - [UNRELEASED]
+## 0.0.7 - [UNRELEASED]
 
 ### Changed
 
 - ..
+
+## 0.0.6 -2025.05.13
+
+### Changed
+
+- Added an override that supports setting a different text style for all button types
+- Added an override that supports setting different minimum size for all button types
 
 ## 0.0.5 - 2025.05.09
 

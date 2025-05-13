@@ -24,6 +24,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -96,7 +97,9 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                     OutlinedButtons(enabled)
                     TextButtons(enabled)
                     IconButtons(enabled)
-                    CustomButtons(enabled)
+                    CustomProgressButtons(enabled)
+                    CustomTextStyleButtons(enabled)
+                    CustomMinSizeButtons(enabled)
                     Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
                 }
             }
@@ -310,27 +313,27 @@ private fun TextButtons(enabled: MutableState<Boolean>) {
     LabTextButton(
         text = stringResource(R.string.label_text),
         onClick = {},
-        enabled = enabled.value,
         iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        enabled = enabled.value,
     )
     LabTextButton(
         text = stringResource(R.string.label_text),
         onClick = {},
-        enabled = enabled.value,
         iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        enabled = enabled.value,
     )
     LabTextButton(
         text = stringResource(R.string.label_text),
         onClick = {},
-        enabled = enabled.value,
         iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
         iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        enabled = enabled.value,
     )
     LabTextButton(
         text = "",
         onClick = {},
-        enabled = enabled.value,
         showProgress = true,
+        enabled = enabled.value,
     )
     SectionTitle(stringResource(R.string.text_text_button_small))
     LabTextSmallButton(
@@ -341,27 +344,27 @@ private fun TextButtons(enabled: MutableState<Boolean>) {
     LabTextSmallButton(
         text = stringResource(R.string.label_text_small),
         onClick = {},
-        enabled = enabled.value,
         iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        enabled = enabled.value,
     )
     LabTextSmallButton(
         text = stringResource(R.string.label_text_small),
         onClick = {},
-        enabled = enabled.value,
         iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        enabled = enabled.value,
     )
     LabTextSmallButton(
         text = stringResource(R.string.label_text_small),
         onClick = {},
-        enabled = enabled.value,
         iconStart = ImageSource.fromRes(R.drawable.ic_placeholder16),
         iconEnd = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        enabled = enabled.value,
     )
     LabTextSmallButton(
         text = "",
         onClick = {},
-        enabled = enabled.value,
         showProgress = true,
+        enabled = enabled.value,
     )
 }
 
@@ -398,7 +401,7 @@ private fun IconButtons(enabled: MutableState<Boolean>) {
 }
 
 @Composable
-private fun CustomButtons(enabled: MutableState<Boolean>) {
+private fun CustomProgressButtons(enabled: MutableState<Boolean>) {
     SectionTitle(stringResource(R.string.text_customization_custom_progress))
     LabFilledButton(
         text = stringResource(R.string.label_filled),
@@ -487,8 +490,8 @@ private fun CustomButtons(enabled: MutableState<Boolean>) {
     LabTextButton(
         text = "",
         onClick = {},
-        enabled = enabled.value,
         showProgress = true,
+        enabled = enabled.value,
         indeterminateProgressIndicator = { modifier ->
             CircularProgressIndicator(
                 modifier = modifier,
@@ -501,8 +504,8 @@ private fun CustomButtons(enabled: MutableState<Boolean>) {
     LabTextSmallButton(
         text = "",
         onClick = {},
-        enabled = enabled.value,
         showProgress = true,
+        enabled = enabled.value,
         indeterminateProgressIndicator = { modifier ->
             CircularProgressIndicator(
                 modifier = modifier,
@@ -541,6 +544,142 @@ private fun CustomButtons(enabled: MutableState<Boolean>) {
                 trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
             )
         },
+    )
+}
+
+@Composable
+private fun CustomTextStyleButtons(enabled: MutableState<Boolean>) {
+    SectionTitle(stringResource(R.string.text_customization_custom_text_style))
+    val customTextStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+    LabFilledButton(
+        text = stringResource(R.string.label_filled),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabFilledSmallButton(
+        text = stringResource(R.string.label_filled),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabTonedButton(
+        text = stringResource(R.string.label_toned),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabTonedSmallButton(
+        text = stringResource(R.string.label_toned),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabOutlinedButton(
+        text = stringResource(R.string.label_outlined),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabOutlinedSmallButton(
+        text = stringResource(R.string.label_outlined),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabTextButton(
+        text = stringResource(R.string.label_text),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabTextSmallButton(
+        text = stringResource(R.string.label_text_small),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+}
+
+@Composable
+private fun CustomMinSizeButtons(enabled: MutableState<Boolean>) {
+    SectionTitle(stringResource(R.string.text_customization_custom_min_size))
+    val customTextStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+    LabFilledButton(
+        text = stringResource(R.string.label_filled),
+        onClick = {},
+        enabled = enabled.value,
+        minWidth = 60.dp,
+        minHeight = 60.dp,
+    )
+    LabFilledSmallButton(
+        text = stringResource(R.string.label_filled),
+        onClick = {},
+        enabled = enabled.value,
+        minWidth = 28.dp,
+        minHeight = 28.dp,
+        textStyle = customTextStyle,
+    )
+    LabTonedButton(
+        text = stringResource(R.string.label_toned),
+        onClick = {},
+        enabled = enabled.value,
+        minWidth = 60.dp,
+        minHeight = 60.dp,
+    )
+    LabTonedSmallButton(
+        text = stringResource(R.string.label_toned),
+        onClick = {},
+        enabled = enabled.value,
+        minWidth = 28.dp,
+        minHeight = 28.dp,
+        textStyle = customTextStyle,
+    )
+    LabOutlinedButton(
+        text = stringResource(R.string.label_outlined),
+        onClick = {},
+        enabled = enabled.value,
+        minWidth = 60.dp,
+        minHeight = 60.dp,
+    )
+    LabOutlinedSmallButton(
+        text = stringResource(R.string.label_outlined),
+        onClick = {},
+        enabled = enabled.value,
+        minWidth = 28.dp,
+        minHeight = 28.dp,
+        textStyle = customTextStyle,
+    )
+    LabTextButton(
+        text = stringResource(R.string.label_text),
+        onClick = {},
+        enabled = enabled.value,
+        minWidth = 60.dp,
+        minHeight = 60.dp,
+    )
+    LabTextSmallButton(
+        text = stringResource(R.string.label_text_small),
+        onClick = {},
+        enabled = enabled.value,
+        minWidth = 28.dp,
+        minHeight = 28.dp,
+        textStyle = customTextStyle,
+    )
+    LabIconButton(
+        icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
+        onClick = {},
+        enabled = enabled.value,
+        minWidth = 60.dp,
+        minHeight = 60.dp,
+    )
+    LabIconSmallButton(
+        icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+        contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
+        onClick = {},
+        enabled = enabled.value,
+        minWidth = 28.dp,
+        minHeight = 28.dp,
     )
 }
 

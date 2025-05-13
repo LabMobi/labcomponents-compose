@@ -10,9 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
 import mobi.lab.components.compose.widget.button.LabButtonDefaults.DefaultButtonProgressIndicator
@@ -20,15 +24,18 @@ import mobi.lab.components.compose.widget.image.ImageSource
 
 @Composable
 public fun LabTextButton(
+    modifier: Modifier = Modifier,
+    minWidth: Dp = LabButtonDefaults.minWidth,
+    minHeight: Dp = LabButtonDefaults.minHeight,
     text: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
     iconStart: ImageSource? = null,
     iconEnd: ImageSource? = null,
     iconSize: Dp = LabButtonDefaults.iconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
+    textStyle: TextStyle = LabButtonDefaults.textStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.textButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
@@ -46,12 +53,15 @@ public fun LabTextButton(
         text = text,
         onClick = onClick,
         modifier = modifier,
+        minWidth = minWidth,
+        minHeight = minHeight,
         iconStart = iconStart,
         iconEnd = iconEnd,
         iconSize = iconSize,
         iconSpacing = iconSpacing,
         showProgress = showProgress,
         enabled = enabled,
+        textStyle = textStyle,
         shape = shape,
         colors = colors,
         elevation = elevation,
@@ -64,15 +74,18 @@ public fun LabTextButton(
 
 @Composable
 public fun LabTextSmallButton(
+    modifier: Modifier = Modifier,
+    minWidth: Dp = LabButtonDefaults.smallMinWidth,
+    minHeight: Dp = LabButtonDefaults.smallMinHeight,
     text: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
     iconStart: ImageSource? = null,
     iconEnd: ImageSource? = null,
     iconSize: Dp = LabButtonDefaults.smallIconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
+    textStyle: TextStyle = LabButtonDefaults.smallTextStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.textButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
@@ -90,12 +103,15 @@ public fun LabTextSmallButton(
         text = text,
         onClick = onClick,
         modifier = modifier,
+        minWidth = minWidth,
+        minHeight = minHeight,
         iconStart = iconStart,
         iconEnd = iconEnd,
         iconSize = iconSize,
         iconSpacing = iconSpacing,
         showProgress = showProgress,
         enabled = enabled,
+        textStyle = textStyle,
         shape = shape,
         colors = colors,
         elevation = elevation,
@@ -196,6 +212,31 @@ private fun PreviewLightDisabled() {
 
 @Preview(showBackground = true)
 @Composable
+private fun PreviewLightDifferentFont() {
+    PreviewContainer {
+        LabTextButton(
+            text = "M Font different",
+            onClick = {},
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightDifferentSize() {
+    PreviewContainer {
+        LabTextButton(
+            text = "M Size different",
+            onClick = {},
+            minWidth = 60.dp,
+            minHeight = 60.dp,
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 private fun PreviewSmallLightDisabled() {
     PreviewContainer {
         LabTextSmallButton(
@@ -208,13 +249,39 @@ private fun PreviewSmallLightDisabled() {
 
 @Preview(showBackground = true)
 @Composable
+private fun PreviewSmallLightDifferentFont() {
+    PreviewContainer {
+        LabTextSmallButton(
+            text = "S Font different",
+            onClick = {},
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDifferentSize() {
+    PreviewContainer {
+        LabTextSmallButton(
+            text = "S Size different",
+            onClick = {},
+            minWidth = 28.dp,
+            minHeight = 28.dp,
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 private fun PreviewLightEnabledLoading() {
     PreviewContainer {
         LabTextButton(
             text = "",
             onClick = {},
-            enabled = true,
-            showProgress = true
+            showProgress = true,
+            enabled = true
         )
     }
 }
@@ -226,8 +293,8 @@ private fun PreviewSmallLightEnabledLoading() {
         LabTextSmallButton(
             text = "",
             onClick = {},
-            enabled = true,
-            showProgress = true
+            showProgress = true,
+            enabled = true
         )
     }
 }
@@ -239,8 +306,8 @@ private fun PreviewLightDisabledLoading() {
         LabTextButton(
             text = "",
             onClick = {},
-            enabled = false,
-            showProgress = true
+            showProgress = true,
+            enabled = false
         )
     }
 }
@@ -252,8 +319,8 @@ private fun PreviewSmallLightDisabledLoading() {
         LabTextSmallButton(
             text = "",
             onClick = {},
-            enabled = false,
-            showProgress = true
+            showProgress = true,
+            enabled = false
         )
     }
 }
@@ -315,8 +382,8 @@ private fun PreviewDarkEnabledLoading() {
         LabTextButton(
             text = "Enabled",
             onClick = {},
-            enabled = true,
-            showProgress = true
+            showProgress = true,
+            enabled = true
         )
     }
 }
@@ -328,8 +395,8 @@ private fun PreviewDarkDisabledLoading() {
         LabTextButton(
             text = "Disabled",
             onClick = {},
-            enabled = false,
-            showProgress = true
+            showProgress = true,
+            enabled = false
         )
     }
 }

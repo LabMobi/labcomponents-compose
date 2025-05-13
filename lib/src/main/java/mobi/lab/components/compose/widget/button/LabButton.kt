@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
@@ -42,6 +43,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.theme.noRippleConfiguration
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
@@ -64,6 +66,7 @@ public fun LabButton(
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
+    textStyle: TextStyle = LabButtonDefaults.textStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.buttonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
@@ -83,6 +86,7 @@ public fun LabButton(
         minWidth = minWidth,
         minHeight = minHeight,
         enabled = enabled,
+        textStyle = textStyle,
         shape = shape,
         colors = colors,
         elevation = elevation,
@@ -121,6 +125,7 @@ public fun LabSmallButton(
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
+    textStyle: TextStyle = LabButtonDefaults.smallTextStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.buttonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
@@ -140,7 +145,7 @@ public fun LabSmallButton(
         minWidth = minWidth,
         minHeight = minHeight,
         enabled = enabled,
-        textStyle = LabButtonDefaults.smallTextStyle,
+        textStyle = textStyle,
         shape = shape,
         colors = colors,
         elevation = elevation,
@@ -386,12 +391,63 @@ private fun PreviewLightDisabled() {
 
 @Preview(showBackground = true)
 @Composable
+private fun PreviewLightDifferentFont() {
+    PreviewContainer {
+        LabButton(
+            text = "M Font different",
+            onClick = {},
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLightDifferentSize() {
+    PreviewContainer {
+        LabButton(
+            text = "M Size different",
+            onClick = {},
+            minWidth = 60.dp,
+            minHeight = 60.dp,
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 private fun PreviewSmallLightDisabled() {
     PreviewContainer {
         LabSmallButton(
             text = "M Disabled",
             onClick = {},
             enabled = false
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDifferentFont() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Font different",
+            onClick = {},
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDifferentSize() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Size different",
+            onClick = {},
+            minWidth = 28.dp,
+            minHeight = 28.dp,
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
         )
     }
 }
