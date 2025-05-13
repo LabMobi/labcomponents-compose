@@ -12,9 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
 import mobi.lab.components.compose.widget.button.LabButtonDefaults.DefaultButtonProgressIndicator
@@ -31,6 +34,7 @@ public fun LabFilledButton(
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
+    textStyle: TextStyle = LabButtonDefaults.textStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.filledButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
@@ -54,6 +58,7 @@ public fun LabFilledButton(
         iconSpacing = iconSpacing,
         showProgress = showProgress,
         enabled = enabled,
+        textStyle = textStyle,
         shape = shape,
         colors = colors,
         elevation = elevation,
@@ -75,6 +80,7 @@ public fun LabFilledSmallButton(
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
+    textStyle: TextStyle = LabButtonDefaults.textStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.filledButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
@@ -98,6 +104,7 @@ public fun LabFilledSmallButton(
         iconSpacing = iconSpacing,
         showProgress = showProgress,
         enabled = enabled,
+        textStyle = textStyle,
         shape = shape,
         colors = colors,
         elevation = elevation,
@@ -186,6 +193,18 @@ private fun PreviewLightDisabled() {
 
 @Preview(showBackground = true)
 @Composable
+private fun PreviewLightDifferentFont() {
+    PreviewContainer {
+        LabFilledButton(
+            text = "M Font different",
+            onClick = {},
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 private fun PreviewLightEnabledLoading() {
     PreviewContainer {
         LabFilledButton(
@@ -250,12 +269,24 @@ private fun PreviewLightSmallEndIconEnabled() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewSmallLightDisabledLoading() {
+private fun PreviewSmallLightDisabled() {
     PreviewContainer {
         LabFilledSmallButton(
             text = "S Disabled",
             onClick = {},
             enabled = false,
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDifferentFont() {
+    PreviewContainer {
+        LabFilledSmallButton(
+            text = "S Font different",
+            onClick = {},
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
         )
     }
 }

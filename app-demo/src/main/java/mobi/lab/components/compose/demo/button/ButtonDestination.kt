@@ -24,6 +24,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -96,7 +97,8 @@ fun ButtonDestination(onNavigateUp: () -> Unit, onToggleLightDarkModeClicked: ()
                     OutlinedButtons(enabled)
                     TextButtons(enabled)
                     IconButtons(enabled)
-                    CustomButtons(enabled)
+                    CustomProgressButtons(enabled)
+                    CustomTextStyleButtons(enabled)
                     Spacer(Modifier.size(contentPadding.calculateBottomPadding()))
                 }
             }
@@ -398,7 +400,7 @@ private fun IconButtons(enabled: MutableState<Boolean>) {
 }
 
 @Composable
-private fun CustomButtons(enabled: MutableState<Boolean>) {
+private fun CustomProgressButtons(enabled: MutableState<Boolean>) {
     SectionTitle(stringResource(R.string.text_customization_custom_progress))
     LabFilledButton(
         text = stringResource(R.string.label_filled),
@@ -541,6 +543,60 @@ private fun CustomButtons(enabled: MutableState<Boolean>) {
                 trackColor = LocalContentColor.current.withAlpha(LabTheme.constants.disabledAlpha),
             )
         },
+    )
+}
+
+@Composable
+private fun CustomTextStyleButtons(enabled: MutableState<Boolean>) {
+    SectionTitle(stringResource(R.string.text_customization_custom_text_style))
+    val customTextStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+    LabFilledButton(
+        text = stringResource(R.string.label_filled),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabFilledSmallButton(
+        text = stringResource(R.string.label_filled),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabTonedButton(
+        text = stringResource(R.string.label_toned),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabTonedSmallButton(
+        text = stringResource(R.string.label_toned),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabOutlinedButton(
+        text = stringResource(R.string.label_outlined),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabOutlinedSmallButton(
+        text = stringResource(R.string.label_outlined),
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabTextButton(
+        text = "",
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
+    )
+    LabTextSmallButton(
+        text = "",
+        onClick = {},
+        enabled = enabled.value,
+        textStyle = customTextStyle,
     )
 }
 
