@@ -403,6 +403,19 @@ private fun PreviewLightDifferentFont() {
 
 @Preview(showBackground = true)
 @Composable
+private fun PreviewLightDifferentSize() {
+    PreviewContainer {
+        LabButton(
+            text = "M Size different",
+            onClick = {},
+            minWidth = 60.dp,
+            minHeight = 60.dp,
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 private fun PreviewSmallLightDisabled() {
     PreviewContainer {
         LabSmallButton(
@@ -420,6 +433,20 @@ private fun PreviewSmallLightDifferentFont() {
         LabSmallButton(
             text = "S Font different",
             onClick = {},
+            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewSmallLightDifferentSize() {
+    PreviewContainer {
+        LabSmallButton(
+            text = "S Size different",
+            onClick = {},
+            minWidth = 28.dp,
+            minHeight = 28.dp,
             textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
         )
     }

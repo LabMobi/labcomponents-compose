@@ -81,4 +81,5 @@
     <string name="text_switch_normal">Switch</string>
     <string name="text_switch_custom_size">Switch - custom size</string>
     <string name="text_customization_custom_text_style">Customizations - Custom text style</string>
+    <string name="text_customization_custom_min_size">Customizations - Custom min size</string>
 </resources>
