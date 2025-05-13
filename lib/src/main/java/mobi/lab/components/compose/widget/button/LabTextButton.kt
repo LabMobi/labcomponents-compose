@@ -75,8 +75,8 @@ public fun LabTextButton(
 @Composable
 public fun LabTextSmallButton(
     modifier: Modifier = Modifier,
-    minWidth: Dp = LabButtonDefaults.minWidth,
-    minHeight: Dp = LabButtonDefaults.minHeight,
+    minWidth: Dp = LabButtonDefaults.smallMinWidth,
+    minHeight: Dp = LabButtonDefaults.smallMinHeight,
     text: String,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,

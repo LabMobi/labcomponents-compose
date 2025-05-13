@@ -65,8 +65,8 @@ public fun LabIconButton(
 @Composable
 public fun LabIconSmallButton(
     modifier: Modifier = Modifier,
-    minWidth: Dp = LabButtonDefaults.minWidth,
-    minHeight: Dp = LabButtonDefaults.minHeight,
+    minWidth: Dp = LabButtonDefaults.smallMinWidth,
+    minHeight: Dp = LabButtonDefaults.smallMinHeight,
     icon: ImageSource,
     contentDescription: String,
     iconSize: Dp = LabButtonDefaults.smallIconSize,

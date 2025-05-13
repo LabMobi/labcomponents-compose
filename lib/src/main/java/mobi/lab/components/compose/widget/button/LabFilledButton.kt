@@ -77,8 +77,8 @@ public fun LabFilledButton(
 @Composable
 public fun LabFilledSmallButton(
     modifier: Modifier = Modifier,
-    minWidth: Dp = LabButtonDefaults.minWidth,
-    minHeight: Dp = LabButtonDefaults.minHeight,
+    minWidth: Dp = LabButtonDefaults.smallMinWidth,
+    minHeight: Dp = LabButtonDefaults.smallMinHeight,
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
