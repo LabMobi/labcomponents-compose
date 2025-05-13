@@ -87,7 +87,7 @@ public fun LabOutlinedSmallButton(
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
-    textStyle: TextStyle = LabButtonDefaults.textStyle,
+    textStyle: TextStyle = LabButtonDefaults.smallTextStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.outlinedButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,

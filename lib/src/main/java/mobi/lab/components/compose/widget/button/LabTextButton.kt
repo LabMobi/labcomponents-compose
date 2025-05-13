@@ -85,7 +85,7 @@ public fun LabTextSmallButton(
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
     enabled: Boolean = true,
-    textStyle: TextStyle = LabButtonDefaults.textStyle,
+    textStyle: TextStyle = LabButtonDefaults.smallTextStyle,
     shape: Shape = LabButtonDefaults.shape,
     colors: LabButtonColors = LabButtonDefaults.textButtonColors(),
     elevation: Dp = LabButtonDefaults.elevation,
