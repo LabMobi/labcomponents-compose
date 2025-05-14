@@ -185,10 +185,10 @@ public object LabButtonDefaults {
 
     public val shape: Shape @Composable get() = LabTheme.shapes.button
     public val iconButtonShape: Shape @Composable get() = LabTheme.shapes.button
-    public val textStyle: TextStyle @Composable get() = LabTheme.typography.bodyLarge.copy(color = Color.Unspecified)
+    public val textStyle: TextStyle @Composable get() = LabTheme.typography.labelLarge.copy(color = Color.Unspecified)
 
-    // Text style for small buttons
-    public val smallTextStyle: TextStyle @Composable get() = LabTheme.typography.labelLarge.copy(color = Color.Unspecified)
+    // Text style for small buttons used to be different so we have a separate default here atm
+    public val smallTextStyle: TextStyle @Composable get() = textStyle
 
     @Composable
     public fun buttonBorder(): LabButtonBorder {
