@@ -13,7 +13,7 @@ fun AppTheme(
 ) {
     LabTheme(
         typography = LabThemeDefaults.typography(fontFamily = defaultFontFamily()),
-        content = content
+        content = content,
     )
 }
 

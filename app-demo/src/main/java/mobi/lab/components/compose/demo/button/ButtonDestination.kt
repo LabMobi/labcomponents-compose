@@ -605,7 +605,7 @@ private fun CustomTextStyleButtons(enabled: MutableState<Boolean>) {
 private fun CustomMinSizeButtons(enabled: MutableState<Boolean>) {
     SectionTitle(stringResource(R.string.text_customization_custom_min_size))
     val customTextStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
-    LabFilledButton(
+/*    LabFilledButton(
         text = stringResource(R.string.label_filled),
         onClick = {},
         enabled = enabled.value,
@@ -680,7 +680,7 @@ private fun CustomMinSizeButtons(enabled: MutableState<Boolean>) {
         enabled = enabled.value,
         minWidth = 28.dp,
         minHeight = 28.dp,
-    )
+    )*/
 }
 
 @Composable

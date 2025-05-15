@@ -112,7 +112,7 @@ private val LocalLabDimensions = staticCompositionLocalOf<LabDimensions> {
     error("No LabDimensions provided")
 }
 
-private val LocalLabConstants = staticCompositionLocalOf<LabConstants> {
+internal val LocalLabConstants = staticCompositionLocalOf<LabConstants> {
     error("No LabConstants provided")
 }
 

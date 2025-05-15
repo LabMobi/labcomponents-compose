@@ -20,7 +20,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Surface
@@ -42,8 +41,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.theme.LabTheme
+import mobi.lab.components.compose.theme.LabTheme.constants
 import mobi.lab.components.compose.theme.noRippleConfiguration
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
@@ -54,8 +53,6 @@ import mobi.lab.components.compose.widget.image.ImageSource
 @Composable
 public fun LabButton(
     modifier: Modifier = Modifier,
-    minWidth: Dp = LabButtonDefaults.minWidth,
-    minHeight: Dp = LabButtonDefaults.minHeight,
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
@@ -65,6 +62,7 @@ public fun LabButton(
     iconSize: Dp = LabButtonDefaults.iconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
+    progressSize: Dp = LabButtonDefaults.progressSize,
     enabled: Boolean = true,
     textStyle: TextStyle = LabButtonDefaults.textStyle,
     shape: Shape = LabButtonDefaults.shape,
@@ -83,8 +81,8 @@ public fun LabButton(
     LabButton(
         onClick = onClick,
         modifier = modifier,
-        minWidth = minWidth,
-        minHeight = minHeight,
+        minWidth = constants.buttonMediumMinWidth,
+        minHeight = constants.buttonMediumMinHeight,
         enabled = enabled,
         textStyle = textStyle,
         shape = shape,
@@ -95,8 +93,8 @@ public fun LabButton(
         interactionSource = interactionSource,
     ) {
         LabButtonContent(
-            minHeight = minHeight,
             showProgress = showProgress,
+            progressSize = progressSize,
             iconStart = iconStart,
             iconStartContentDescription = iconStartContentDescription,
             iconSize = iconSize,
@@ -104,7 +102,6 @@ public fun LabButton(
             iconSpacing = iconSpacing,
             iconEnd = iconEnd,
             iconEndContentDescription = iconEndContentDescription,
-            contentPadding = contentPadding,
             indeterminateProgressIndicator = indeterminateProgressIndicator,
         )
     }
@@ -113,8 +110,6 @@ public fun LabButton(
 @Composable
 public fun LabSmallButton(
     modifier: Modifier = Modifier,
-    minWidth: Dp = LabButtonDefaults.smallMinWidth,
-    minHeight: Dp = LabButtonDefaults.smallMinHeight,
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
@@ -124,6 +119,7 @@ public fun LabSmallButton(
     iconSize: Dp = LabButtonDefaults.smallIconSize,
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     showProgress: Boolean = false,
+    progressSize: Dp = LabButtonDefaults.smallProgressSize,
     enabled: Boolean = true,
     textStyle: TextStyle = LabButtonDefaults.smallTextStyle,
     shape: Shape = LabButtonDefaults.shape,
@@ -142,8 +138,8 @@ public fun LabSmallButton(
     LabButton(
         onClick = onClick,
         modifier = modifier,
-        minWidth = minWidth,
-        minHeight = minHeight,
+        minWidth = constants.buttonSmallMinWidth,
+        minHeight = constants.buttonSmallMinHeight,
         enabled = enabled,
         textStyle = textStyle,
         shape = shape,
@@ -154,8 +150,8 @@ public fun LabSmallButton(
         interactionSource = interactionSource
     ) {
         LabButtonContent(
-            minHeight = LabButtonDefaults.smallMinHeight,
             showProgress = showProgress,
+            progressSize = progressSize,
             iconStart = iconStart,
             iconStartContentDescription = iconStartContentDescription,
             iconSize = iconSize,
@@ -163,7 +159,6 @@ public fun LabSmallButton(
             iconSpacing = iconSpacing,
             iconEnd = iconEnd,
             iconEndContentDescription = iconEndContentDescription,
-            contentPadding = contentPadding,
             indeterminateProgressIndicator = indeterminateProgressIndicator,
         )
     }
@@ -185,15 +180,11 @@ public fun LabButton(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable RowScope.() -> Unit
 ) {
-    // The small button minHeight / height is 36dp, which is lower than the required touch target of 48dp.
-    // While these rectangular buttons are wider and thus still present a proper touch target,
-    // then the square loading buttons below in the same table are 36dpx36dp and this not valid touch targets in terms
-    // of accessibility.
-    // I will currently suppress this issue in with LocalMinimumInteractiveComponentSize provides 36.dp,
-    // but we should address it.
+    // Note: If the button size is smaller than the required touch target of 48dp x 48dp the
+    // system will apply invisible touchable padding based on LocalMinimumInteractiveComponentSize.
+    // This means buttons will have the normal padding and then the invisible touch area padding also.
     CompositionLocalProvider(
         LocalRippleConfiguration provides noRippleConfiguration(),
-        LocalMinimumInteractiveComponentSize provides 36.dp,
     ) {
         val containerColor = colors.containerColor(enabled, interactionSource)
         val contentColor = colors.contentColor(enabled, interactionSource)
@@ -232,8 +223,8 @@ public fun LabButton(
 
 @Composable
 public fun LabButtonContent(
-    minHeight: Dp = LabButtonDefaults.minHeight,
     showProgress: Boolean = false,
+    progressSize: Dp = LabButtonDefaults.progressSize,
     iconStart: ImageSource? = null,
     iconStartContentDescription: String = "",
     iconSize: Dp = LabButtonDefaults.iconSize,
@@ -241,10 +232,6 @@ public fun LabButtonContent(
     iconSpacing: Dp = LabButtonDefaults.iconSpacing,
     iconEnd: ImageSource? = null,
     iconEndContentDescription: String = "",
-    contentPadding: PaddingValues = LabButtonDefaults.contentPaddings(
-        hasIconStart = iconStart != null,
-        hasIconEnd = iconEnd != null
-    ),
     indeterminateProgressIndicator: @Composable (modifier: Modifier) -> Unit = { mod ->
         DefaultButtonProgressIndicator(mod)
     },
@@ -290,11 +277,8 @@ public fun LabButtonContent(
             }
         }
         if (showProgress) {
-            val height = remember(contentPadding) {
-                minHeight - contentPadding.calculateBottomPadding() - contentPadding.calculateTopPadding()
-            }
             val modifier = Modifier
-                .size(height)
+                .size(progressSize)
                 .align(Alignment.Center)
             indeterminateProgressIndicator.invoke(modifier)
         }
@@ -403,19 +387,6 @@ private fun PreviewLightDifferentFont() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewLightDifferentSize() {
-    PreviewContainer {
-        LabButton(
-            text = "M Size different",
-            onClick = {},
-            minWidth = 60.dp,
-            minHeight = 60.dp,
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
 private fun PreviewSmallLightDisabled() {
     PreviewContainer {
         LabSmallButton(
@@ -433,20 +404,6 @@ private fun PreviewSmallLightDifferentFont() {
         LabSmallButton(
             text = "S Font different",
             onClick = {},
-            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewSmallLightDifferentSize() {
-    PreviewContainer {
-        LabSmallButton(
-            text = "S Size different",
-            onClick = {},
-            minWidth = 28.dp,
-            minHeight = 28.dp,
             textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
         )
     }

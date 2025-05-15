@@ -18,9 +18,21 @@ import mobi.lab.components.compose.widget.progress.LabIndeterminateCircularIndic
 @Suppress("LongParameterList")
 @Immutable
 public object LabButtonDefaults {
-
-    public val iconSize: Dp = 24.dp
+    // NOTE: Button size depends on sizes of things inside it - text, paddings, icons, progress.
+    public val iconSize: Dp = 20.dp
     public val smallIconSize: Dp = 16.dp
+
+    // Icon button has larger medium sized button icon
+    public val iconButtonIconSize: Dp = 24.dp
+
+    // But the same size small sized button icon
+    public val iconButtonSmallIconSize: Dp = 16.dp
+
+    // Progress size is set
+    public val progressSize: Dp = 20.dp
+    public val smallProgressSize: Dp = 16.dp
+    public val iconButtonProgressSize: Dp = 24.dp
+    public val iconButtonSmallProgressSize: Dp = 16.dp
 
     // Content padding differs based if there is an icon or not and if it is a medium or small button
     public val contentPaddingNoIcons: PaddingValues = PaddingValues(
@@ -175,7 +187,7 @@ public object LabButtonDefaults {
         }
     }
 
-    public val minWidth: Dp = 48.dp
+    public val minWidth: Dp = 44.dp
     public val minHeight: Dp = 48.dp
     public val smallMinWidth: Dp = 36.dp
     public val smallMinHeight: Dp = 36.dp
@@ -188,7 +200,7 @@ public object LabButtonDefaults {
     public val textStyle: TextStyle @Composable get() = LabTheme.typography.labelLarge.copy(color = Color.Unspecified)
 
     // Text style for small buttons used to be different so we have a separate default here atm
-    public val smallTextStyle: TextStyle @Composable get() = textStyle
+    public val smallTextStyle: TextStyle @Composable get() = LabTheme.typography.labelLarge.copy(color = Color.Unspecified)
 
     @Composable
     public fun buttonBorder(): LabButtonBorder {
