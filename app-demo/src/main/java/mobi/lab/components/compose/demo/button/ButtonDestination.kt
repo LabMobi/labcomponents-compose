@@ -19,6 +19,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -34,6 +35,8 @@ import mobi.lab.components.compose.demo.R
 import mobi.lab.components.compose.demo.common.LabelSwitch
 import mobi.lab.components.compose.demo.common.LightDarkModeMenu
 import mobi.lab.components.compose.theme.LabTheme
+import mobi.lab.components.compose.theme.LabThemeDefaults
+import mobi.lab.components.compose.theme.LocalLabConstants
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.limitMaxContentWidth
 import mobi.lab.components.compose.util.withAlpha
@@ -605,82 +608,69 @@ private fun CustomTextStyleButtons(enabled: MutableState<Boolean>) {
 private fun CustomMinSizeButtons(enabled: MutableState<Boolean>) {
     SectionTitle(stringResource(R.string.text_customization_custom_min_size))
     val customTextStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
-/*    LabFilledButton(
-        text = stringResource(R.string.label_filled),
-        onClick = {},
-        enabled = enabled.value,
-        minWidth = 60.dp,
-        minHeight = 60.dp,
+    val constantsOverride = LabThemeDefaults.constants(
+        buttonMediumMinHeight = 60.dp,
+        buttonSmallMinHeight = 28.dp,
     )
-    LabFilledSmallButton(
-        text = stringResource(R.string.label_filled),
-        onClick = {},
-        enabled = enabled.value,
-        minWidth = 28.dp,
-        minHeight = 28.dp,
-        textStyle = customTextStyle,
-    )
-    LabTonedButton(
-        text = stringResource(R.string.label_toned),
-        onClick = {},
-        enabled = enabled.value,
-        minWidth = 60.dp,
-        minHeight = 60.dp,
-    )
-    LabTonedSmallButton(
-        text = stringResource(R.string.label_toned),
-        onClick = {},
-        enabled = enabled.value,
-        minWidth = 28.dp,
-        minHeight = 28.dp,
-        textStyle = customTextStyle,
-    )
-    LabOutlinedButton(
-        text = stringResource(R.string.label_outlined),
-        onClick = {},
-        enabled = enabled.value,
-        minWidth = 60.dp,
-        minHeight = 60.dp,
-    )
-    LabOutlinedSmallButton(
-        text = stringResource(R.string.label_outlined),
-        onClick = {},
-        enabled = enabled.value,
-        minWidth = 28.dp,
-        minHeight = 28.dp,
-        textStyle = customTextStyle,
-    )
-    LabTextButton(
-        text = stringResource(R.string.label_text),
-        onClick = {},
-        enabled = enabled.value,
-        minWidth = 60.dp,
-        minHeight = 60.dp,
-    )
-    LabTextSmallButton(
-        text = stringResource(R.string.label_text_small),
-        onClick = {},
-        enabled = enabled.value,
-        minWidth = 28.dp,
-        minHeight = 28.dp,
-        textStyle = customTextStyle,
-    )
-    LabIconButton(
-        icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
-        contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
-        onClick = {},
-        enabled = enabled.value,
-        minWidth = 60.dp,
-        minHeight = 60.dp,
-    )
-    LabIconSmallButton(
-        icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
-        contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
-        onClick = {},
-        enabled = enabled.value,
-        minWidth = 28.dp,
-        minHeight = 28.dp,
-    )*/
+    // Use the CompositionLocalProvider to provide a different set of LocalLabConstants for this composable
+    CompositionLocalProvider(LocalLabConstants provides constantsOverride) {
+        LabFilledButton(
+            text = stringResource(R.string.label_filled),
+            onClick = {},
+            enabled = enabled.value,
+        )
+        LabFilledSmallButton(
+            text = stringResource(R.string.label_filled),
+            onClick = {},
+            enabled = enabled.value,
+            textStyle = customTextStyle,
+        )
+        LabTonedButton(
+            text = stringResource(R.string.label_toned),
+            onClick = {},
+            enabled = enabled.value,
+        )
+        LabTonedSmallButton(
+            text = stringResource(R.string.label_toned),
+            onClick = {},
+            enabled = enabled.value,
+            textStyle = customTextStyle,
+        )
+        LabOutlinedButton(
+            text = stringResource(R.string.label_outlined),
+            onClick = {},
+            enabled = enabled.value,
+        )
+        LabOutlinedSmallButton(
+            text = stringResource(R.string.label_outlined),
+            onClick = {},
+            enabled = enabled.value,
+            textStyle = customTextStyle,
+        )
+        LabTextButton(
+            text = stringResource(R.string.label_text),
+            onClick = {},
+            enabled = enabled.value,
+        )
+        LabTextSmallButton(
+            text = stringResource(R.string.label_text_small),
+            onClick = {},
+            enabled = enabled.value,
+            textStyle = customTextStyle,
+        )
+        LabIconButton(
+            icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+            contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
+            onClick = {},
+            enabled = enabled.value,
+        )
+        LabIconSmallButton(
+            icon = ImageSource.fromRes(R.drawable.ic_placeholder16),
+            contentDescription = stringResource(R.string.text_button_with_a_placeholder_icon),
+            onClick = {},
+            enabled = enabled.value,
+        )
+    }
 }
 
 @Composable

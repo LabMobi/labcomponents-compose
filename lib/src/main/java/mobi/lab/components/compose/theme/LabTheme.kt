@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
@@ -100,23 +101,23 @@ internal fun ProvideLabValues(
     )
 }
 
-private val LocalLabColors = staticCompositionLocalOf<LabColors> {
+public val LocalLabColors: ProvidableCompositionLocal<LabColors> = staticCompositionLocalOf {
     error("No LabColors provided")
 }
 
-private val LocalLabTypography = staticCompositionLocalOf<LabTypography> {
+public val LocalLabTypography: ProvidableCompositionLocal<LabTypography> = staticCompositionLocalOf {
     error("No LabTypography provided")
 }
 
-private val LocalLabDimensions = staticCompositionLocalOf<LabDimensions> {
+public val LocalLabDimensions: ProvidableCompositionLocal<LabDimensions> = staticCompositionLocalOf {
     error("No LabDimensions provided")
 }
 
-internal val LocalLabConstants = staticCompositionLocalOf<LabConstants> {
+public val LocalLabConstants: ProvidableCompositionLocal<LabConstants> = staticCompositionLocalOf {
     error("No LabConstants provided")
 }
 
-private val LocalLabShapes = staticCompositionLocalOf<LabShapes> {
+public val LocalLabShapes: ProvidableCompositionLocal<LabShapes> = staticCompositionLocalOf {
     error("No LabShapes provided")
 }
 
