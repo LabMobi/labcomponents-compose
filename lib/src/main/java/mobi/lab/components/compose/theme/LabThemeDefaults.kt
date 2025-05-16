@@ -28,6 +28,8 @@ public object LabThemeDefaults {
     public fun constants(
         disabledAlpha: Float = 0.4f,
         maxContentWidth: Dp = 500.dp,
+        // Note - if we get more of these button specific ones then
+        // probably makes sense to define a button style wrapper.
         buttonMediumMinWidth: Dp = LabButtonDefaults.minWidth,
         buttonMediumMinHeight: Dp = LabButtonDefaults.minHeight,
         buttonSmallMinWidth: Dp = LabButtonDefaults.smallMinWidth,

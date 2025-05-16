@@ -187,8 +187,15 @@ public object LabButtonDefaults {
         }
     }
 
+    // For supporting text in buttons we also define the min size
+    // here. Otherwise the button would resize when it switches between
+    // text only (these do not have predictable sizes) and
+    // icon/progress (these have predictable sizes).
+    // Note that iconButton has 48dp as min height,
+    // but it only contains an icon and progress and
+    // the size is set based on those.
     public val minWidth: Dp = 44.dp
-    public val minHeight: Dp = 48.dp
+    public val minHeight: Dp = 44.dp
     public val smallMinWidth: Dp = 36.dp
     public val smallMinHeight: Dp = 36.dp
     public val iconSpacing: Dp = 8.dp
