@@ -7,7 +7,7 @@ Mobi Lab Components for Compose (`LabComponentsCompose`) help developers execute
 Maven Central artifact available from https://central.sonatype.com/search?q=mobi.lab.labcomponents:labcomponents-compose
 
 ```groovy
-implementation 'mobi.lab.labcomponents:labcomponents-compose:0.0.6'
+implementation 'mobi.lab.labcomponents:labcomponents-compose:0.0.7'
 ```
 
 The components provide implementations for [Mobi Lab's design system](https://www.figma.com/file/gxt4iyWGyliILJSOCLXonl/P42-design-system-template?type=design&node-id=1652-14713&mode=design&t=j4TbnOpahS3korsT-0). These components are based on [Material Components for Android](https://github.com/material-components/material-components-android).
@@ -16,6 +16,7 @@ The components provide implementations for [Mobi Lab's design system](https://ww
 
 | Lab Components for Compose version | Compose BOM version used | CompileSdk used     |
 | ---------------------------------- | :----------------------- | ------------------- |
+| 0.0.7                              | 2025.05.00               | API 36 / Android 16 |
 | 0.0.6                              | 2025.05.00               | API 36 / Android 16 |
 | 0.0.5                              | 2025.05.00               | API 36 / Android 16 |
 | 0.0.4                              | 2025.04.01               | API 36 / Android 16 |
