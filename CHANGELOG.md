@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Changed the medium size button (Filled, Tonal, Outlined and Text buttons) text style token from “body-large”→“label-large”. (Figma 2025, May 13)
+
+- Changed the medium size (Filled, Tonal, Outlined and Text) button leading and trailing icon (+loader) sizes from 24px→20px. (Figma 2025, May 13)
+
 - Changed the way the minimum sizes are handled for buttons. Button size is determined mainly by the contents. But this does not always give the same result as in Figma. So buttons also have minimum width and height values defined. This way the button will not resize when changing to loading mode and back. As in the primary case you want to change minimums for all the buttons in one go, then the values are now attached to `LabTheme.constants` and can be easily overridden for the whole when defining the app theme:
 
   ```kotlin
