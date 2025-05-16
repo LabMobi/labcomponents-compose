@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
@@ -27,8 +26,6 @@ import mobi.lab.components.compose.widget.image.ImageSource
 @Composable
 public fun LabFilledButton(
     modifier: Modifier = Modifier,
-    minWidth: Dp = LabButtonDefaults.minWidth,
-    minHeight: Dp = LabButtonDefaults.minHeight,
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
@@ -55,8 +52,6 @@ public fun LabFilledButton(
         text = text,
         onClick = onClick,
         modifier = modifier,
-        minWidth = minWidth,
-        minHeight = minHeight,
         iconStart = iconStart,
         iconEnd = iconEnd,
         iconSize = iconSize,
@@ -77,8 +72,6 @@ public fun LabFilledButton(
 @Composable
 public fun LabFilledSmallButton(
     modifier: Modifier = Modifier,
-    minWidth: Dp = LabButtonDefaults.smallMinWidth,
-    minHeight: Dp = LabButtonDefaults.smallMinHeight,
     text: String? = null,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
@@ -105,8 +98,6 @@ public fun LabFilledSmallButton(
         text = text,
         onClick = onClick,
         modifier = modifier,
-        minWidth = minWidth,
-        minHeight = minHeight,
         iconStart = iconStart,
         iconEnd = iconEnd,
         iconSize = iconSize,
@@ -214,19 +205,6 @@ private fun PreviewLightDifferentFont() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewLightDifferentSize() {
-    PreviewContainer {
-        LabFilledButton(
-            text = "M Size different",
-            onClick = {},
-            minWidth = 60.dp,
-            minHeight = 60.dp,
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
 private fun PreviewLightEnabledLoading() {
     PreviewContainer {
         LabFilledButton(
@@ -308,20 +286,6 @@ private fun PreviewSmallLightDifferentFont() {
         LabFilledSmallButton(
             text = "S Font different",
             onClick = {},
-            textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewSmallLightDifferentSize() {
-    PreviewContainer {
-        LabFilledSmallButton(
-            text = "S Size different",
-            onClick = {},
-            minWidth = 28.dp,
-            minHeight = 28.dp,
             textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
         )
     }

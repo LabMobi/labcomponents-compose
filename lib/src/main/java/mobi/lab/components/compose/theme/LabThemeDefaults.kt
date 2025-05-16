@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import mobi.lab.components.compose.theme.tokens.PaletteTokens
 import mobi.lab.components.compose.util.withAlpha
 import mobi.lab.components.compose.util.withFontFamily
+import mobi.lab.components.compose.widget.button.LabButtonDefaults
 
 public object LabThemeDefaults {
 
@@ -24,10 +25,23 @@ public object LabThemeDefaults {
     }
 
     @Composable
-    public fun constants(): LabConstants {
+    public fun constants(
+        disabledAlpha: Float = 0.4f,
+        maxContentWidth: Dp = 500.dp,
+        // Note - if we get more of these button specific ones then
+        // probably makes sense to define a button style wrapper.
+        buttonMediumMinWidth: Dp = LabButtonDefaults.minWidth,
+        buttonMediumMinHeight: Dp = LabButtonDefaults.minHeight,
+        buttonSmallMinWidth: Dp = LabButtonDefaults.smallMinWidth,
+        buttonSmallMinHeight: Dp = LabButtonDefaults.smallMinHeight,
+    ): LabConstants {
         return LabConstants(
-            disabledAlpha = 0.4f,
-            maxContentWidth = 500.dp,
+            disabledAlpha = disabledAlpha,
+            maxContentWidth = maxContentWidth,
+            buttonMediumMinWidth = buttonMediumMinWidth,
+            buttonMediumMinHeight = buttonMediumMinHeight,
+            buttonSmallMinWidth = buttonSmallMinWidth,
+            buttonSmallMinHeight = buttonSmallMinHeight,
         )
     }
 

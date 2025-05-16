@@ -9,5 +9,12 @@ import androidx.compose.ui.unit.Dp
 @Immutable
 public data class LabConstants(
     public val disabledAlpha: Float,
-    public val maxContentWidth: Dp
+    /**
+     * Can be used with .limitMaxContentWidth()
+     */
+    public val maxContentWidth: Dp,
+    public val buttonMediumMinWidth: Dp,
+    public val buttonMediumMinHeight: Dp,
+    public val buttonSmallMinWidth: Dp,
+    public val buttonSmallMinHeight: Dp,
 )

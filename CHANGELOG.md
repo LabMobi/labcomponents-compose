@@ -2,11 +2,52 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project does not use semantic versioning.
 
-## 0.0.7 - [UNRELEASED]
+## 0.0.8 - [UNRELEASED]
 
 ### Changed
 
 - ..
+
+## 0.0.7 - 2025.05.16
+
+### Changed
+
+- Changed the medium size button (Filled, Tonal, Outlined and Text buttons) text style token from “body-large”→“label-large”. (Figma 2025, May 13)
+
+- Changed the medium size (Filled, Tonal, Outlined and Text) button leading and trailing icon (+loader) sizes from 24px→20px. (Figma 2025, May 13)
+
+- Changed the way the minimum sizes are handled for buttons. Button size is determined mainly by the contents. But this does not always give the same result as in Figma. So buttons also have minimum width and height values defined. This way the button will not resize when changing to loading mode and back. As in the primary case you want to change minimums for all the buttons in one go, then the values are now attached to `LabTheme.constants` and can be easily overridden for the whole when defining the app theme:
+
+  ```kotlin
+  @Composable
+  fun AppTheme(
+      content: @Composable () -> Unit,
+  ) {
+      LabTheme(
+          typography = LabThemeDefaults.typography(fontFamily = defaultFontFamily()),
+          content = content,
+          constants = LabThemeDefaults.constants(buttonMediumMinHeight = 48.dp)
+      )
+  }
+  ```
+
+  Alternatively, the `CompositionLocalProvider` can also be used to override these for specific button instances:
+
+  ```kotlin
+  val constantsOverride = LabThemeDefaults.constants(
+      buttonMediumMinHeight = 60.dp,
+      buttonSmallMinHeight = 28.dp,
+  )
+  // Use the CompositionLocalProvider to provide a different set of LocalLabConstants for this composable
+  CompositionLocalProvider(LocalLabConstants provides constantsOverride) {
+      LabFilledButton(
+          text = "Click!",
+          onClick = {},
+      )
+  }
+  ```
+
+  
 
 ## 0.0.6 -2025.05.13
 

@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.theme.LabTheme
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
@@ -25,8 +24,6 @@ import mobi.lab.components.compose.widget.image.ImageSource
 @Composable
 public fun LabTextButton(
     modifier: Modifier = Modifier,
-    minWidth: Dp = LabButtonDefaults.minWidth,
-    minHeight: Dp = LabButtonDefaults.minHeight,
     text: String,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
@@ -53,8 +50,6 @@ public fun LabTextButton(
         text = text,
         onClick = onClick,
         modifier = modifier,
-        minWidth = minWidth,
-        minHeight = minHeight,
         iconStart = iconStart,
         iconEnd = iconEnd,
         iconSize = iconSize,
@@ -75,8 +70,6 @@ public fun LabTextButton(
 @Composable
 public fun LabTextSmallButton(
     modifier: Modifier = Modifier,
-    minWidth: Dp = LabButtonDefaults.smallMinWidth,
-    minHeight: Dp = LabButtonDefaults.smallMinHeight,
     text: String,
     onClick: () -> Unit,
     iconStart: ImageSource? = null,
@@ -103,8 +96,6 @@ public fun LabTextSmallButton(
         text = text,
         onClick = onClick,
         modifier = modifier,
-        minWidth = minWidth,
-        minHeight = minHeight,
         iconStart = iconStart,
         iconEnd = iconEnd,
         iconSize = iconSize,
@@ -229,8 +220,6 @@ private fun PreviewLightDifferentSize() {
         LabTextButton(
             text = "M Size different",
             onClick = {},
-            minWidth = 60.dp,
-            minHeight = 60.dp,
         )
     }
 }
@@ -266,8 +255,6 @@ private fun PreviewSmallLightDifferentSize() {
         LabTextSmallButton(
             text = "S Size different",
             onClick = {},
-            minWidth = 28.dp,
-            minHeight = 28.dp,
             textStyle = LabTheme.typography.labelSmall.copy(color = Color.Unspecified)
         )
     }

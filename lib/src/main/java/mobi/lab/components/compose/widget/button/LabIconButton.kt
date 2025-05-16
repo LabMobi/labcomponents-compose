@@ -15,7 +15,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import mobi.lab.components.compose.util.PreviewContainer
 import mobi.lab.components.compose.util.previewInteractionSourceOf
 import mobi.lab.components.compose.widget.button.LabButtonDefaults.DefaultButtonProgressIndicator
@@ -24,11 +23,9 @@ import mobi.lab.components.compose.widget.image.ImageSource
 @Composable
 public fun LabIconButton(
     modifier: Modifier = Modifier,
-    minWidth: Dp = LabButtonDefaults.minWidth,
-    minHeight: Dp = LabButtonDefaults.minHeight,
     icon: ImageSource,
     contentDescription: String,
-    iconSize: Dp = LabButtonDefaults.iconSize,
+    iconSize: Dp = LabButtonDefaults.iconButtonIconSize,
     onClick: () -> Unit,
     enabled: Boolean = true,
     showProgress: Boolean = false,
@@ -45,8 +42,6 @@ public fun LabIconButton(
     LabButton(
         onClick = onClick,
         modifier = modifier,
-        minWidth = minWidth,
-        minHeight = minHeight,
         iconStart = icon,
         iconStartContentDescription = contentDescription,
         iconSize = iconSize,
@@ -65,11 +60,9 @@ public fun LabIconButton(
 @Composable
 public fun LabIconSmallButton(
     modifier: Modifier = Modifier,
-    minWidth: Dp = LabButtonDefaults.smallMinWidth,
-    minHeight: Dp = LabButtonDefaults.smallMinHeight,
     icon: ImageSource,
     contentDescription: String,
-    iconSize: Dp = LabButtonDefaults.smallIconSize,
+    iconSize: Dp = LabButtonDefaults.iconButtonSmallIconSize,
     onClick: () -> Unit,
     enabled: Boolean = true,
     showProgress: Boolean = false,
@@ -86,8 +79,6 @@ public fun LabIconSmallButton(
     LabSmallButton(
         onClick = onClick,
         modifier = modifier,
-        minWidth = minWidth,
-        minHeight = minHeight,
         iconStart = icon,
         iconStartContentDescription = contentDescription,
         iconSize = iconSize,
@@ -228,21 +219,6 @@ private fun PreviewLightDisabled() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewLightSizeDifferent() {
-    PreviewContainer {
-        LabIconButton(
-            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
-            contentDescription = "Like",
-            onClick = {},
-            enabled = false,
-            minWidth = 60.dp,
-            minHeight = 60.dp,
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
 private fun PreviewSmallLightDisabled() {
     PreviewContainer {
         LabIconSmallButton(
@@ -250,21 +226,6 @@ private fun PreviewSmallLightDisabled() {
             contentDescription = "Like",
             onClick = {},
             enabled = false
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewSmallLightDifferentSize() {
-    PreviewContainer {
-        LabIconSmallButton(
-            icon = ImageSource.vector(Icons.Filled.FavoriteBorder),
-            contentDescription = "Like",
-            onClick = {},
-            enabled = false,
-            minWidth = 28.dp,
-            minHeight = 28.dp,
         )
     }
 }
