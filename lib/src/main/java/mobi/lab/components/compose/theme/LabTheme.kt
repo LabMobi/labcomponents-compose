@@ -33,13 +33,15 @@ public fun LabTheme(
     dimensions: LabDimensions = LabThemeDefaults.dimensions(),
     constants: LabConstants = LabThemeDefaults.constants(),
     shapes: LabShapes = LabThemeDefaults.shapes(),
+    materialColorScheme: ColorScheme = debugColors(),
+    materialTypography: Typography = debugTypography(),
     content: @Composable () -> Unit,
 ) {
     // Make our values available
     ProvideLabValues(colors, typography, dimensions, constants, shapes) {
         MaterialTheme(
-            colorScheme = debugColors(),
-            typography = debugTypography(),
+            colorScheme = materialColorScheme,
+            typography = materialTypography,
             content = {
                 // Provide a default TextStyle for all the following content.
                 // This is inside MaterialTheme to override the default style.
@@ -122,8 +124,8 @@ public val LocalLabShapes: ProvidableCompositionLocal<LabShapes> = staticComposi
 }
 
 /**
- * A Material [Colors] implementation which sets all colors to [debugColor] to discourage usage of
- * [MaterialTheme.colors] in preference to [LabTheme.colors].
+ * A Material [ColorScheme] implementation which sets all colors to [debugColor] to discourage usage of
+ * [MaterialTheme.colorScheme] in preference to [LabTheme.colors].
  */
 internal fun debugColors(debugColor: Color = Color.Cyan) = ColorScheme(
     primary = debugColor,
