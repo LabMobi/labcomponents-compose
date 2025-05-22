@@ -2,11 +2,17 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project does not use semantic versioning.
 
-## 0.0.8 - [UNRELEASED]
+## 0.0.9 - [UNRELEASED]
 
 ### Changed
 
 - ..
+
+## 0.0.8 - 2025.05.22
+
+### Changed
+
+- Allow to specify the Material `ColorScheme` and `Typography` when creating `LabTheme`. Useful in cases when setting the debug-colors and fonts there has unintended effects.
 
 ## 0.0.7 - 2025.05.16
 
