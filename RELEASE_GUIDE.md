@@ -88,7 +88,7 @@ git push
 
 7) Publish repository by pressing "Publish"
 
-   - Now the new artifact should be available shortly on the Maven Central at https://repo1.maven.org/maven2/mobi/lab/lab/labcomponents/labcomponents-compose/ 
+   - Now the new artifact should be available shortly on the Maven Central at https://repo1.maven.org/maven2/mobi/lab/labcomponents/labcomponents-compose/ 
    
    - NOTE: Depending in the time of day this can take some time (30m - 1h)
    
