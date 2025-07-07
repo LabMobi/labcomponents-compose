@@ -38,6 +38,8 @@ androidx-viewmodel-compose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.9
 # Compose
 # Do not use versioning via Material BOM or the Maven Central will not be able to validate version
 # and will fail validation.
+# But versions you can still update together based on the Compose BOM:
+# https://developer.android.com/develop/ui/compose/bom/bom-mapping
 compose-material3 = { module = "androidx.compose.material3:material3", version = "1.3.2" }
 compose-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version = "1.8.1" }
 compose-tooling = { module = "androidx.compose.ui:ui-tooling", version = "1.8.1" }
