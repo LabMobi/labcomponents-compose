@@ -1,11 +1,10 @@
 plugins {
     // This is a core plugin and versioned together with Gradle
-    id 'maven-publish'
-    // This is a core plugin and versioned together with Gradle
     id 'signing'
     alias libs.plugins.android.library
     alias libs.plugins.kotlin.android
     alias(libs.plugins.compose.compiler)
+    alias libs.plugins.maven.publish.vanniktech
 }
 
 project.base.archivesName.set("labcomponents-compose")
@@ -72,22 +71,62 @@ android {
     lint {
         fatal "StopShip"
     }
-
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-        }
-    }
 }
 
 dependencies {
     // Compose
-    implementation platform(libs.compose.bom)
+    // implementation platform(libs.compose.bom)
+    implementation libs.compose.material3
+    implementation libs.compose.tooling.preview
+    implementation libs.compose.tooling
+    implementation libs.compose.activity
+    implementation libs.compose.viewbinding
+
     debugImplementation libs.compose.tooling
     implementation libs.compose.material3
     implementation libs.compose.tooling.preview
     implementation libs.compose.activity
     implementation libs.compose.viewbinding
+}
+
+mavenPublishing {
+    // the first parameter represents which variant is published
+    // the second whether to publish a sources jar
+    // the third whether to publish a javadoc jar
+    //configure(new AndroidSingleVariantLibrary("release", true, true))
+
+    // false - manual release required via https://central.sonatype.com/publishing/deployments
+    publishToMavenCentral(false)
+
+    signAllPublications()
+
+    coordinates("mobi.lab.labcomponents", "labcomponents-compose", "${rootProject.ext.libraryVersion}")
+
+    pom {
+        name = "Mobi Lab Components for Compose library."
+        description = "The Compose implementation of the Mobi Lab design system components."
+        inceptionYear = "2024"
+        url = "https://github.com/LabMobi/labcomponents-compose"
+        licenses {
+            license {
+                name = "The MIT License"
+                url = "https://opensource.org/licenses/mit-license.php"
+                distribution = "https://opensource.org/licenses/mit-license.php"
+            }
+        }
+        developers {
+            developer {
+                id = "android@lab.mobi"
+                name = "Mobi Lab"
+                url = "https://lab.mobi"
+            }
+        }
+        scm {
+            connection = 'https://github.com/LabMobi/labcomponents-compose.git'
+            developerConnection = 'https://github.com/LabMobi/labcomponents-compose.git'
+            url = 'https://github.com/LabMobi/labcomponents-compose'
+        }
+    }
 }
 
 
@@ -108,70 +147,9 @@ tasks.register('buildLibRelease') {
 tasks.register('buildAndPublishRelease') {
     group = "Publish"
     description = "Build the library release version and publish it"
-    dependsOn "buildLibRelease", 'publish'
+    dependsOn "buildLibRelease", "checkCode", "publishToMavenCentral"
 }
 
-tasks.named('publish').get().mustRunAfter tasks.named('buildLibRelease').get()
+publishToMavenCentral.mustRunAfter tasks.named('buildLibRelease').get()
+publishToMavenCentral.mustRunAfter tasks.checkCode
 
-Properties properties = new Properties()
-try {
-    properties.load(project.rootProject.file('publish.properties').newDataInputStream())
-} catch (Exception ignored) {
-    println "publish.properties missing"
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                groupId = 'mobi.lab.labcomponents'
-                artifactId = 'labcomponents-compose'
-                from components.release
-                pom {
-                    packaging = 'aar'
-                    name = 'Mobi Lab Components for Compose library.'
-                    description = 'The Compose implementation of the Mobi Lab design system components.'
-                    url = 'https://github.com/LabMobi/labcomponents-compose'
-
-                    licenses {
-                        license {
-                            name = 'The MIT License'
-                            url = 'https://opensource.org/licenses/mit-license.php'
-                        }
-                    }
-                    developers {
-                        developer {
-                            name = properties.getProperty("publish_developer_name")
-                            name = properties.getProperty("publish_developer_name")
-                            email = properties.getProperty("publish_developer_email")
-                            organization = properties.getProperty("publish_developer_organization")
-                            organizationUrl = properties.getProperty("publish_developer_organization_url")
-                        }
-                    }
-                    scm {
-                        connection = 'https://github.com/LabMobi/labcomponents-compose.git'
-                        developerConnection = 'https://github.com/LabMobi/labcomponents-compose.git'
-                        url = 'https://github.com/LabMobi/labcomponents-compose'
-                    }
-                }
-            }
-        }
-        repositories {
-            maven {
-                name = "ossrh-staging-api"
-                url = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
-                credentials {
-                    username = properties.getProperty("publish_ossrh_username")
-                    password = properties.getProperty("publish_ossrh_password")
-                }
-            }
-        }
-    }
-
-    signing {
-        def signingKey = properties.getProperty("signing_key")
-        def signingPassword = properties.getProperty("signing_password")
-        useInMemoryPgpKeys(signingKey, signingPassword)
-        sign publishing.publications
-    }
-}
