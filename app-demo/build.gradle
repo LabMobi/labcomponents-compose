@@ -106,7 +106,7 @@ dependencies {
     // Compose
     implementation libs.compose.material3
     implementation libs.compose.tooling.preview
-    implementation libs.compose.tooling
+    debugImplementation libs.compose.tooling
     implementation libs.compose.activity
     implementation libs.compose.viewbinding
 
@@ -120,11 +120,6 @@ dependencies {
     androidTestImplementation libs.compose.activity
     androidTestImplementation libs.compose.viewbinding
     androidTestImplementation libs.androidx.ui.test.junit4
-    debugImplementation libs.compose.tooling
-    implementation libs.compose.material3
-    implementation libs.compose.tooling.preview
-    implementation libs.compose.activity
-    implementation libs.compose.viewbinding
     debugImplementation libs.androidx.ui.test.manifest
 
     // Compose Navigation

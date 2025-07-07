@@ -79,21 +79,20 @@ git push
 
 5) Start the publish build (`publish-builds Publish to Maven builds (main branch only)`) at Codemagic CI from the `main` branch, make sure it builds fine and everything is in green.
 
-6. Open up https://central.sonatype.com/publishing, navigate to "Deployments". 
+6) Open up https://central.sonatype.com/publishing, navigate to "Deployments". 
 
    - There should one or more deployments waiting with the same version you are publishing. Pick the correct one, drop the others if there are more than one. This can happen if you run publishing multiple times.
 
    - Check if the artifacts are ok. If you want to cancel then "Drop" the repository.
 
 
-7. Publish repository by pressing "Publish"
+7) Publish repository by pressing "Publish"
 
    - Now the new artifact should be available shortly on the Maven Central at https://repo1.maven.org/maven2/mobi/lab/lab/labcomponents/labcomponents-compose/ 
    
    - NOTE: Depending in the time of day this can take some time (30m - 1h)
    
-
-8. Create a new release and a Git tag in GitHub as follows:
+8) Create a new release and a Git tag in GitHub as follows:
    - Open up the GitHub release page at https://github.com/LabMobi/labcomponents-compose/releases, create a new release `vX.Y.Z`. Don't write an additional changelog there, just link to the changelog document.
    - Let it automatically create a tag for the release, in the form of "release-X.Y.Z".
 

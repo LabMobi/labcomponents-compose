@@ -75,13 +75,6 @@ android {
 
 dependencies {
     // Compose
-    // implementation platform(libs.compose.bom)
-    implementation libs.compose.material3
-    implementation libs.compose.tooling.preview
-    implementation libs.compose.tooling
-    implementation libs.compose.activity
-    implementation libs.compose.viewbinding
-
     debugImplementation libs.compose.tooling
     implementation libs.compose.material3
     implementation libs.compose.tooling.preview
