@@ -114,12 +114,6 @@ dependencies {
     implementation libs.androidx.ui
     implementation libs.androidx.ui.graphics
     implementation libs.androidx.viewmodel.compose
-    androidTestImplementation libs.compose.material3
-    androidTestImplementation libs.compose.tooling.preview
-    androidTestImplementation libs.compose.tooling
-    androidTestImplementation libs.compose.activity
-    androidTestImplementation libs.compose.viewbinding
-    androidTestImplementation libs.androidx.ui.test.junit4
     debugImplementation libs.androidx.ui.test.manifest
 
     // Compose Navigation
