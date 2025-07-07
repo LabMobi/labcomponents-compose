@@ -2,11 +2,17 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project does not use semantic versioning.
 
-## 0.0.9 - [UNRELEASED]
+## 0.1.0 - [UNRELEASED]
 
 ### Changed
 
 - ..
+
+## 0.0.9 - 2025.07.07
+
+### Changed
+
+- No functional changes to the library. The Maven Central publishing process of the library was updated.
 
 ## 0.0.8 - 2025.05.22
 
