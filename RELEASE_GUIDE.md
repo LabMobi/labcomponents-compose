@@ -81,7 +81,7 @@ git push
 
 6) Open up https://central.sonatype.com/publishing, navigate to "Deployments". 
 
-   - There should one or more deployments waiting with the same version you are publishing. Pick the correct one, drop the others if there are more than one. This can happen if you run publishing multiple times.
+   - There should be one or more deployments waiting with the same version you are publishing. Pick the correct one, drop the others if there are more than one. This can happen if you run publishing multiple times.
 
    - Check if the artifacts are ok. If you want to cancel then "Drop" the repository.
 
