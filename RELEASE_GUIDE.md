@@ -62,9 +62,9 @@ git commit -m "Update the version code to X.Y.Z"
 git push
 ```
 
-2) Make sure the develop build (`develop-builds (Development builds)`) you just started at Codemagic CI is ok and everything is in green.
+3) Make sure the develop build (`develop-builds (Development builds)`) you just started at Codemagic CI is ok and everything is in green.
 
-3) Merge the `develop` branch to `main`.
+4) Merge the `develop` branch to `main`.
 
 ```bash
 git checkout develop
@@ -75,28 +75,28 @@ git merge develop
 git push
 ```
 
-4) Start the release build (`release-builds (Release builds for verification (main branch only))`) at Codemagic CI from the `main` branch, make sure it builds fine and everything is in green.
+5) Start the release build (`release-builds (Release builds for verification (main branch only))`) at Codemagic CI from the `main` branch, make sure it builds fine and everything is in green.
 
-5) Start the publish build (`publish-builds Publish to Maven builds (main branch only)`) at Codemagic CI from the `main` branch, make sure it builds fine and everything is in green.
+6) Start the publish build (`publish-builds Publish to Maven builds (main branch only)`) at Codemagic CI from the `main` branch, make sure it builds fine and everything is in green.
 
-6) Open up https://central.sonatype.com/publishing, navigate to "Deployments". 
+7) Open up https://central.sonatype.com/publishing, navigate to "Deployments". 
 
    - There should be one or more deployments waiting with the same version you are publishing. Pick the correct one, drop the others if there are more than one. This can happen if you run publishing multiple times.
 
    - Check if the artifacts are ok. If you want to cancel then "Drop" the repository.
 
 
-7) Publish repository by pressing "Publish"
+8) Publish repository by pressing "Publish"
 
    - Now the new artifact should be available shortly on the Maven Central at https://repo1.maven.org/maven2/mobi/lab/labcomponents/labcomponents-compose/ 
    
    - NOTE: Depending in the time of day this can take some time (30m - 1h)
    
-8) Create a new release and a Git tag in GitHub as follows:
+9) Create a new release and a Git tag in GitHub as follows:
    - Open up the GitHub release page at https://github.com/LabMobi/labcomponents-compose/releases, create a new release `vX.Y.Z`. Don't write an additional changelog there, just link to the changelog document.
    - Let it automatically create a tag for the release, in the form of "release-X.Y.Z".
 
-9) OPTIONAL: Update the library in at least one of the projects using it to make sure everything is in order.
+10) OPTIONAL: Update the library in at least one of the projects using it to make sure everything is in order.
 
 ## Post-release actions
 
@@ -133,5 +133,5 @@ git push
 2. Run publishing via command line
 
    ```bash
-   ./gradlew publishToMavenCentral --no-configuration-cache
+   ./gradlew buildAndPublishRelease
    ```
